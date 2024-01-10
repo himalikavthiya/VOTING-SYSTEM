@@ -1,22 +1,19 @@
 import {  Route, Routes } from "react-router-dom";
 import "./App.css";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/admin-compo/Dashboard";
 import Login from "./components/auth/Login";
 import Sidebar from "./components/Sidebar";
-import About from "./components/About";
 import Cookies from 'js-cookie';
+import SelectElection from "./components/admin-compo/SelectElection";
+import Userprofile from "./components/user-compo/Userprofile";
 function App() {
-  
-     
-       const role = ""
-      //  Cookies.get("role");
+
+       const role =Cookies.get("role");
 
   if (!role || role == "") {
-    console.log("role not found");
     return (
       <Routes>
-        {/* <Route path="*" element={<UserLogin />} /> */}
-        <Route path="/" element={<Login />} />
+               <Route path="/" element={<Login />} />
       </Routes>
     );
   } else if (role === "Admin") {
@@ -24,10 +21,9 @@ function App() {
       <div className="admin-app">
           <Sidebar>
         <Routes>
-           {/* <Route path="/login" element={<Login />} /> */}
-           {/* <Route path="/" element={<Dashboard />} /> */}
+                   <Route path="/" element={<SelectElection />} />
            <Route path="/dashboard" element={<Dashboard />} />
-           <Route path="/about" element={<About />} />
+           
          </Routes>
        </Sidebar>
       
@@ -37,9 +33,8 @@ function App() {
     return (
       <div className="user-app">
         <Routes>
-           {/* <Route path="/" element={<UserVoting />} /> */}
-           {/* <Route path="*" element={<UserVoting />} /> */}
-       {/* <Route path="/profile" element={<UserProfile />} /> */}
+           <Route path="/" element={<Userprofile />} />
+           
         </Routes>
       </div>
     );
