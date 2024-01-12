@@ -25,6 +25,11 @@ const Sidebar = ({children}) => {
             name:"Election",
             icon:<FaUserAlt/>
         },
+        {
+            path:"/conect-election",
+            name:"Create-Election",
+            icon:<FaUserAlt/>
+        },
 
     ]
     return (

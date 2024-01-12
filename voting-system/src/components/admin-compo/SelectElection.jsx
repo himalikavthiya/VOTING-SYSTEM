@@ -1,11 +1,21 @@
-
-import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Box } from '@mui/material';
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Box,
+  Button,
+} from "@mui/material";
 
 const SelectElection = () => {
   const rows = [
-    { No: 1, name: 'Election Party 1', logo: 'logo_url_1', shortCode: 'EP1' },
-    { No: 2, name: 'Election Party 2', logo: 'logo_url_2', shortCode: 'EP2' },
+    { No: 1, name: "Election Party 1", logo: "logo_url_1", shortCode: "EP1" },
+    { No: 2, name: "Election Party 2", logo: "logo_url_2", shortCode: "EP2" },
+    { No: 3, name: "Election Party 3", logo: "logo_url_3", shortCode: "EP3" },
     // Add more rows as needed
   ];
 
@@ -35,6 +45,22 @@ const SelectElection = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Button
+          variant="contained"
+          className="btn p-color"
+          style={{ margin: 20 }}
+          size="large"
+        >
+          Add
+        </Button>
+      </div>
     </div>
   );
 };

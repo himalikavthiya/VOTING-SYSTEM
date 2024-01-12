@@ -6,13 +6,15 @@ import Sidebar from "./components/Sidebar";
 import Cookies from "js-cookie";
 import SelectElection from "./components/admin-compo/SelectElection";
 import Userprofile from "./components/user-compo/Userprofile";
+import Navbar from "./components/admin-compo/Navbar";
+import ConectElection from "./components/admin-compo/ConectElection";
 function App() {
   const role = Cookies.get("role");
 
   if (!role || role == "") {
     return (
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login/>} />
       </Routes>
     );
   } else if (role === "Admin") {
@@ -20,6 +22,7 @@ function App() {
       <div className="admin-app">
         <Sidebar>
           <Routes>
+            <Route path="/conect-election" element={<ConectElection/>}/>
             <Route path="/select-election" element={<SelectElection />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
