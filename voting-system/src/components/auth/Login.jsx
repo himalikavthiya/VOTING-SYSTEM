@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { ADMIN_LOGIN, BASE_URL } from "../../redux-saga/constant";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const name = useRef();
@@ -15,7 +16,7 @@ const Login = () => {
       password: password.current.value
     }
        axios.post(BASE_URL + ADMIN_LOGIN, data).then((res) => {
-      console.log(res);
+      console.log("res admmin",res);
       Cookies.set("role", res.data.data.role)
       Cookies.set("name", res.data.data.name)
       window.location = "/dashboard"

@@ -9,7 +9,7 @@ import {
     FaThList
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
-
+import logo from "../../public/voting.png"
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
@@ -21,8 +21,8 @@ const Sidebar = ({children}) => {
             icon:<FaTh/>
         },
         {
-            path:"/about",
-            name:"About",
+            path:"/select-election",
+            name:"Election",
             icon:<FaUserAlt/>
         },
 
@@ -31,7 +31,8 @@ const Sidebar = ({children}) => {
         <div className="main-container">
            <div style={{width: isOpen ? "50px" : "300px"}} className="sidebar">
                <div className="top_section">
-                   <h1 style={{display: isOpen ? "none" : "block"}} className="logo">Logo</h1>
+                <img src={logo} alt="logo"/>
+                   {/* <h1 style={{display: isOpen ? "none" : "block"}} className="logo">Logo</h1> */}
                    <div style={{marginLeft: isOpen ? "0px" : "110px"}} className="bars">
                        <FaBars onClick={toggle}/>
                    </div>
