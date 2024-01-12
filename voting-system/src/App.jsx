@@ -21,6 +21,7 @@ function App() {
     return (
       <div className="admin-app">
         <Sidebar>
+          <Navbar/>
           <Routes>
             <Route path="/conect-election" element={<ConectElection/>}/>
             <Route path="/select-election" element={<SelectElection />} />

@@ -10,6 +10,7 @@ import {
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import logo from "../../public/voting.png"
+import Navbar from './admin-compo/Navbar';
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
@@ -33,8 +34,10 @@ const Sidebar = ({children}) => {
 
     ]
     return (
+        <>
+        {/* <Navbar/> */}
         <div className="main-container">
-           <div style={{width: isOpen ? "50px" : "300px"}} className="sidebar">
+           <div style={{width: isOpen ? "50px" : "270px"}} className="sidebar">
                <div className="top_section">
                 <img src={logo} alt="logo"/>
                    {/* <h1 style={{display: isOpen ? "none" : "block"}} className="logo">Logo</h1> */}
@@ -53,6 +56,7 @@ const Sidebar = ({children}) => {
            </div>
            <main>{children}</main>
         </div>
+        </>
     );
 };
 
