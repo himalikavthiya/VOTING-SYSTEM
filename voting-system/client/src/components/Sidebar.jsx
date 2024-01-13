@@ -8,6 +8,8 @@ import {
     FaShoppingBag,
     FaThList
 }from "react-icons/fa";
+import { IoCreate } from "react-icons/io5";
+
 import { NavLink } from 'react-router-dom';
 import logo from "../../public/voting.png"
 import Navbar from './admin-compo/Navbar';
@@ -23,12 +25,17 @@ const Sidebar = ({children}) => {
         },
         {
             path:"/conect-election",
-            name:"Create-Election",
-            icon:<FaUserAlt/>
+            name:"Create Election",
+            icon:<IoCreate />
         },
          {
             path:"/select-election",
-            name:"Election",
+            name:"Create Election Party",
+            icon:<FaUserAlt/>
+        },
+        {
+            path:"/party-connection",
+            name:"Party Connection",
             icon:<FaUserAlt/>
         },
 

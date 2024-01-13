@@ -8,7 +8,8 @@ function Navbar() {
     <>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid ">
-          <a
+           <div class="nav-item dropdown">
+            <a
             class="nav-link dropdown-toggle"
             href="#"
             id="navbarDropdown"
@@ -19,15 +20,10 @@ function Navbar() {
             <img src={Admin_logo} alt="Admin" className="Admin-profile" />
             {Cookies.get("name")}
           </a>
-          {/* <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li className="nav-item">Logout
-              <button class="btn" type="submit">
-                Logout
-              </button>
-            </li>
-          </ul> */}
-
-          {/* </div> */}
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="#">Logout</a></li>
+          </ul>
+        </div>
         </div>
       </nav>
     </>
