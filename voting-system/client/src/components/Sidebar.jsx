@@ -35,11 +35,11 @@ const Sidebar = ({children}) => {
     ]
     return (
         <>
-        {/* <Navbar/> */}
+
         <div className="main-container">
            <div style={{width: isOpen ? "50px" : "270px"}} className="sidebar">
                <div className="top_section">
-               
+
                    <h1 style={{display: isOpen ? "none" : "block"}} className="logo"> <img src={logo} alt="logo"/></h1>
                    <div style={{marginLeft: isOpen ? "0px" : "110px"}} className="bars">
                        <FaBars onClick={toggle}/>

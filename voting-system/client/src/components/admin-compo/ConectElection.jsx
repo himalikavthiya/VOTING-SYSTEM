@@ -19,7 +19,14 @@ function ConectElection() {
     ];
 
     return (
-      <div>
+      <>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -42,6 +49,7 @@ function ConectElection() {
             </TableBody>
           </Table>
         </TableContainer>
+      </div>
         <div
           style={{
             display: "flex",
@@ -58,7 +66,7 @@ function ConectElection() {
             Add
           </Button>
         </div>
-      </div>
+    </>
     );
   };
 
