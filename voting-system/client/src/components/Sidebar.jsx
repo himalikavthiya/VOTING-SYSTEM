@@ -3,13 +3,13 @@ import {
     FaTh,
     FaBars,
     FaUserAlt,
+    FaUsers,
     FaRegChartBar,
     FaCommentAlt,
     FaShoppingBag,
     FaThList
 }from "react-icons/fa";
 import { IoCreate } from "react-icons/io5";
-
 import { NavLink } from 'react-router-dom';
 import logo from "../../public/voting.png"
 import Navbar from './admin-compo/Navbar';
@@ -24,14 +24,15 @@ const Sidebar = ({children}) => {
             icon:<FaTh/>
         },
         {
-            path:"/conect-election",
+            path:"/create-election",
             name:"Create Election",
             icon:<IoCreate />
         },
          {
-            path:"/select-election",
+            path:"/election-party",
             name:"Create Election Party",
-            icon:<FaUserAlt/>
+            icon:<FaUsers />
+
         },
         {
             path:"/party-connection",

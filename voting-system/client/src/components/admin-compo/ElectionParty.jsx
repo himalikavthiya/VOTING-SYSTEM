@@ -11,7 +11,7 @@ import {
   Button,
 } from "@mui/material";
 
-const SelectElection = () => {
+const ElectionParty = () => {
   const rows = [
     { No: 1, name: "Election Party 1", logo: "logo_url_1", shortCode: "EP1" },
     { No: 2, name: "Election Party 2", logo: "logo_url_2", shortCode: "EP2" },
@@ -65,4 +65,4 @@ const SelectElection = () => {
   );
 };
 
-export default SelectElection;
+export default ElectionParty;

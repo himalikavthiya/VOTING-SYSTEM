@@ -10,7 +10,7 @@ import {
   Button,
 } from "@mui/material";
 
-function ConectElection() {
+function CreateElection() {
     const rows = [
       { No: 1, name: "Election Party 1", date: "25-01-2024" },
       { No: 2, name: "Election Party 2", date: "26-01-2024" },
@@ -72,4 +72,4 @@ function ConectElection() {
 
 
 
-export default ConectElection;
+export default CreateElection;

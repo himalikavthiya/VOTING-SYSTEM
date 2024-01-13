@@ -4,10 +4,10 @@ import Dashboard from "./components/admin-compo/Dashboard";
 import Login from "./components/auth/Login";
 import Sidebar from "./components/Sidebar";
 import Cookies from "js-cookie";
-import SelectElection from "./components/admin-compo/SelectElection";
 import Userprofile from "./components/user-compo/Userprofile";
 import Navbar from "./components/admin-compo/Navbar";
-import ConectElection from "./components/admin-compo/ConectElection";
+import CreateElection from "./components/admin-compo/CreateElection";
+import ElectionParty from "./components/admin-compo/ElectionParty";
 function App() {
   const role = Cookies.get("role");
 
@@ -23,8 +23,8 @@ function App() {
         <Sidebar>
           <Navbar/>
           <Routes>
-            <Route path="/conect-election" element={<ConectElection/>}/>
-            <Route path="/select-election" element={<SelectElection />} />
+            <Route path="/create-election" element={<CreateElection/>}/>
+            <Route path="/election-party" element={<ElectionParty/>} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </Sidebar>
