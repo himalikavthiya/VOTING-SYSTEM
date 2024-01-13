@@ -105,5 +105,11 @@ margin: -7px;
 }
 .dropdown-menu[data-bs-popper] {
 left:auto;
-/* top: 100% !important; */
+}
+.election-Container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  /* Add margin as needed */
 }

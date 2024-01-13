@@ -27,6 +27,7 @@ function ConectElection() {
             alignItems: "center",
           }}
         > */}
+        <div className="election-Container">
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -65,6 +66,7 @@ function ConectElection() {
           >
             Add
           </Button>
+        </div>
         </div>
     </>
     );
