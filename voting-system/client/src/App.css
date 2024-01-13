@@ -14,7 +14,7 @@ main {
 }
 
 .sidebar {
-  background: #4042E2;
+  background:rgb(25,118,210);
   color: #fff;
   height: 100vh;
   width: 200px;
@@ -85,6 +85,7 @@ main {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  background-color: rgb(25,118,210);
 }
 
 .navbar .container-fluid {

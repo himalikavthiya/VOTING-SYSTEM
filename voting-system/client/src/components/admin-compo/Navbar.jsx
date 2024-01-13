@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Admin_logo from "../../../public/voting.png";
+import Admin_logo from "../../assets/Images/profile-image.png";
 import Cookies from "js-cookie";
 
 function Navbar() {
@@ -19,13 +19,13 @@ function Navbar() {
             <img src={Admin_logo} alt="Admin" className="Admin-profile" />
             {Cookies.get("name")}
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {/* <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li className="nav-item">Logout
-              {/* <button class="btn" type="submit">
+              <button class="btn" type="submit">
                 Logout
-              </button> */}
+              </button>
             </li>
-          </ul>
+          </ul> */}
 
           {/* </div> */}
         </div>
