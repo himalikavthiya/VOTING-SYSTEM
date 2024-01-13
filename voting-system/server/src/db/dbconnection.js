@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {
   configData
-} from "../config/dbconnection.js";
+} from "../config/config.js";
 
 const connectDB = async () => {
   try {

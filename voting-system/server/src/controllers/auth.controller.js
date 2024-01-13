@@ -1,6 +1,4 @@
-import {
-  Auth
-} from "../models/auth.model.js";
+
 import {
   connectDB,
   disconnectDB
@@ -9,10 +7,11 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import {
   configData
-} from "../config/dbconnection.js";
+} from "../config/config.js";
 import {
   logger
 } from "../middlewares/logger.js";
+import { Auth } from "../models/auth.model.js";
 
 
 /** Add auth controller */

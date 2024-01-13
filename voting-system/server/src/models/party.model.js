@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import {
   configData
-} from "../config/dbconnection";
+} from "../config/config.js";
 
 // party model schema defiend
 const partySchema = new mongoose.Schema({
@@ -27,7 +27,7 @@ const partySchema = new mongoose.Schema({
   toJSON: {
     transform: function (doc, data) {
       if (data && data.p_logo) {
-        data.party_logo = `${configData.base_url}party-images/${data.p_logo}`;
+        data.p_logo = `${configData.base_url}party-images/${data.p_logo}`;
       }
     },
   },
