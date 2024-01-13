@@ -22,13 +22,13 @@ const Sidebar = ({children}) => {
             icon:<FaTh/>
         },
         {
-            path:"/select-election",
-            name:"Election",
-            icon:<FaUserAlt/>
-        },
-        {
             path:"/conect-election",
             name:"Create-Election",
+            icon:<FaUserAlt/>
+        },
+         {
+            path:"/select-election",
+            name:"Election",
             icon:<FaUserAlt/>
         },
 
@@ -39,8 +39,8 @@ const Sidebar = ({children}) => {
         <div className="main-container">
            <div style={{width: isOpen ? "50px" : "270px"}} className="sidebar">
                <div className="top_section">
-                <img src={logo} alt="logo"/>
-                   {/* <h1 style={{display: isOpen ? "none" : "block"}} className="logo">Logo</h1> */}
+               
+                   <h1 style={{display: isOpen ? "none" : "block"}} className="logo"> <img src={logo} alt="logo"/></h1>
                    <div style={{marginLeft: isOpen ? "0px" : "110px"}} className="bars">
                        <FaBars onClick={toggle}/>
                    </div>

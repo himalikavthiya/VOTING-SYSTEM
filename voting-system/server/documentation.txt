@@ -1,0 +1,78 @@
+# -------------------------------- ERROR code: ------------------------------- #
+{ StatusCode: 0, ErrorCode: 'EC000', Massage: 'Sucessfully Run', StatusType: StatusType.success },
+{ StatusCode: 1, ErrorCode: 'EC001', Massage: 'Something went wrong', StatusType: StatusType.error },
+{ StatusCode: 2, ErrorCode: 'EC002', Massage: 'Auth failed', StatusType: StatusType.error },
+{ StatusCode: 3, ErrorCode: 'EC003', Massage: 'Login successfully', StatusType: StatusType.success },
+{ StatusCode: 4, ErrorCode: 'EC004', Massage: 'Invalid credential', StatusType: StatusType.warning },
+{ StatusCode: 5, ErrorCode: 'EC005', Massage: 'Data added successfully', StatusType: StatusType.success },
+{ StatusCode: 6, ErrorCode: 'EC006', Massage: 'Data updated successfully', StatusType: StatusType.success },
+{ StatusCode: 7, ErrorCode: 'EC007', Massage: 'Data deleted successfully', StatusType: StatusType.success },
+{ StatusCode: 8, ErrorCode: 'EC008', Massage: 'Invalid token', StatusType: StatusType.warning },
+{ StatusCode: 9, ErrorCode: 'EC009', Massage: 'Already exists', StatusType: StatusType.warning },
+{ StatusCode: 10, ErrorCode: 'EC010', Massage: 'Role not available', StatusType: StatusType.warning }
+{ StatusCode: 11, ErrorCode: 'EC011', Massage: 'ENV config error', Statustype: Statustype.error }
+
+
+# ------------------------------- Admin Routes: ------------------------------ #
+/** Create admin route */
+admin_create: post(http://localhost:4000/v1/admin)
+req_object: {
+	            "Profile": "profile_picture",
+	            "Password": "test@12123",
+	            "First_name": "test",
+	            "Middle_name": "testbhai",
+	            "Last_name": "tester",
+	            "Phone": "9090909090",
+	            "Email": "test@gmail.com"
+            }
+
+/** Get Admin list route */
+admin_get: get(http://localhost:4000/v1/adminList);
+res_object: {
+	            "StatusCode": 5,
+	            "Success": true,
+	            "Message": "Admin Created Successfully..!",
+	            "Data": {
+	            	"Profile": "profile_picture",
+	            	"Password": "$2a$10$GZWOttdIEvXC1q9l0JWlYux6v.dVsLIo2wqPO90CPkpk0W1c0dd/a",
+	            	"First_name": "test",
+	            	"Middle_name": "testbhai",
+	            	"Last_name": "tester",
+	            	"Phone": "9012345678",
+	            	"Email": "test@gmail.com",
+	            	"AccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQYXNzd29yZCI6IiQyYSQxMCRHWldPdHRkSUV2WEMxcTlsMEpXbFl1eDZ2LmRWc0xJbzJ3cVBPOTBDUGtwazBXMWMwZGQvYSIsIkVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJQaG9uZSI6IjkwMTIzNDU2NzgiLCJpYXQiOjE3MDQxMTMyMTYsImV4cCI6MTcwNDE5OTYxNn0.P-OVuPMWCRBRCiP8gIjM84YX9ba0Fa-lkhhHHIzudYo",
+	            	"RefreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQYXNzd29yZCI6IiQyYSQxMCRHWldPdHRkSUV2WEMxcTlsMEpXbFl1eDZ2LmRWc0xJbzJ3cVBPOTBDUGtwazBXMWMwZGQvYSIsIkVtYWlsIjoidGVzdEBnbWFpbC5jb20iLCJQaG9uZSI6IjkwMTIzNDU2NzgiLCJpYXQiOjE3MDQxMTMyMTYsImV4cCI6MTcwNDE5OTYxNn0.8fgRXo-kGiH45bThUnYQrdH2NgvpsRdUxx4XeE3uyro",
+	            	"Roles": "Admin",
+	            	"IsActive": true,
+	            	"_id": "6592b440436dc0097edbf54e",
+	            	"createdAt": "2024-01-01T12:46:56.837Z",
+	            	"updatedAt": "2024-01-01T12:46:56.837Z"
+	            }
+            }
+
+/** Update admin data route */
+admin_update: put(http://localhost:4000/v1/adminUpdate/:_id);
+req_object: {
+	            "Profile": "profile_picture",
+	            "Password": "test@12123",
+	            "First_name": "test",
+	            "Middle_name": "testbhai",
+	            "Last_name": "tester",
+	            "Phone": "9090909090",
+	            "Email": "test@gmail.com"
+            }
+
+/** Admin delete */
+admin_delete: delete(http://localhost:4000/v1/adminDelete/:_idn);
+
+
+# ------------------------------ Zipcode Routes ------------------------------ #
+zipcode_create: post(http://localhost:4000/v1/zipcode);
+req_object: {
+				"zipcode": "395002",
+				"Area": "6593f471e2e50bd910c2f872" // Referance Id Of Area
+			}
+
+zipcode_get: get(http://localhost:4000/v1/zipcodelist);
+
+zipcode_get_ById: get(http://localhost:4000/v1/zipcodedetail/:_Id);
