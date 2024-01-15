@@ -1,77 +1,68 @@
 import React from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Button,
-} from "@mui/material";
+import MUIDataTable from "mui-datatables";
 
-function CreateElection() {
-    const rows = [
-      { No: 1, name: "Election Party 1", date: "25-01-2024" },
-      { No: 2, name: "Election Party 2", date: "26-01-2024" },
-      { No: 3, name: "Election Party 3", date: "25-01-2024" },
-      // Add more rows as needed
-    ];
+const CreateElection = () => {
+  const columns = [
+    {
+      name: "name",
+      label: "Name",
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: "company",
+      label: "Company",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+      name: "city",
+      label: "City",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
+      name: "state",
+      label: "State",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+  ];
 
-    return (
-      <>
-        {/* <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        > */}
-        <div className="election-Container">
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>No.</TableCell>
-                <TableCell>E-Election Name</TableCell>
-                <TableCell align="right">E-Election Date</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.No}>
-                  <TableCell component="th" scope="row">
-                    {row.No}
-                  </TableCell>
-                  <TableCell>{row.name}</TableCell>
-                  <TableCell align="right">{row.date}</TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      {/* </div> */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Button
-            variant="contained"
-            className="btn p-color"
-            style={{ margin: 20 }}
-            size="large"
-          >
-            Add
-          </Button>
-        </div>
-        </div>
-    </>
-    );
+  const data = [
+    { name: "Joe James", company: "Test Corp", city: "Yonkers", state: "NY" },
+    { name: "John Walsh", company: "Test Corp", city: "Hartford", state: "CT" },
+    { name: "Bob Herm", company: "Test Corp", city: "Tampa", state: "FL" },
+    {
+      name: "James Houston",
+      company: "Test Corp",
+      city: "Dallas",
+      state: "TX",
+    },
+  ];
+
+  const options = {
+    filterType: "checkbox",
   };
 
-
+  return (
+    <div className="custom-container">
+      <MUIDataTable
+        title={"Employee List"}
+        data={data}
+        columns={columns}
+        options={options}
+      />
+    </div>
+  );
+};
 
 export default CreateElection;

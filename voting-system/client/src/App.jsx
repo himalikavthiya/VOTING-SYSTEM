@@ -2,12 +2,14 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./components/admin-compo/Dashboard";
 import Login from "./components/auth/Login";
-import Sidebar from "./components/Sidebar";
+import Sidebar from "./components/admin-compo/Sidebar"
 import Cookies from "js-cookie";
 import Userprofile from "./components/user-compo/Userprofile";
 import Navbar from "./components/admin-compo/Navbar";
 import CreateElection from "./components/admin-compo/CreateElection";
 import ElectionParty from "./components/admin-compo/ElectionParty";
+import PartyConnection from "./components/admin-compo/PartyConnection";
+
 function App() {
   const role = Cookies.get("role");
 
@@ -23,9 +25,10 @@ function App() {
         <Sidebar>
           <Navbar/>
           <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/create-election" element={<CreateElection/>}/>
             <Route path="/election-party" element={<ElectionParty/>} />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/party-connection" element={<PartyConnection/>} />
           </Routes>
         </Sidebar>
       </div>

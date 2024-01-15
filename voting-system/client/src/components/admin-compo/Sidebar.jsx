@@ -11,8 +11,7 @@ import {
 }from "react-icons/fa";
 import { IoCreate } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
-import logo from "../../public/voting.png"
-import Navbar from './admin-compo/Navbar';
+import logo from "../../../public/voting.png"
 
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
