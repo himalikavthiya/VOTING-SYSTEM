@@ -16,6 +16,7 @@ import logo from "../../../public/voting.png"
 const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
+
     const menuItem=[
         {
             path:"/dashboard",

@@ -6,7 +6,7 @@
   margin: 0;
   padding: 0;
   text-decoration: none;
-   overflow: hidden;
+  overflow: hidden;
 }
 
 .main-container {
@@ -15,7 +15,6 @@
 
 main {
   width: 100%;
-
 }
 
 .sidebar {
@@ -75,18 +74,20 @@ main {
 
 /* ------------------------------- login-page ------------------------------- */
 .login-section {
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(7, 44, 144, 1) 17%, rgba(0, 212, 255, 1) 100%);
 }
 
 .card {
   border-radius: 1rem;
+
 }
 
-.img-fluid {
-  max-width: 100%;
+img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 1rem 0 0 1rem;
 }
 
 .Admin-profile {
@@ -116,10 +117,6 @@ main {
   align-items: center;
 }
 
-.dropdown-item {
-  text-align: center;
-  margin: -7px;
-}
 
 .custom-container {
   padding: 3.7rem;

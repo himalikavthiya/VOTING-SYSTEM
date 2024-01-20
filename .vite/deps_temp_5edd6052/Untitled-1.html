@@ -1,0 +1,26 @@
+ <Dropdown>
+     <Dropdown.Toggle variant="success" id="dropdown-basic">
+         Dropdown Button
+     </Dropdown.Toggle>
+
+     <Dropdown.Menu>
+         <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+         <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+     </Dropdown.Menu>
+ </Dropdown>
+
+ <div className="nav-item dropdown">
+     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+         aria-expanded="false">
+         <img src={Cookies.get("Profile")} alt="Admin" className="Admin-profile" />
+         {Cookies.get("Name")}
+     </a>
+     <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+         <li>
+             <a className="dropdown-item" href="#">
+                 Logout
+             </a>
+         </li>
+     </ul>
+ </div>

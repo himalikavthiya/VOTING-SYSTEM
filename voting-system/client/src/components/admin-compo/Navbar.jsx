@@ -2,24 +2,29 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Admin_logo from "../../assets/Images/profile-image.png";
 import Cookies from "js-cookie";
+import Button from "react-bootstrap/Button"
 
 function Navbar() {
+
+    const handleLogout=()=>{
+      Cookies.remove("Role");
+      Cookies.remove("Name");
+      Cookies.remove("Profile")
+      window.location('/');
+    }
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid ">
-        <div className="nav-item dropdown">
-          <a
-            className="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdown"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img src={Admin_logo} alt="Admin" className="Admin-profile" />
-            {Cookies.get("name")}
-          </a>
-          <ul
+        <div className="nav-item ">
+
+            <img src={Cookies.get("Profile")} alt="Admin" className="Admin-profile" />
+          <span style={{marginRight:"3rem"}}>
+            {Cookies.get("Name")}
+            </span> 
+
+          <Button variant="info" style={{backgroundColor: "#87CEFA"}} onClick={handleLogout}>Logout</Button>
+
+                   {/* <ul
             className="dropdown-menu"
             aria-labelledby="navbarDropdownMenuLink"
           >
@@ -28,7 +33,7 @@ function Navbar() {
                 Logout
               </a>
             </li>
-          </ul>
+          </ul> */}
         </div>
       </div>
     </nav>

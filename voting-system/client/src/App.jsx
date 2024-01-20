@@ -11,7 +11,7 @@ import ElectionParty from "./components/admin-compo/ElectionParty";
 import PartyConnection from "./components/admin-compo/PartyConnection";
 
 function App() {
-  const role = Cookies.get("role");
+  const role = Cookies.get("Role");
 
   if (!role || role == "") {
     return (
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Login/>} />
       </Routes>
     );
-  } else if (role === "Admin") {
+  } else if (role === "admin") {
     return (
       <div className="admin-app">
         <Sidebar>
@@ -33,10 +33,11 @@ function App() {
         </Sidebar>
       </div>
     );
-  } else if (role === "User") {
+  } else if (role === "user") {
     return (
       <div className="user-app">
         <Routes>
+           <Navbar/>
           <Route path="/user-profile" element={<Userprofile />} />
         </Routes>
       </div>

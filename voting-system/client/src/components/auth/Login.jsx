@@ -6,19 +6,23 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const Login = () => {
-  const name = useRef();
-  const password = useRef();
+  const Name = useRef();
+  const Email = useRef();
+  const Password = useRef();
 
   const handleLogin = () => {
 
     const data = {
-      name: name.current.value,
-      password: password.current.value
+      Name: Name.current.value,
+      Email: Email.current.value,
+      Password: Password.current.value
     }
-       axios.post(BASE_URL + ADMIN_LOGIN, data).then((res) => {
+    console.log(data)
+       axios.post("https://voater-backend-app.onrender.com/v1/login",data).then((res) => {
       console.log("res admmin",res);
-      Cookies.set("role", res.data.data.role)
-      Cookies.set("name", res.data.data.name)
+      Cookies.set("Role", res.data.data.Role)
+      Cookies.set("Name", res.data.data.Name)
+      Cookies.set("Profile", res.data.data.Profile)
       window.location = "/dashboard"
     }).catch((err) => {
       console.log(err);
@@ -27,23 +31,22 @@ const Login = () => {
 
   return (
     <section className="vh-100 login-section">
-      <div className="container py-5 h-100">
+      <div className="container  h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col col-xl-10">
             <div className="card">
               <div className="row g-0">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
                   <img
-                    src="https://img.freepik.com/free-vector/electronic-voting-abstract-concept-illustration_335657-1876.jpg?w=740&t=st=1704855860~exp=1704856460~hmac=4aaf803de6766073536e070ba8d69cf8ea189dca8dbec68ef55a591f31167bd0"
+                    src="https://img.freepik.com/free-vector/electronic-voting-abstract-concept-illustration_335657-1876.jpg?w=700&t=st=1704855860~exp=1704856460~hmac=4aaf803de6766073536e070ba8d69cf8ea189dca8dbec68ef55a591f31167bd0"
                     alt="login form"
-                    className="img-fluid"
                   />
                 </div>
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                   <div className="card-body p-4 p-lg-5 text-black">
                     <form>
-                      <div className="d-flex align-items-center mb-3 pb-1">
-                                            <span className="h1 fw-bold mb-0" >Login </span>
+                      <div className="d-flex align-items-center mb-3 ">
+                                            <span className="h2 fw-bold mb-0" >Login </span>
                       </div>
                       <h5
                         className="fw-normal mb-3 pb-3"
@@ -52,23 +55,33 @@ const Login = () => {
                         Sign into your account
                       </h5>
 
-                      <div className="form-floating  mb-4">
+                      <div className="form-floating  mb-2">
                         <input
-                          type="name"
+                          type="text"
                           className="form-control"
                           id="floatingName"
                           placeholder="Name"
-                          ref={name}
+                          ref={Name}
                         />
-                        <label htmlFor="floatingEmail">UserName</label>
+                        <label htmlFor="floatingName">UserName</label>
                       </div>
-                      <div className="form-floating  mb-4">
+                       <div className="form-floating  mb-2">
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="floatingPassword"
+                          placeholder="Email"
+                          ref={Email}
+                        />
+                        <label htmlFor="floatingEmail">Email</label>
+                      </div>
+                      <div className="form-floating  mb-2">
                         <input
                           type="password"
                           className="form-control"
                           id="floatingPassword"
                           placeholder="Password"
-                          ref={password}
+                          ref={Password}
                         />
                         <label htmlFor="floatingPassword">Password</label>
                       </div>
