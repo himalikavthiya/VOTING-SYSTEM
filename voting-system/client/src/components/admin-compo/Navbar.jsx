@@ -20,7 +20,7 @@ function Navbar() {
             <img src={Cookies.get("Profile")} alt="Admin" className="Admin-profile" />
           <span style={{marginRight:"3rem"}}>
             {Cookies.get("Name")}
-            </span> 
+            </span>
 
           <Button variant="info" style={{backgroundColor: "#87CEFA"}} onClick={handleLogout}>Logout</Button>
 
