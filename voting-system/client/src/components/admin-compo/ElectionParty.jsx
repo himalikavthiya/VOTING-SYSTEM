@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { GET_ELECTION_PARTY_PANDING } from "../../redux-saga/Admin-saga/election-party/action/action";
 
 const ElectionParty = () => {
-  const electionParty=useSelector((state)=>state.electionReducer);
-  console.log(electionParty.PartyData.Data)
- const dispatch = useDispatch();
-const [dataTableData, setDataTable] = useState([])
+  const electionParty = useSelector((state) => state.electionReducer);
+  console.log(electionParty.PartyData.Data);
+  const dispatch = useDispatch();
+  const [dataTableData, setDataTable] = useState([]);
 
-   useEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
-         dispatch({ type: GET_ELECTION_PARTY_PANDING });
+      await dispatch({ type: GET_ELECTION_PARTY_PANDING });
       // Update the state with the fetched data
       setDataTable(electionParty.PartyData.Data);
     };
@@ -46,7 +46,7 @@ const [dataTableData, setDataTable] = useState([])
         },
       },
     },
-       {
+    {
       name: "shortCode",
       label: "Short Code",
       options: {

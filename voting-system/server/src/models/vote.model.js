@@ -2,16 +2,12 @@ import mongoose from "mongoose";
 
 const voteSchema = new mongoose.Schema(
   {
-    Name: {
-      type: mongoose.Types.ObjectId,
+    Auth: {
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Auth",
     },
-    party: {
-      type: mongoose.Types.ObjectId,
-      ref: "Party",
-    },
-    election: {
-      type: mongoose.Types.ObjectId,
+    Election: {
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Election",
     },
     is_active: {

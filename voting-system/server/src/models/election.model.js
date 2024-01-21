@@ -5,11 +5,13 @@ const electionSchema = new mongoose.Schema(
     ElectionName: {
       type: String,
       trim: true,
-      // require: [true, `Election name must be requried..!`],
     },
     RegisterDate: {
       type: Date,
-      // require: [true, `Register Date must be required..!`],
+    },
+    Party: {
+      type: mongoose.Types.ObjectId,
+      ref: "Party",
     },
     IsActive: {
       type: Boolean,

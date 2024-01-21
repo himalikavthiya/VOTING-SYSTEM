@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
-import {
-  configData
-} from "../config/config.js";
+import { configData } from "../config/config.js";
 
 const connectDB = async () => {
   try {
@@ -23,7 +21,4 @@ const disconnectDB = async () => {
   }
 };
 
-export {
-  connectDB,
-  disconnectDB
-};
+export { connectDB, disconnectDB };

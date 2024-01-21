@@ -8,7 +8,7 @@ export const electionCreate = async (req, res) => {
     await connectDB();
 
     const { ElectionName } = req.body;
-    const findName = await Election.findOne({ ElectionName });
+    const findName = await Election.findOne({ ElectionName }).populate("Party");
     if (!findName && findName === 0) {
       logger.error({
         StatusCode: 4,
@@ -59,7 +59,7 @@ export const electionList = async (req, res) => {
   try {
     await connectDB();
 
-    const Lists = await Election.find();
+    const Lists = await Election.find().populate("Party");
     if (!Lists) {
       logger.error({
         StatusCode: 4,
@@ -76,7 +76,7 @@ export const electionList = async (req, res) => {
       StatusCode: 5,
       Success: true,
       Message: `Election Created Successfully..!`,
-      Data: result,
+      Data: Lists,
     });
   } catch (error) {
     logger.error({
@@ -98,7 +98,9 @@ export const electionUpdate = async (req, res) => {
     await connectDB();
 
     /** Find election By ID */
-    const electionExists = await Election.findById(req.params._Id);
+    const electionExists = await Election.findById(req.params._Id).populate(
+      "Party"
+    );
     if (!electionExists) {
       logger.error({
         StatusCode: 4,
@@ -152,9 +154,7 @@ export const electionDel = async (req, res) => {
     await connectDB();
 
     /** Find election By ID */
-    const electionExists = await Election.findById(req.params._Id).select(
-      "-Password -AccessToken"
-    );
+    const electionExists = await Election.findById(req.params._Id);
     if (!electionExists) {
       logger.error({
         StatusCode: 4,
