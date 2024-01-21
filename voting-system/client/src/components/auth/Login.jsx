@@ -1,24 +1,20 @@
-// import logo from './User/User-tool/image/e-election-vertical.png'
-// import formlogo from './User/User-tool/image/form logo.png'
 import React, { useRef } from "react";
-import { ADMIN_LOGIN, BASE_URL } from "../../redux-saga/constant";
+import {  BASE_URL, LOGIN_URL } from "../../redux-saga/constant";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const Login = () => {
-  const Name = useRef();
-  const Email = useRef();
+   const Email = useRef();
   const Password = useRef();
 
   const handleLogin = () => {
 
     const data = {
-      Name: Name.current.value,
-      Email: Email.current.value,
+           Email: Email.current.value,
       Password: Password.current.value
     }
     console.log(data)
-       axios.post("https://voater-backend-app.onrender.com/v1/login",data).then((res) => {
+       axios.post(BASE_URL+LOGIN_URL,data).then((res) => {
       console.log("res admmin",res);
       Cookies.set("Role", res.data.data.Role)
       Cookies.set("Name", res.data.data.Name)
@@ -55,21 +51,11 @@ const Login = () => {
                         Sign into your account
                       </h5>
 
-                      <div className="form-floating  mb-2">
+                        <div className="form-floating  mb-2">
                         <input
                           type="text"
                           className="form-control"
-                          id="floatingName"
-                          placeholder="Name"
-                          ref={Name}
-                        />
-                        <label htmlFor="floatingName">UserName</label>
-                      </div>
-                       <div className="form-floating  mb-2">
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="floatingPassword"
+                          id="floatingEmail"
                           placeholder="Email"
                           ref={Email}
                         />

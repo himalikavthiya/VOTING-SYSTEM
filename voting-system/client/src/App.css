@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #1976d2;
+  --primary-color: #113559;
 }
 
 * {
@@ -117,9 +117,14 @@ img {
   align-items: center;
 }
 
-
 .custom-container {
   padding: 3.7rem;
   height: 100vh;
+}
 
+.logoutBtn {
+  background-color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 5px 30px;
 }
