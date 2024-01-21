@@ -76,7 +76,7 @@ main {
 .login-section {
   /* background-color: var(--primary-color); */
   background: rgb(2, 0, 36);
-  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 0%, rgba(7, 44, 144, 1) 17%, rgba(0, 212, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, var(--primary-color) 0%, rgba(7, 44, 144, 1) 17%, rgba(0, 212, 255, 1) 100%);
 }
 
 .card {
@@ -127,4 +127,16 @@ img {
   border: none;
   border-radius: 6px;
   padding: 5px 30px;
+}
+
+.right-text {
+  display: flex;
+  justify-content: right;
+  margin-top: -27px;
+  /* margin-bottom: 12px; */
+}
+
+.AddButton {
+  background-color: var(--primary-color);
+
 }

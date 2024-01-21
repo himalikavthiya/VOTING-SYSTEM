@@ -4,17 +4,19 @@ import {
 } from "redux-saga/effects"
 import {
     GET_ELECTION_PARTY_FULLFILIED,
-    GET_ELECTION_PARTY_REJECTED
+    GET_ELECTION_PARTY_REJECTED,
+    POST_ELECTION_PARTY_FULLFILIED,
+    POST_ELECTION_PARTY_REJECTED
 } from "../../election-party/action/action"
 import {
-    get_party_data
+    get_party_data,
+    post_party_data
 } from "../../election-party/api/api"
 
 // GET PARTY MANAGE 
 export function* handle_party_data(action) {
     try {
         const res = yield call(get_party_data, action)
-        console.log(res)
         const data = res.data;
         const status = res.status;
         if (status === 200) {
@@ -34,4 +36,31 @@ export function* handle_party_data(action) {
             error
         })
     }
+}
+
+// post party manage
+export function* handle_add_party_data(action) {
+    try {
+        const res = yield call(post_party_data, action);
+        const data = res.data;
+        const status = res.status;
+        if (status === 200 || status === 201) {
+            yield put({
+                type: POST_ELECTION_PARTY_FULLFILIED,
+                data
+            })
+        } else {
+            yield put({
+                type: POST_ELECTION_PARTY_REJECTED,
+                data
+            })
+            console.log(data);
+        }
+    } catch (error) {
+        yield put({
+            type: POST_ELECTION_PARTY_REJECTED,
+            error
+        })
+    }
+
 }
