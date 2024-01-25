@@ -1,31 +1,26 @@
 import { Party } from "../models/party.model.js";
 import { connectDB, disconnectDB } from "../db/dbconnection.js";
 import { logger } from "../middlewares/logger.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 /** Create Party Controller */
 export const partyCreate = async (req, res) => {
   try {
     await connectDB();
-    const { p_name } = req.body;
 
-    if (req.file) {
-      req.body.p_logo = req.file.filename;
+    const party = new Party(req.body);
+    if (party.shortCode && party.pName) {
+      party.shortCode = party.shortCode.toUpperCase();
+      party.pName = party.pName.toUpperCase();
     }
 
-    const findName = await Party.findOne({ p_name });
-    if (findName) {
-      logger.error({
-        StatusCode: 4,
-        Message: `Error in find Party by name..!`,
-      });
-      res.status(400).json({
-        StatusCode: 4,
-        Success: false,
-        Message: `Error in find Party by name..!`,
-      });
+    const p_logoLocalPath = await req.files?.Profile[0]?.path;
+    if (p_logoLocalPath) {
+      const partylogo = await uploadOnCloudinary(p_logoLocalPath);
+      party.Profile = partylogo.secure_url;
     }
 
-    const result = await Party.create(req.body);
+    const result = await party.save();
     if (!result && result === 0) {
       logger.error({
         StatusCode: 4,
@@ -80,7 +75,7 @@ export const partyList = async (req, res) => {
       StatusCode: 5,
       Success: true,
       Message: `Party Created Successfully..!`,
-      Data: result,
+      Data: Lists,
     });
   } catch (error) {
     logger.error({
@@ -156,9 +151,9 @@ export const partyDel = async (req, res) => {
     await connectDB();
 
     /** Find party By ID */
-    const partyExists = await party
-      .findById(req.params._Id)
-      .select("-Password -AccessToken");
+    const partyExists = await Party.findById(req.params._Id).select(
+      "-Password -AccessToken"
+    );
     if (!partyExists) {
       logger.error({
         StatusCode: 4,
@@ -171,7 +166,7 @@ export const partyDel = async (req, res) => {
       });
     }
 
-    const partyDelete = await party.findByIdAndDelete(req.params._Id);
+    const partyDelete = await Party.findByIdAndDelete(req.params._Id);
     if (!partyDelete) {
       logger.error({
         StatusCode: 4,

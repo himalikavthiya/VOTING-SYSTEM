@@ -6,15 +6,15 @@ dotenv.config();
 
 const envVarsSchema = Joi.object({
   PORT: Joi.number().integer().default(4000),
-  MONGODB_URI: Joi.string().trim(),
   CORS_ORIGIN: Joi.string().trim(),
+  MONGODB_URI: Joi.string().trim(),
   DATABASE_NAME: Joi.string().trim(),
   JWT_SECRET_KEY: Joi.string().trim(),
   ACCESS_TOKEN_SECRET: Joi.string().trim(),
   ACCESS_TOKEN_EXPIRY: Joi.string().trim(),
-  REFRESH_TOKEN_SECRET: Joi.string().trim(),
-  REFRESH_TOKEN_EXPIRY: Joi.string().trim(),
-  BASE_URL: Joi.string().trim(),
+  CLOUDINARY_CLOUD_NAME: Joi.string().trim(),
+  CLOUDINARY_API_KEY: Joi.string().trim(),
+  CLOUDINARY_API_SECRET: Joi.string().trim(),
 }).unknown(); // Allowed to any keys avilable in ENV file...
 
 const { value: envVars, err } = envVarsSchema
@@ -39,12 +39,14 @@ export const configData = {
     url: envVars.MONGODB_URI,
     dbname: envVars.DATABASE_NAME,
   },
-  base_url: envVars.BASE_URL,
   jwt: {
-    JWT_SECRET_KEY: envVars.JWT_SECRET_KEY,
+    secretKey: envVars.JWT_SECRET_KEY,
     accessTokenSecret: envVars.ACCESS_TOKEN_SECRET,
     expiresInAccess: envVars.ACCESS_TOKEN_EXPIRY,
-    refreshTokenSecret: envVars.REFRESH_TOKEN_SECRET,
-    expiresInRefresh: envVars.REFRESH_TOKEN_EXPIRY,
+  },
+  cloudImg: {
+    c_name: envVars.CLOUDINARY_CLOUD_NAME,
+    c_apiKey: envVars.CLOUDINARY_API_KEY,
+    c_apiSecret: envVars.CLOUDINARY_API_SECRET,
   },
 };

@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 // party list model schema defiend
 const partyListSchema = new mongoose.Schema(
   {
-    party: {
+    Party: {
       type: mongoose.Types.ObjectId,
       ref: "Party",
     },
-    election: {
+    Election: {
       type: mongoose.Types.ObjectId,
       ref: "Election",
     },

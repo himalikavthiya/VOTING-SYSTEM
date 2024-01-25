@@ -1,15 +1,18 @@
-const multer = require("multer");
-const fs = require("fs");
-const path = require("path");
+import multer from "multer";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 
-/** Image upload using disk storage */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    if (file.fieldname == "party_logwo") {
-      fs.mkdirSync(path.join(__dirname, "../public/party-images"), {
+    if (file.fieldname == "Profile") {
+      fs.mkdirSync(path.join(__dirname, "../public/temp"), {
         recursive: true,
       });
-      cb(null, path.join(__dirname, "../public/party-images"));
+      cb(null, path.join(__dirname, "../public/temp"));
     }
   },
   filename: function (req, file, cb) {
@@ -21,8 +24,6 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({
-  storage: storage,
-});
+export const upload = multer({ storage: storage });
 
-module.exports = { upload };
+

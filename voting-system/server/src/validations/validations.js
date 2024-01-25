@@ -1,86 +1,21 @@
 import Joi from "joi";
 
 /* -------------------------------------------------------------------------- */
-/*                           Admin routes validation                          */
-/* -------------------------------------------------------------------------- */
-/** Create Admin Validation */
-export const adminVal = {
-  body: Joi.object().keys({
-    Profile: Joi.string().trim().required(),
-    Password: Joi.string().trim().required(),
-    First_name: Joi.string().trim().required(),
-    Middle_name: Joi.string().trim().required(),
-    Last_name: Joi.string().trim().required(),
-    Phone: Joi.string()
-      .trim()
-      .pattern(/^[0-9]{10}$/)
-      .required(),
-    Email: Joi.string()
-      .trim()
-      .lowercase()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } })
-      .required(),
-  }),
-};
-
-/** Update Admin validation */
-export const adminUpVal = {
-  params: Joi.object().keys({
-    _Id: Joi.string().trim().required(),
-  }),
-  body: Joi.object().keys({
-    Profile: Joi.string().trim(),
-    Password: Joi.string().trim(),
-    First_name: Joi.string().trim(),
-    Middle_name: Joi.string().trim(),
-    Last_name: Joi.string().trim(),
-    Phone: Joi.string()
-      .trim()
-      .pattern(/^[0-9]{10}$/),
-    Email: Joi.string()
-      .trim()
-      .lowercase()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } }),
-  }),
-};
-
-/** Delete Admin By ID validation */
-export const adminDelVal = {
-  params: Joi.object().keys({
-    _Id: Joi.string().trim().required(),
-  }),
-};
-
-/* -------------------------------------------------------------------------- */
 /*                           Auth Routes validation                           */
 /* -------------------------------------------------------------------------- */
 /** Create Auth Validation */
 export const authVal = {
   body: Joi.object().keys({
-    Profile: Joi.string().trim().required(),
-    Password: Joi.string().trim().required(),
-    CardNumber: Joi.string()
-      .trim()
-      .pattern(/^[a-zA-Z0-9]{10}$/)
-      .required(),
-    First_name: Joi.string().trim().required(),
-    Middle_name: Joi.string().trim().required(),
-    Last_name: Joi.string().trim().required(),
-    Sex: Joi.string()
-      .valid("male", "female", "other")
-      .default("Not-defined")
-      .required(),
-    DOB: Joi.date().max("now").required(),
-    Address: Joi.string().trim().required(),
-    Phone: Joi.string()
-      .trim()
-      .pattern(/^[0-9]{10}$/)
-      .required(),
-    Email: Joi.string()
-      .trim()
-      .lowercase()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } })
-      .required(),
+    Profile: Joi.string().trim(),
+    Password: Joi.string().trim(),
+    CardNumber: Joi.string().trim().pattern(/^[a-zA-Z0-9]{10}$/),
+    Name: Joi.string().trim(),
+    Sex: Joi.string().valid("male", "female", "other").default("Not-defined"),
+    DOB: Joi.date().max("now"),
+    Address: Joi.string().trim(),
+    Phone: Joi.string().trim().pattern(/^[0-9]{10}$/),
+    Email: Joi.string().trim().lowercase().email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } }),
+    Role: Joi.string().trim(),
   }),
 };
 
@@ -90,30 +25,16 @@ export const authUpVal = {
     _Id: Joi.string().trim().required(),
   }),
   body: Joi.object().keys({
-    Profile: Joi.string().trim().required(),
-    Password: Joi.string().trim().required(),
-    CardNumber: Joi.string()
-      .trim()
-      .pattern(/^[a-zA-Z0-9]{10}$/)
-      .required(),
-    First_name: Joi.string().trim().required(),
-    Middle_name: Joi.string().trim().required(),
-    Last_name: Joi.string().trim().required(),
-    Sex: Joi.string()
-      .valid("male", "female", "other")
-      .default("Not-defined")
-      .required(),
-    DOB: Joi.date().max("now").required(),
-    Address: Joi.string().trim().required(),
-    Phone: Joi.string()
-      .trim()
-      .pattern(/^[0-9]{10}$/)
-      .required(),
-    Email: Joi.string()
-      .trim()
-      .lowercase()
-      .email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } })
-      .required(),
+    Profile: Joi.string().trim(),
+    Password: Joi.string().trim(),
+    CardNumber: Joi.string().trim().pattern(/^[a-zA-Z0-9]{10}$/),
+    Name: Joi.string().trim(),
+    Sex: Joi.string().valid("male", "female", "other"),
+    DOB: Joi.date().max("now"),
+    Address: Joi.string().trim(),
+    Phone: Joi.string().trim().pattern(/^[0-9]{10}$/),
+    Email: Joi.string().trim().lowercase().email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } }),
+    Role: Joi.string().trim(),
   }),
 };
 
@@ -130,8 +51,9 @@ export const authDelVal = {
 /** Create Election Validation */
 export const electionVal = {
   body: Joi.object().keys({
-    ElectionName: Joi.string().trim().required(),
-    RegisterDate: Joi.date().required(),
+    ElectionName: Joi.string().trim(),
+    RegisterDate: Joi.date(),
+    Party: Joi.string().trim(),
   }),
 };
 
@@ -141,8 +63,9 @@ export const electionUpVal = {
     _Id: Joi.string().trim().required(),
   }),
   body: Joi.object().keys({
-    ElectionName: Joi.string().trim().required(),
-    RegisterDate: Joi.date().required(),
+    ElectionName: Joi.string().trim(),
+    RegisterDate: Joi.date(),
+    Party: Joi.string().trim(),
   }),
 };
 
@@ -159,20 +82,21 @@ export const electionDelVal = {
 /** Create Party Validation */
 export const partyVal = {
   body: Joi.object().keys({
-    p_name: Joi.string().trim(),
-    p_logo: Joi.string().trim(),
-    short_code: Joi.string().trim(),
+    pName: Joi.string().trim(),
+    Profile: Joi.string().trim(),
+    shortCode: Joi.string().trim(),
   }),
 };
 
+/** Update Party Validation */
 export const partyUpVal = {
   params: Joi.object().keys({
     _Id: Joi.string().trim().required(),
   }),
   body: Joi.object().keys({
-    p_name: Joi.string().trim(),
-    p_logo: Joi.string().trim(),
-    short_code: Joi.string().trim(),
+    pName: Joi.string().trim(),
+    Profile: Joi.string().trim(),
+    shortCode: Joi.string().trim(),
   }),
 };
 
@@ -189,14 +113,31 @@ export const partyDelVal = {
 /** Create Vote Validation */
 export const voteVal = {
   body: Joi.object().keys({
-    Name: Joi.string().trim(),
-    party: Joi.string().trim(),
-    election: Joi.string().trim(),
+    Auth: Joi.string().trim(),
+    Election: Joi.string().trim(),
   }),
 };
 
 /** Delete Vote Validation */
 export const voteDelVal = {
+  params: Joi.object().keys({
+    _Id: Joi.string().trim().required(),
+  }),
+};
+
+/* -------------------------------------------------------------------------- */
+/*                              PartyList Routes                              */
+/* -------------------------------------------------------------------------- */
+/** Create Partylist validation */
+export const partylistVal = {
+  body: Joi.object().keys({
+    Party: Joi.string().trim(),
+    Election: Joi.string().trim(),
+  }),
+};
+
+/** Delete Vote Validation */
+export const partylistDelVal = {
   params: Joi.object().keys({
     _Id: Joi.string().trim().required(),
   }),
