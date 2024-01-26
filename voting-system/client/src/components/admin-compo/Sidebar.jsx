@@ -9,6 +9,8 @@ import {
     FaShoppingBag,
     FaThList
 }from "react-icons/fa";
+import { FaUserPen } from "react-icons/fa6";
+
 import { IoCreate } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
 import logo from "../../../public/voting.png"
@@ -38,6 +40,11 @@ const Sidebar = ({children}) => {
             path:"/party-connection",
             name:"Party Connection",
             icon:<FaUserAlt/>
+        },
+        {
+            path:"/user",
+            name:"User",
+            icon:<FaUserPen />
         },
 
     ]

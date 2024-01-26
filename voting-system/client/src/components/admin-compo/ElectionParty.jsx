@@ -70,7 +70,7 @@ const handleFileUpload = (event) => {
                return (
             <img
               src={value}
-              alt={tableMeta.rowData[0]} 
+              alt={tableMeta.rowData[0]}
               style={{ width: "50px", height: "auto" }}
             />
           );
