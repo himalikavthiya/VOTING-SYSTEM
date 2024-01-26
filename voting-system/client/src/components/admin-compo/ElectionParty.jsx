@@ -13,7 +13,6 @@ const [newUrl, setNewUrl] = useState()
 
  const pName = useRef();
   const shortCode = useRef();
-  // const quantity = useRef();
 
 const handleFileUpload = (event) => {
     const file = event.target.files[0]
@@ -136,7 +135,7 @@ const handleFileUpload = (event) => {
             <label htmlFor="recipient-name" className="col-form-label">
               Election Party Logo
             </label>
-            <input type="file" className="form-control" onChange={handleFileUpload} id="Party Logo" />
+            <input type="file" className="form-control" onChange={handleFileUpload} id="PartyLogo" />
           </div>
 
           <div className="mb-3">
