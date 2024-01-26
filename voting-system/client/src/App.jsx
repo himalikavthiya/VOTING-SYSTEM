@@ -9,6 +9,7 @@ import Navbar from "./components/admin-compo/Navbar";
 import CreateElection from "./components/admin-compo/CreateElection";
 import ElectionParty from "./components/admin-compo/ElectionParty";
 import PartyConnection from "./components/admin-compo/PartyConnection";
+import User from "./components/admin-compo/User";
 
 function App() {
   const role = Cookies.get("Role");
@@ -29,6 +30,7 @@ function App() {
             <Route path="/create-election" element={<CreateElection/>}/>
             <Route path="/election-party" element={<ElectionParty/>} />
             <Route path="/party-connection" element={<PartyConnection/>} />
+            <Route path="/user" element={<User/>}/>
           </Routes>
         </Sidebar>
       </div>
