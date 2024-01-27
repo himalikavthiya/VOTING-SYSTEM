@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_ELECTION_PARTY_PANDING, POST_ELECTION_PARTY_PANDING } from "../../redux-saga/Admin-saga/election-party/action/action";
+import { GET_ELECTION_PARTY_PANDING, POST_ELECTION_PARTY_PANDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
 import { Button } from "@mui/material";
+import * as Icons from '@mui/icons-material'
 
 const ElectionParty = () => {
   const electionParty = useSelector((state) => state.electionReducer);
@@ -24,7 +25,7 @@ const handleFileUpload = (event) => {
   }
 
   const handleSubmit=(data)=>{
-    console.log(data)
+    // console.log(data)
     //  let formData = new FormData() //formdata object
     // Object.keys(data).forEach(function (key) {
     //   if (key === 'Profile') {
@@ -37,7 +38,7 @@ const handleFileUpload = (event) => {
       pName: pName.current.value,
       shortCode: shortCode.current.value,
     };
-     dispatch({ type:POST_ELECTION_PARTY_PANDING,partyData  });
+     dispatch({ type:POST_ELECTION_PARTY_PANDING,partyData});
   }
 
   useEffect(() => {
@@ -84,6 +85,54 @@ const handleFileUpload = (event) => {
         sort: false,
       },
     },
+     {
+      name: '_id',
+      label: 'Action',
+      options: {
+        customBodyRender: (value) => {
+          return (
+            <div>
+              <Icons.EditRounded
+                className="editButton"
+                onClick={() => {
+                  const editdata = dataTableData.find((data) => data._id === value)
+                  navigate('/election-party-form', { state: { editdata: editdata } })
+                }}
+              ></Icons.EditRounded>
+               <Icons.DeleteRounded
+              //   className="deleteButton"
+              //   onClick={async () => {
+              //     const confirm = await swal({
+              //       title: 'Are you sure?',
+              //       text: 'Are you sure? Want to delete Location? All related data will also be deleted',
+              //       icon: 'warning',
+              //       buttons: ['No, cancel it!', 'Yes, I am sure!'],
+              //       dangerMode: true,
+              //     })
+              //     if (confirm) {
+              //       deleteCategory(value)
+              //         .then(() => {
+              //           toast.success('deleted successfully!', {
+              //             key: value,
+              //           })
+              //           console.log(value)
+              //           categoryList()
+              //         })
+              //         .catch(() => {
+              //           toast.error('something went wrong!', {
+              //             key: value,
+              //           })
+              //         })
+              //     }
+              //   }}
+              >
+
+              </Icons.DeleteRounded>
+            </div>
+          )
+        },
+      },
+    },
   ];
 
   const options = {
@@ -96,9 +145,7 @@ const handleFileUpload = (event) => {
          <button
           type="button"
           className="btn btn-primary AddButton"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          data-bs-whatever="@fat"
+         onClick={() => navigate('/election-party-form')}
         >
           Add Party
         </button>
@@ -111,53 +158,6 @@ const handleFileUpload = (event) => {
         options={options}
       />
 
-      {/* Model data */}
-    <div className="modal fade" id="exampleModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog">
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">
-          Create E-Election Party
-        </h5>
-        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" />
-      </div>
-      <div className="modal-body">
-        <form>
-          <div className="mb-3">
-            <label htmlFor="recipient-name" className="col-form-label">
-              Election Party Name
-            </label>
-            <input type="text" className="form-control" id="Party Name"
-            ref={pName} />
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="recipient-name" className="col-form-label">
-              Election Party Logo
-            </label>
-            <input type="file" className="form-control" onChange={handleFileUpload} id="PartyLogo" />
-          </div>
-
-          <div className="mb-3">
-            <label htmlFor="recipient-name" className="col-form-label">
-              Election Party Short Code
-            </label>
-            <input type="text" className="form-control" id=" Party Shortcode"
-            ref={shortCode} />
-          </div>
-        </form>
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button type="button" className="btn btn-primary" onClick={handleSubmit}>
-          Add Party
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
 
     </div>
   );
