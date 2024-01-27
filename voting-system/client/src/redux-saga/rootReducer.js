@@ -1,10 +1,12 @@
 import {
     combineReducers
 } from "redux";
-import electionReducer from "./Admin-saga/election-party/reducer/electionReducer"
+import electionReducer from "./Admin-saga/create-election/reducer/electionReducer";
+import electionPartyReducer from "./Admin-saga/election-party/reducer/electionPartyReducer";
 
 const rootReducer = combineReducers({
-    electionReducer,
+    electionPartyReducer,
+    electionPartyReducer,
 })
 
 export default rootReducer;

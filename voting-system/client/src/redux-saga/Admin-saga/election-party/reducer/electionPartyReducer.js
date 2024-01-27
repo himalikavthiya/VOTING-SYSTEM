@@ -13,7 +13,7 @@ const initialState = {
     isError: null,
 }
 
-const electionReducer = (state = initialState, action) => {
+const electionPartyReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case GET_ELECTION_PARTY_PANDING: {
@@ -64,4 +64,4 @@ const electionReducer = (state = initialState, action) => {
     }
 }
 
-export default electionReducer;
+export default electionPartyReducer;

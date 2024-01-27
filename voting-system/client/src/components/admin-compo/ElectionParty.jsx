@@ -5,7 +5,7 @@ import { GET_ELECTION_PARTY_PANDING, POST_ELECTION_PARTY_PANDING } from "../../r
 import { Button } from "@mui/material";
 
 const ElectionParty = () => {
-  const electionParty = useSelector((state) => state.electionReducer);
+  const electionParty = useSelector((state) => state.electionPartyReducer);
   console.log(electionParty.PartyData.Data);
   const dispatch = useDispatch();
   const [dataTableData, setDataTable] = useState([]);
