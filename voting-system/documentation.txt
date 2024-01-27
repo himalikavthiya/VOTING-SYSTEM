@@ -1,0 +1,245 @@
+# ---------------------------------------------------------------------------- #
+#                          Backend APIs Documentation                          #
+# ---------------------------------------------------------------------------- #
+
+# -------------------------------- ERROR code: ------------------------------- #
+{ StatusCode: 0, ErrorCode: 'EC000', Massage: 'Sucessfully Run', StatusType: StatusType.success },
+{ StatusCode: 1, ErrorCode: 'EC001', Massage: 'Something went wrong', StatusType: StatusType.error },
+{ StatusCode: 2, ErrorCode: 'EC002', Massage: 'Auth failed', StatusType: StatusType.error },
+{ StatusCode: 3, ErrorCode: 'EC003', Massage: 'Login successfully', StatusType: StatusType.success },
+{ StatusCode: 4, ErrorCode: 'EC004', Massage: 'Invalid credential', StatusType: StatusType.warning },
+{ StatusCode: 5, ErrorCode: 'EC005', Massage: 'Data added successfully', StatusType: StatusType.success },
+{ StatusCode: 6, ErrorCode: 'EC006', Massage: 'Data updated successfully', StatusType: StatusType.success },
+{ StatusCode: 7, ErrorCode: 'EC007', Massage: 'Data deleted successfully', StatusType: StatusType.success },
+{ StatusCode: 8, ErrorCode: 'EC008', Massage: 'Invalid token', StatusType: StatusType.warning },
+{ StatusCode: 9, ErrorCode: 'EC009', Massage: 'Already exists', StatusType: StatusType.warning },
+{ StatusCode: 10, ErrorCode: 'EC010', Massage: 'Role not available', StatusType: StatusType.warning }
+{ StatusCode: 11, ErrorCode: 'EC011', Massage: 'ENV config error', Statustype: Statustype.error }
+
+
+# ---------------------------------------------------------------------------- #
+#                                  Auth Routes                                 #
+# ---------------------------------------------------------------------------- #
+/** Create User route */
+user_register(create): post(https://voater-backend-app.onrender.com/v1/auth)
+req_object: {
+				"Profile": "profile_picture",
+				"Password": "test3@123",
+				"CardNumber":"etcc1234dd",
+				"Name": "test3",
+				"Sex":"male",
+				"DOB":"2000-01-03",
+				"Address": "123, test area, pincode, 329304",
+				"Phone": "8390909090",
+				"Email": "test3@gmail.com"
+            }
+
+/** Get user list route */
+user_get: get(https://voater-backend-app.onrender.com/v1/authlist);
+res_object: {
+			  "StatusCode": 5,
+			  "Success": true,
+			  "Message": "auth Created Successfully..!",
+			  "Data": {
+			  			"_id": "65a9025600783ab04c918b6c",
+			  			"Profile": "https://res.cloudinary.com/harrypraja/image/upload/v1705574999/fvtyvdxggd3plkk87qwi.jpg",
+			  			"Password": "$2a$10$hEhYEvdD/UB6F302lm7YkOsryDRunPQafHn4jaLDSYdR/CQGmdGLu",
+			  			"CardNumber": "abc123sh42",
+			  			"Name": "test1",
+			  			"Sex": "male",
+			  			"DOB": "1999-12-19T00:00:00.000Z",
+			  			"Address": "123, testnagar socity, tester - 392102",
+			  			"Phone": "2134567890",
+			  			"Email": "test1@gmail.com",
+			  			"Role": "user",
+			  			"AccessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJQYXNzd29yZCI6IiQyYSQxMCRoRWhZRXZkRC9VQjZGMzAybG03WWtPc3J5RFJ1blBRYWZIbjRqYUxEU1lkUi9DUUdtZEdMdSIsIkVtYWlsIjoidGVzdDFAZ21haWwuY29tIiwiUGhvbmUiOiIyMTM0NTY3ODkwIiwiaWF0IjoxNzA1NTc0OTk4LCJleHAiOjE3MDU2NjEzOTh9.BNDGf7MR9DDJqC-EDXo4qJvXZH8fXvLVXasaYod_NBc",
+			  			"IsActive": true,
+			  			"createdAt": "2024-01-18T10:49:59.996Z",
+			  			"updatedAt": "2024-01-18T10:49:59.996Z"
+			  		  }
+			}
+
+/** Update user data route */
+user_update: put(https://voater-backend-app.onrender.com/v1/authup/:_Id);
+
+/** User delete */
+user_delete: delete(https://voater-backend-app.onrender.com/v1/authdel/:_Id);
+
+/** User login */
+login: delete(https://voater-backend-app.onrender.com/v1/login);
+req_object: {
+				"Password": "test3@123",
+				"Name": "test3",
+				"Email": "test3@gmail.com"
+			}
+
+# ---------------------------------------------------------------------------- #
+#                                 Party routes                                 #
+# ---------------------------------------------------------------------------- #
+/** Add create Party route */
+party_create: post(https://voater-backend-app.onrender.com/v1/party)
+request_object: {
+					"Profile": "Files upload",
+					"pName": "Bharatiya Janata Party",
+					"shortCode": "bjp"
+				}
+
+/** Get Party route */
+user_get: get(https://voater-backend-app.onrender.com/v1/pList)
+get_object: {
+				"StatusCode": 5,
+				"Success": true,
+				"Message": "Party Created Successfully..!",
+				"Data": {
+						"pName": "BHARATIYA JANATA PARTY",
+						"shortCode": "BJP",
+						"is_active": true,
+						"_id": "65a9157717a0fb196b4f0b51",
+						"Profile": "https://res.cloudinary.com/harrypraja/image/upload/v1705579896/slrk44ihju08ynmcpjam.png",
+						"createdAt": "2024-01-18T12:11:37.457Z",
+						"updatedAt": "2024-01-18T12:11:37.457Z"
+						}
+			}
+
+/** Update Party data route */
+party_update: put(https://voater-backend-app.onrender.com/v1/pup/:_Id);
+
+/** Party delete */
+party_delete: delete(https://voater-backend-app.onrender.com/v1/pdel/:_Id);
+
+
+# ---------------------------------------------------------------------------- #
+#                                Election Routes                               #
+# ---------------------------------------------------------------------------- #
+/** Create Election */
+party_create: post(https://voater-backend-app.onrender.com/v1/ele)
+request_object: {
+					"ElectionName": "District Panchayat",
+					"RegisterDate": "2021-05-25",
+					"Party":"objectId(65a9157717a0fb196b4f0b51)" // Party refrenceId
+				}
+
+/** Get Election route */
+user_get: get(https://voater-backend-app.onrender.com/v1/elelist)
+get_object: {
+				"StatusCode": 5,
+				"Success": true,
+				"Message": "Election Created Successfully..!",
+				"Data": {
+					"ElectionName": "District Panchayat",
+					"RegisterDate": "2021-05-25T00:00:00.000Z",
+					"Party": "65a9157717a0fb196b4f0b51",
+					"IsActive": true,
+					"_id": "65a9170217a0fb196b4f0b84",
+					"createdAt": "2024-01-18T12:18:10.800Z",
+					"updatedAt": "2024-01-18T12:18:10.800Z"
+				}
+			}
+
+/** Update Election data route */
+Election_update: put(https://voater-backend-app.onrender.com/v1/eleup/:_Id);
+
+/** Election delete */
+Election_delete: delete(https://voater-backend-app.onrender.com/v1/eledel/:_Id);
+
+
+# ---------------------------------------------------------------------------- #
+#                                  Vote Routes                                 #
+# ---------------------------------------------------------------------------- #
+/** Create Vote rote */
+party_create: post(https://voater-backend-app.onrender.com/v1/vote)
+request_object: {
+					"Party": "65a914f317a0fb196b4f0b46",    // Party Referance Id
+					"Election": "65a9163117a0fb196b4f0b5a"  // Election Reference Id
+				}
+
+/** Get Vote route */
+user_get: get(https://voater-backend-app.onrender.com/v1/vlist)
+get_object: {
+				"StatusCode": 5,
+				"Success": true,
+				"Message": "Votes retrieved successfully..!",
+				"Data": [
+							{
+								"_id": "65a91bdff423ed9db292acfb",
+								"Auth": {
+										"_id": "65a9025600783ab04c918b6c",
+										"CardNumber": "abc123sh42",
+										"Name": "test1",
+										"Sex": "male",
+										"DOB": "1999-12-19T00:00:00.000Z",
+										"Address": "123, testnagar socity, tester - 392102",
+										"Phone": "2134567890",
+										"Email": "test1@gmail.com",
+										"Role": "user",
+										"IsActive": true,
+										"Profile": "https://res.cloudinary.com/harrypraja/image/upload/v1705574999/fvtyvdxggd3plkk87qwi.jpg",
+										"createdAt": "2024-01-18T10:49:59.996Z",
+										"updatedAt": "2024-01-18T10:49:59.996Z"
+										},
+								"Election": {
+											"_id": "65a9163117a0fb196b4f0b5a",
+											"ElectionName": "Municipal Corporation",
+											"RegisterDate": "2021-12-06T00:00:00.000Z",
+											"Party": "65a914f317a0fb196b4f0b46",
+											"IsActive": true,
+											"createdAt": "2024-01-18T12:14:41.523Z",
+											"updatedAt": "2024-01-18T12:14:41.523Z"
+											},
+								"is_active": true,
+								"createdAt": "2024-01-18T12:38:55.754Z",
+								"updatedAt": "2024-01-18T12:38:55.754Z"
+							}
+						]
+			}
+
+/** Vote delete */
+Vote_delete: delete(https://voater-backend-app.onrender.com/v1/vdel/:_Id);
+
+
+# ---------------------------------------------------------------------------- #
+#                               PartyList Routes                               #
+# ---------------------------------------------------------------------------- #
+/** Create Partylist rote */
+party_create: post(https://voater-backend-app.onrender.com/v1/plist)
+request_object: {
+					"Auth":"65a91024cea205f4d2c4546e",     // User Referance Id
+					"Election":"65a916ca17a0fb196b4f0b77"  // Election Reference Id
+				}
+
+/** Get Partylist route */
+user_get: get(https://voater-backend-app.onrender.com/v1/plistall)
+get_object: {
+				"StatusCode": 5,
+				"Success": true,
+				"Message": "Party Created Successfully..!",
+				"Data": [
+							{
+								"_id": "65a958eb121287ecce7c9438",
+								"Party": {
+										"_id": "65a914f317a0fb196b4f0b46",
+										"pName": "AAM ADAMI",
+										"shortCode": "AAM",
+										"is_active": true,
+										"Profile": "https://res.cloudinary.com/harrypraja/image/upload/v1705579765/hjxre2mhqbj1trg4brek.jpg",
+										"createdAt": "2024-01-18T12:09:25.654Z",
+										"updatedAt": "2024-01-18T12:09:25.654Z"
+										},
+								"Election": {
+											"_id": "65a9163117a0fb196b4f0b5a",
+											"ElectionName": "Municipal Corporation",
+											"RegisterDate": "2021-12-06T00:00:00.000Z",
+											"Party": "65a914f317a0fb196b4f0b46",
+											"IsActive": true,
+											"createdAt": "2024-01-18T12:14:41.523Z",
+											"updatedAt": "2024-01-18T12:14:41.523Z"
+											},
+								"is_active": true,
+								"createdAt": "2024-01-18T16:59:23.436Z",
+								"updatedAt": "2024-01-18T16:59:23.436Z"
+							}
+						]
+			}
+
+/** Partylist delete */
+Partylist_delete: delete(https://voater-backend-app.onrender.com/v1/plistdel/:_Id);

@@ -274,7 +274,7 @@ export const authLogin = async (req, res) => {
   try {
     await connectDB();
 
-    const { Name, Email, Password } = req.body;
+    const { Email, Password } = req.body;
     const user = await Auth.findOne({ Email });
     if (!user) {
       logger.error({

@@ -25,22 +25,22 @@ export const voteCreate = async (req, res) => {
 
     let voteQuery = new Vote(req.body);
     if (Role == "user") {
-      voteQuery = await voteQuery.populate("Auth").populate("Election");
+      voteQuery = await voteQuery.populate("Auth").populate("Party");
+      if (!voteQuery && voteQuery === 0) {
+        logger.error({
+          StatusCode: 4,
+          Message: `Error in creating the Vote list..!`,
+        });
+        res.status(400).json({
+          StatusCode: 4,
+          Success: false,
+          Message: `Error in creating the Vote list..!`,
+        });
+      }
     }
 
     const result = await voteQuery.save();
     if (!result && result === 0) {
-      logger.error({
-        StatusCode: 4,
-        Message: `Error in creating the Vote list..!`,
-      });
-      res.status(400).json({
-        StatusCode: 4,
-        Success: false,
-        Message: `Error in creating the Vote list..!`,
-      });
-    }
-    if (!voteQuery && voteQuery === 0) {
       logger.error({
         StatusCode: 4,
         Message: `Error in creating the Vote list..!`,
@@ -84,7 +84,7 @@ export const voteList = async (req, res) => {
 
     const voteList = await Vote.find()
       .populate({ path: "Auth", select: "-Password -AccessToken" })
-      .populate("Election");
+      .populate("Party");
     if (!voteList || voteList.length === 0) {
       logger.error({
         StatusCode: 4,

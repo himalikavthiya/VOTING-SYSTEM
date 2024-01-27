@@ -114,7 +114,7 @@ export const partyDelVal = {
 export const voteVal = {
   body: Joi.object().keys({
     Auth: Joi.string().trim(),
-    Election: Joi.string().trim(),
+    Party: Joi.string().trim(),
   }),
 };
 

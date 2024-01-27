@@ -6,9 +6,9 @@ const voteSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Auth",
     },
-    Election: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Election",
+    Party: {
+      type: mongoose.Types.ObjectId,
+      ref: "Party",
     },
     is_active: {
       type: Boolean,
