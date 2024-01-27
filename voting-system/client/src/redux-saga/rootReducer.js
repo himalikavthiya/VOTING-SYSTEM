@@ -5,7 +5,7 @@ import electionReducer from "./Admin-saga/create-election/reducer/electionReduce
 import electionPartyReducer from "./Admin-saga/election-party/reducer/electionPartyReducer";
 
 const rootReducer = combineReducers({
-    electionPartyReducer,
+    electionReducer,
     electionPartyReducer,
 })
 
