@@ -43,6 +43,7 @@ export function* handle_add_party_data(action) {
     try {
         const res = yield call(post_party_data, action);
         const data = res.data;
+          console.log(data);
         const status = res.status;
         if (status === 200 || status === 201) {
             yield put({
@@ -54,7 +55,7 @@ export function* handle_add_party_data(action) {
                 type: POST_ELECTION_PARTY_REJECTED,
                 data
             })
-            console.log(data);
+          
         }
     } catch (error) {
         yield put({

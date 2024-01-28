@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 import { GET_ELECTION_PARTY_PANDING, POST_ELECTION_PARTY_PANDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
-import { Button } from "@mui/material";
 import * as Icons from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,9 +13,6 @@ const ElectionParty = () => {
   const [dataTableData, setDataTable] = useState([]);
  const [newUrl, setNewUrl] = useState()
 
- const pName = useRef();
-  const shortCode = useRef();
-
 const handleFileUpload = (event) => {
     const file = event.target.files[0]
     const reader = new FileReader()
@@ -25,32 +21,14 @@ const handleFileUpload = (event) => {
     }
     reader.readAsDataURL(file)
   }
-
-  const handleSubmit=(data)=>{
-    // console.log(data)
-    //  let formData = new FormData() //formdata object
-    // Object.keys(data).forEach(function (key) {
-    //   if (key === 'Profile') {
-    //     formData.append(key, data[key][0])
-    //   } else {
-    //     formData.append(key, data[key])
-    //   }
-    // })
-     const partyData = {
-      pName: pName.current.value,
-      shortCode: shortCode.current.value,
-    };
-     dispatch({ type:POST_ELECTION_PARTY_PANDING,partyData});
-  }
-
-  useEffect(() => {
-    const fetchData = async () => {
+ const fetchData = async () => {
        dispatch({ type: GET_ELECTION_PARTY_PANDING });
       // Update the state with the fetched data
      await setDataTable(electionParty.PartyData.Data);
     };
 
-    fetchData();
+   useEffect(() => {
+       fetchData();
   }, []);
 
   const columns = [

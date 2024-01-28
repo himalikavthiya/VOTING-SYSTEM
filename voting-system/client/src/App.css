@@ -7,6 +7,7 @@
   padding: 0;
   text-decoration: none;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .main-container {
@@ -159,4 +160,50 @@ img {
   font-size: 30px !important;
   padding: 4px;
   background-color: #3c4b64;
+}
+/* party page css */
+
+.my-form {
+  margin-top: 3rem;
+  max-width: 400px;
+  margin-left: 3rem;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.innerfield {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inputfield {
+  width: 100%;
+  padding: 8px;
+   border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.AddData {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.AddData:hover {
+  background-color: var(--primary-color);
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
 }

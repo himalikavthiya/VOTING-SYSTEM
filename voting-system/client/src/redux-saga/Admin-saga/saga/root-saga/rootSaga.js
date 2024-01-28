@@ -13,7 +13,7 @@ import {
 import {
   handle_add_party_data,
   handle_party_data,
-} from "../partyManage/manageParty";
+} from "../electionPartyManage/manageParty";
 import { takeLatest } from "redux-saga/effects";
 
 /* ---------------------- GET ELECTION FUN IN ROOTSAGA ---------------------- */
