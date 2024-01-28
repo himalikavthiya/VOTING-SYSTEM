@@ -1,29 +1,37 @@
-import React, { useRef } from "react";
-import {  BASE_URL, LOGIN_URL } from "../../redux-saga/constant";
+import React, { useRef, useState } from "react";
+import { BASE_URL, LOGIN_URL } from "../../redux-saga/constant";
+import logo from "../../assets/Images/Vote.png";
 import axios from "axios";
 import Cookies from "js-cookie";
+import EmailIcon from "@mui/icons-material/Email";
+import KeyIcon from "@mui/icons-material/Key";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Login = () => {
-   const Email = useRef();
+  const Email = useRef();
   const Password = useRef();
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   const handleLogin = () => {
-
     const data = {
-           Email: Email.current.value,
-      Password: Password.current.value
-    }
-    console.log(data)
-       axios.post(BASE_URL+LOGIN_URL,data).then((res) => {
-      console.log("res admmin",res);
-      Cookies.set("Role", res.data.data.Role)
-      Cookies.set("Name", res.data.data.Name)
-      Cookies.set("Profile", res.data.data.Profile)
-      window.location = "/dashboard"
-    }).catch((err) => {
-      console.log(err);
-    })
-  }
+      Email: Email.current.value,
+      Password: Password.current.value,
+    };
+    console.log(data);
+    axios
+      .post(BASE_URL + LOGIN_URL, data)
+      .then((res) => {
+        console.log("res admmin", res);
+        Cookies.set("Role", res.data.data.Role);
+        Cookies.set("Name", res.data.data.Name);
+        Cookies.set("Profile", res.data.data.Profile);
+        window.location = "/dashboard";
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <section className="vh-100 login-section">
@@ -33,65 +41,104 @@ const Login = () => {
             <div className="card">
               <div className="row g-0">
                 <div className="col-md-6 col-lg-5 d-none d-md-block">
-                  <img
-                    src="https://img.freepik.com/free-vector/electronic-voting-abstract-concept-illustration_335657-1876.jpg?w=700&t=st=1704855860~exp=1704856460~hmac=4aaf803de6766073536e070ba8d69cf8ea189dca8dbec68ef55a591f31167bd0"
-                    alt="login form"
-                  />
+                  <img src={logo} alt="login form" />
                 </div>
                 <div className="col-md-6 col-lg-7 d-flex align-items-center">
                   <div className="card-body p-4 p-lg-5 text-black">
                     <form>
-                      <div className="d-flex align-items-center mb-3 ">
-                                            <span className="h2 fw-bold mb-0" >Login </span>
+                      <div className="align-items-center mb-3 text-center">
+                        <h1 className="fw-bold mb-3">Welcome back!</h1>
+                        <p
+                          style={{ color: "grey", fontSize: "18px" }}
+                          className="fw-normal"
+                        >
+                          Democracy is based upon the conviction there are
+                          extraordinary possibilities in ordinary people.
+                        </p>
                       </div>
-                      <h5
-                        className="fw-normal mb-3 pb-3"
-                        style={{ letterSpacing: 1 }}
-                      >
-                        Sign into your account
-                      </h5>
 
-                        <div className="form-floating  mb-2">
+                      <div style={{ position: "relative" }} className="mb-3">
+                        <EmailIcon
+                          style={{
+                            position: "absolute",
+                            color: "grey",
+                            top: ".8rem",
+                            left: ".8rem",
+                          }}
+                        />
                         <input
                           type="text"
-                          className="form-control"
+                          className="form-control px-5"
                           id="floatingEmail"
-                          placeholder="Email"
+                          placeholder="Enter your Email"
                           ref={Email}
+                          style={{ fontSize: "20px" }}
                         />
-                        <label htmlFor="floatingEmail">Email</label>
                       </div>
-                      <div className="form-floating  mb-2">
+                      <div style={{ position: "relative" }}>
+                        <KeyIcon
+                          style={{
+                            position: "absolute",
+                            color: "grey",
+                            top: ".8rem",
+                            left: ".8rem",
+                          }}
+                        />
+                        {passwordVisible ? (
+                          <VisibilityIcon
+                            style={{
+                              position: "absolute",
+                              color: "grey",
+                              top: "50%",
+                              right: "10px",
+                              transform: "translateY(-50%)",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => setPasswordVisible(!passwordVisible)}
+                          />
+                        ) : (
+                          <VisibilityOffIcon
+                            style={{
+                              position: "absolute",
+                              color: "grey",
+                              top: "50%",
+                              right: "10px",
+                              transform: "translateY(-50%)",
+                              cursor: "pointer",
+                            }}
+                            onClick={() => setPasswordVisible(!passwordVisible)}
+                          />
+                        )}
                         <input
-                          type="password"
-                          className="form-control"
+                          type={passwordVisible ? "text" : "password"}
+                          className="form-control px-5"
                           id="floatingPassword"
-                          placeholder="Password"
+                          placeholder="Enter your Password"
                           ref={Password}
+                          style={{ fontSize: "20px" }}
                         />
-                        <label htmlFor="floatingPassword">Password</label>
                       </div>
-                      <div className="d-flex justify-content-between align-items-center">
-                        <div className="mb-4">
+                      <div className="d-flex justify-content-between align-items-center mt-4">
+                        <div>
                           <button
                             className="btn btn-dark btn-lg btn-block"
                             type="button"
-                             onClick={handleLogin}
-                             >
+                            onClick={handleLogin}
+                          >
                             Login
                           </button>
                         </div>
-                          <a className="small text-muted" href="#!">
-                            Forgot password?
-                          </a>
+                        <a className="small text-muted" href="#!">
+                          Forgot password?
+                        </a>
                       </div>
 
-                      <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
+                      {/* <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                         Don't have an account?
                         <a href="#!" style={{ color: "#393f81" }}>
                           Register here
                         </a>
-                      </p>
+                      </p> */}
                     </form>
                   </div>
                 </div>
@@ -101,7 +148,6 @@ const Login = () => {
         </div>
       </div>
     </section>
-
   );
 };
 
