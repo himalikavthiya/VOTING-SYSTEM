@@ -1,5 +1,4 @@
-export const BASE_URL = "http://52.65.47.180:4000/v1"
-// https://voater-backend-app.onrender.com/v1"
+export const BASE_URL ="https://voater-backend-app.onrender.com/v1"
 //  "http://13.211.127.44:4000/v1"
 
 
