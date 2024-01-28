@@ -138,5 +138,25 @@ img {
 
 .AddButton {
   background-color: var(--primary-color);
+}
+.deleteButton {
+  color: #ffff;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 0px 6px;
+  font-size: 30px !important;
+  padding: 4px;
+  background-color: #dc3545;
+}
 
+.editButton {
+  color: #ffff;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 5px;
+  margin: 0px 6px;
+  font-size: 30px !important;
+  padding: 4px;
+  background-color: #3c4b64;
 }

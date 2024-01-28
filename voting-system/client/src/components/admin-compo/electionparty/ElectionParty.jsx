@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { GET_ELECTION_PARTY_PANDING, POST_ELECTION_PARTY_PANDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
 import { Button } from "@mui/material";
 import * as Icons from '@mui/icons-material'
+import { useNavigate } from 'react-router-dom'
 
 const ElectionParty = () => {
   const electionParty = useSelector((state) => state.electionPartyReducer);
   console.log(electionParty.PartyData.Data);
   const dispatch = useDispatch();
+  const navigate=useNavigate();
   const [dataTableData, setDataTable] = useState([]);
-const [newUrl, setNewUrl] = useState()
+ const [newUrl, setNewUrl] = useState()
 
  const pName = useRef();
   const shortCode = useRef();
@@ -100,15 +102,15 @@ const handleFileUpload = (event) => {
                 }}
               ></Icons.EditRounded>
                <Icons.DeleteRounded
-              //   className="deleteButton"
-              //   onClick={async () => {
-              //     const confirm = await swal({
-              //       title: 'Are you sure?',
-              //       text: 'Are you sure? Want to delete Location? All related data will also be deleted',
-              //       icon: 'warning',
-              //       buttons: ['No, cancel it!', 'Yes, I am sure!'],
-              //       dangerMode: true,
-              //     })
+                className="deleteButton"
+                onClick={async () => {
+                  const confirm = await swal({
+                    title: 'Are you sure?',
+                    text: 'Are you sure? Want to delete Location? All related data will also be deleted',
+                    icon: 'warning',
+                    buttons: ['No, cancel it!', 'Yes, I am sure!'],
+                    dangerMode: true,
+                  })
               //     if (confirm) {
               //       deleteCategory(value)
               //         .then(() => {
@@ -124,7 +126,7 @@ const handleFileUpload = (event) => {
               //           })
               //         })
               //     }
-              //   }}
+                }}
               >
 
               </Icons.DeleteRounded>
