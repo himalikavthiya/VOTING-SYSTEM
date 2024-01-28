@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { POST_ELECTION_PARTY_PANDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
+import { POST_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +27,7 @@ console.log(data)
         formData.append(key, data[key])
       }
     })
-    dispatch({ type: POST_ELECTION_PARTY_PANDING, payload: formData });
+    dispatch({ type: POST_ELECTION_PARTY_PENDING, payload: formData });
     naviagte('/election-party')
   }
   return (

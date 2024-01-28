@@ -1,9 +1,9 @@
 import {
     GET_ELECTION_PARTY_FULLFILIED,
-    GET_ELECTION_PARTY_PANDING,
+    GET_ELECTION_PARTY_PENDING,
     GET_ELECTION_PARTY_REJECTED,
     POST_ELECTION_PARTY_FULLFILIED,
-    POST_ELECTION_PARTY_PANDING,
+    POST_ELECTION_PARTY_PENDING,
     POST_ELECTION_PARTY_REJECTED
 } from "../action/action";
 
@@ -16,7 +16,7 @@ const initialState = {
 const electionPartyReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case GET_ELECTION_PARTY_PANDING: {
+        case GET_ELECTION_PARTY_PENDING: {
             return {
                 ...state,
                 isLoading: true,
@@ -39,7 +39,7 @@ const electionPartyReducer = (state = initialState, action) => {
             };
         }
 
-        case POST_ELECTION_PARTY_PANDING:
+        case POST_ELECTION_PARTY_PENDING:
             return {
                 ...state,
                 isLoading: true,
