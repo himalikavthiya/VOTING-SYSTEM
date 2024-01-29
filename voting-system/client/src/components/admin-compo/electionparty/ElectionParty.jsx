@@ -1,37 +1,44 @@
 import React, { useEffect, useRef, useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_ELECTION_PARTY_FULLFILIED, GET_ELECTION_PARTY_PENDING, GET_ELECTION_PARTY_REJECTED, POST_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
-import * as Icons from '@mui/icons-material'
-import { useNavigate } from 'react-router-dom'
+import {
+  GET_ELECTION_PARTY_FULLFILIED,
+  GET_ELECTION_PARTY_PENDING,
+  GET_ELECTION_PARTY_REJECTED,
+  POST_ELECTION_PARTY_PENDING,
+} from "../../../redux-saga/Admin-saga/election-party/action/action";
+import * as Icons from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 const ElectionParty = () => {
-  const electionParty = useSelector((state) => state.electionPartyReducer.PartyData.Data);
-  console.log(electionParty,"dssss");
+  const electionParty = useSelector(
+    (state) => state.electionPartyReducer.PartyData.Data
+  );
+  console.log(electionParty, "dssss");
   const dispatch = useDispatch();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   // const [dataTableData, setDataTable] = useState([]);
- const [newUrl, setNewUrl] = useState()
+  const [newUrl, setNewUrl] = useState();
 
-const handleFileUpload = (event) => {
-    const file = event.target.files[0]
-    const reader = new FileReader()
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
     reader.onloadend = () => {
-      setNewUrl(reader.result)
-    }
-    reader.readAsDataURL(file)
-  }
+      setNewUrl(reader.result);
+    };
+    reader.readAsDataURL(file);
+  };
 
-// const fetchData = async () => {
-//   try {
-//        await dispatch({ type: GET_ELECTION_PARTY_PENDING });
-//   } catch (error) {
-//       dispatch({ type: GET_ELECTION_PARTY_REJECTED, payload: error.message });
-//   }
-// };
-//    useEffect(() => {
-//        fetchData();
-//   }, []);
+  // const fetchData = async () => {
+  //   try {
+  //        await dispatch({ type: GET_ELECTION_PARTY_PENDING });
+  //   } catch (error) {
+  //       dispatch({ type: GET_ELECTION_PARTY_REJECTED, payload: error.message });
+  //   }
+  // };
+  //    useEffect(() => {
+  //        fetchData();
+  //   }, []);
 
   const columns = [
     {
@@ -49,7 +56,7 @@ const handleFileUpload = (event) => {
         filter: true,
         sort: false,
         customBodyRender: (value, tableMeta) => {
-               return (
+          return (
             <img
               src={value}
               alt={tableMeta.rowData[0]}
@@ -67,9 +74,9 @@ const handleFileUpload = (event) => {
         sort: false,
       },
     },
-     {
-      name: '_id',
-      label: 'Action',
+    {
+      name: "_id",
+      label: "Action",
       options: {
         customBodyRender: (value) => {
           return (
@@ -77,46 +84,43 @@ const handleFileUpload = (event) => {
               <Icons.EditRounded
                 className="editButton"
                 onClick={() => {
-                  const editdata = dataTableData.find((data) => data._id === value)
-                  navigate('/election-party-form', { state: { editdata: editdata } })
+                  const editdata = dataTableData.find(
+                    (data) => data._id === value
+                  );
+                  navigate("/election-party-form", {
+                    state: { editdata: editdata },
+                  });
                 }}
               ></Icons.EditRounded>
-               <Icons.DeleteRounded
+              <Icons.DeleteRounded
                 className="deleteButton"
                 onClick={async () => {
                   const confirm = await swal({
-                    title: 'Are you sure?',
-                    text: 'Are you sure? Want to delete Location? All related data will also be deleted',
-                    icon: 'warning',
-                    buttons: ['No, cancel it!', 'Yes, I am sure!'],
+                    title: "Are you sure?",
+                    text: "Are you sure? Want to delete Location? All related data will also be deleted",
+                    icon: "warning",
+                    buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
-                  })
-              //     if (confirm) {
-              //       deleteCategory(value)
-              //         .then(() => {
-              //           toast.success('deleted successfully!', {
-              //             key: value,
-              //           })
-              //           console.log(value)
-              //           categoryList()
-              //         })
-              //         .catch(() => {
-              //           toast.error('something went wrong!', {
-              //             key: value,
-              //           })
-              //         })
-              //     }
+                  });
+                  //     if (confirm) {
+                  //       deleteCategory(value)
+                  //         .then(() => {
+                  //           toast.success('deleted successfully!', {
+                  //             key: value,
+                  //           })
+                  //           console.log(value)
+                  //           categoryList()
+                  //         })
+                  //         .catch(() => {
+                  //           toast.error('something went wrong!', {
+                  //             key: value,
+                  //           })
+                  //         })
+                  //     }
                 }}
-              >
-
-                
-
-              </Icons.DeleteRounded>
-
-
-             
+              ></Icons.DeleteRounded>
             </div>
-          )
+          );
         },
       },
     },
@@ -127,13 +131,12 @@ const handleFileUpload = (event) => {
   };
 
   return (
-    
-    <div className="custom-container" >
+    <div className="custom-container">
       <div className="right-text">
-         <button
+        <button
           type="button"
           className="btn btn-primary AddButton"
-         onClick={() => navigate('/election-party-form')}
+          onClick={() => navigate("/election-party-form")}
         >
           Add Party
         </button>
@@ -145,7 +148,7 @@ const handleFileUpload = (event) => {
         columns={columns}
         options={options}
       />
-     </div>
+    </div>
   );
 };
 

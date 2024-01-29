@@ -9,10 +9,10 @@ import {
 } from "../../../redux-saga/Admin-saga/create-election/action/action";
 
 const CreateElection = () => {
-  const election = useSelector(
+ const election = useSelector(
     (state) => state.electionReducer.electionData.Data
   );
-  console.log(election, "dssss");
+  console.log(election, "election data");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();
