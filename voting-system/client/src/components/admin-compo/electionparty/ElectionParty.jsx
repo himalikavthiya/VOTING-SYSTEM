@@ -6,11 +6,11 @@ import * as Icons from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 
 const ElectionParty = () => {
-  const electionParty = useSelector((state) => state.electionPartyReducer);
-  console.log(electionParty.PartyData.Data);
+  const electionParty = useSelector((state) => state.electionPartyReducer.PartyData.Data);
+  console.log(electionParty,"dssss");
   const dispatch = useDispatch();
   const navigate=useNavigate();
-  const [dataTableData, setDataTable] = useState([]);
+  // const [dataTableData, setDataTable] = useState([]);
  const [newUrl, setNewUrl] = useState()
 
 const handleFileUpload = (event) => {
@@ -21,31 +21,17 @@ const handleFileUpload = (event) => {
     }
     reader.readAsDataURL(file)
   }
-//  const fetchData = async () => {
-//       await dispatch({ type: GET_ELECTION_PARTY_PENDING });
-//       // Update the state with the fetched data
-//       setDataTable(electionParty.PartyData.Data);
-//     };
-const fetchData = async () => {
-  try {
-    // Dispatch an action to indicate that data fetching is in progress
-    await dispatch({ type: GET_ELECTION_PARTY_PENDING });
 
-    
-    const response = await fetch('/PList');
-    console.log(response)
-    const data = await response.json();
-
-      setDataTable(data.PartyData.Data);
-
-       dispatch({ type: GET_ELECTION_PARTY_FULLFILIED });
-  } catch (error) {
-      dispatch({ type: GET_ELECTION_PARTY_REJECTED, payload: error.message });
-  }
-};
-   useEffect(() => {
-       fetchData();
-  }, []);
+// const fetchData = async () => {
+//   try {
+//        await dispatch({ type: GET_ELECTION_PARTY_PENDING });
+//   } catch (error) {
+//       dispatch({ type: GET_ELECTION_PARTY_REJECTED, payload: error.message });
+//   }
+// };
+//    useEffect(() => {
+//        fetchData();
+//   }, []);
 
   const columns = [
     {
@@ -123,7 +109,12 @@ const fetchData = async () => {
                 }}
               >
 
+                
+
               </Icons.DeleteRounded>
+
+
+             
             </div>
           )
         },
@@ -136,7 +127,8 @@ const fetchData = async () => {
   };
 
   return (
-    <div className="custom-container">
+    
+    <div className="custom-container" >
       <div className="right-text">
          <button
           type="button"
@@ -149,13 +141,11 @@ const fetchData = async () => {
       {/* dataTable data */}
       <MUIDataTable
         title={"Election Party List"}
-        data={dataTableData}
+        data={electionParty}
         columns={columns}
         options={options}
       />
-
-
-    </div>
+     </div>
   );
 };
 

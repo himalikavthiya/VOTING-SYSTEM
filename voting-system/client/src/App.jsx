@@ -11,8 +11,25 @@ import ElectionParty from "./components/admin-compo/electionparty/ElectionParty"
 import PartyConnection from "./components/admin-compo/PartyConnection";
 import User from "./components/admin-compo/User";
 import ElectionPartyForm from "./components/admin-compo/electionparty/ElectionPartyForm";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { GET_ELECTION_PARTY_PENDING, GET_ELECTION_PARTY_REJECTED } from "./redux-saga/Admin-saga/election-party/action/action";
 
 function App() {
+  const electionParty = useSelector((state) => state.electionPartyReducer.PartyData.Data);
+  const dispatch = useDispatch();
+
+  const fetchData = async () => {
+    try {
+         await dispatch({ type: GET_ELECTION_PARTY_PENDING });
+    } catch (error) {
+        dispatch({ type: GET_ELECTION_PARTY_REJECTED, payload: error.message });
+    }
+  };
+     useEffect(() => {
+         fetchData();
+    }, []);
+    
   const role = Cookies.get("Role");
 
   if (!role || role == "") {

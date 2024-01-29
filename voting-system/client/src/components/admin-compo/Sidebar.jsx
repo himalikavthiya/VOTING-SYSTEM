@@ -19,6 +19,8 @@ const Sidebar = ({children}) => {
     const[isOpen ,setIsOpen] = useState(false);
     const toggle = () => setIsOpen (!isOpen);
 
+    const [Toggel,setToggel]=useState()
+
     const menuItem=[
         {
             path:"/dashboard",
@@ -52,14 +54,19 @@ const Sidebar = ({children}) => {
         <>
 
         <div className="main-container">
-           <div style={{width: isOpen ? "50px" : "270px"}} className="sidebar">
+           <div style={{width: isOpen ? "5%" : "20%", position:"fixed", zIndex:"1"}} className="sidebar">
                <div className="top_section">
 
                    <h1 style={{display: isOpen ? "none" : "block"}} className="logo"> <img src={logo} alt="logo"/></h1>
                    <div style={{marginLeft: isOpen ? "0px" : "110px"}} className="bars">
-                       <FaBars onClick={toggle}/>
+                       <FaBars onClick={() =>{
+                         setToggel(!Toggel)
+                         setIsOpen(!isOpen)
+                          }}/>
                    </div>
                </div>
+            <div>
+            </div>
                {
                    menuItem.map((item, index)=>(
                        <NavLink to={item.path} key={index} className="link" activeclassName="active">
@@ -69,7 +76,7 @@ const Sidebar = ({children}) => {
                    ))
                }
            </div>
-           <main>{children}</main>
+           <main className={Toggel ? "toggle" : ""}>{children}</main>
         </div>
         </>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm } from "react-hook-form"
 import { POST_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +28,7 @@ console.log(data)
       }
     })
     dispatch({ type: POST_ELECTION_PARTY_PENDING, payload: formData });
-    naviagte('/election-party')
+    navigate('/election-party')
   }
   return (
     <div>
