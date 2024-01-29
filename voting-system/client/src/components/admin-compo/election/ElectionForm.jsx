@@ -17,14 +17,14 @@ function ElectionForm() {
        const navigate=useNavigate();
       const onSubmit=(data)=>{
     console.log(data)
-     let formData = new FormData() //formdata object
-        Object.keys(data).forEach(function (key) {
-          if (key === 'Profile') {
-            formData.append(key, data[key][0])
-          } else {
-            formData.append(key, data[key])
-          }
-        })
+    //  let formData = new FormData() //formdata object
+    //     Object.keys(data).forEach(function (key) {
+    //       if (key === 'Profile') {
+    //         formData.append(key, data[key][0])
+    //       } else {
+    //         formData.append(key, data[key])
+    //       }
+    //     })
         dispatch({ type: POST_ELECTION_PENDING, payload: formData });
         navigate('/create-election')
       }

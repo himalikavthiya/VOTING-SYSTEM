@@ -6,6 +6,10 @@ export const BASE_URL = "http://52.65.47.180:4000/v1"
 export const LOGIN_URL = "/login"
 // "/login/admin";
 
+/* -------------------------------- userlist -------------------------------- */
+export const GET_USER_LIST = "/authlist"
+export const ADD_USER = "/auth"
+
 /* --------------------------- election route list -------------------------- */
 export const GET_ELECTION_LIST = "/elelist"
 export const ADD_ELECTION = "/ele"

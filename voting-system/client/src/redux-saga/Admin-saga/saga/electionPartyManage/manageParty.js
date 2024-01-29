@@ -13,7 +13,7 @@ import {
     post_party_data
 } from "../../election-party/api/api"
 
-// GET PARTY MANAGE 
+/* ---------------------------- get party manage ---------------------------- */
 export function* handle_party_data(action) {
     try {
         const res = yield call(get_party_data, action)
@@ -38,7 +38,7 @@ export function* handle_party_data(action) {
     }
 }
 
-// post party manage
+/* ---------------------------- post party manage --------------------------- */
 export function* handle_add_party_data(action) {
     try {
         const res = yield call(post_party_data, action);

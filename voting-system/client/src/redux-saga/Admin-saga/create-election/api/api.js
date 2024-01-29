@@ -23,7 +23,7 @@ export async function get_election_data() {
 /* ----------------------------- add election data ----------------------------- */
 export async function post_election_data(action) {
     // console.log(action,"from api")
-    return axios.post(BASE_URL + ADD_ELECTION, action.data)
+    return axios.post(BASE_URL + ADD_ELECTION, action.payload)
         .then((res) => {
 
             const data = res.data
