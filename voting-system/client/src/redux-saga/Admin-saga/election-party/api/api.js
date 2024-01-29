@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_PARTY, BASE_URL, GET_PARTY_LIST } from "../../../constant";
+import { ADD_PARTY, BASE_URL, DELETE_PARTY, GET_PARTY_LIST } from "../../../constant";
 
 // get list of party data
 export async function get_party_data() {
@@ -34,4 +34,22 @@ export async function post_party_data(action) {
     .catch((err) => {
       console.log(err);
     });
+}
+
+// delete party data
+export async function delete_party_data(action) {
+
+  return axios.delete(BASE_URL + DELETE_PARTY + action.payload.id)
+    .then((res) => {
+       console.log(res)
+      const data = action.payload.id
+
+      const status = res.status
+      return {
+        data,
+        status
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
 }

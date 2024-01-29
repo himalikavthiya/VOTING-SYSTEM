@@ -3,6 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Icons from "@mui/icons-material";
+import swal from 'sweetalert'
 import {
   GET_ELECTION_PENDING,
   GET_ELECTION_REJECTED,
@@ -39,6 +40,15 @@ const CreateElection = () => {
 
   const columns = [
     {
+      name: 'index',
+      label: 'No',
+      options: {
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return tableMeta.rowIndex + 1
+        },
+      },
+    },
+    {
       name: "ElectionName",
       label: "Election Name",
       options: {
@@ -63,12 +73,12 @@ const CreateElection = () => {
             <div>
               <Icons.EditRounded
                 className="editButton"
-                onClick={() => {
-                  const editdata = dataTableData.find(
-                    (data) => data._id === value
-                  );
-                  navigate("/election-form", { state: { editdata: editdata } });
-                }}
+                // onClick={() => {
+                //   const editdata = dataTableData.find(
+                //     (data) => data._id === value
+                //   );
+                //   navigate("/election-form", { state: { editdata: editdata } });
+                // }}
               ></Icons.EditRounded>
               <Icons.DeleteRounded
                 className="deleteButton"
@@ -90,7 +100,7 @@ const CreateElection = () => {
   ];
 
   const options = {
-    filterType: "checkbox",
+   selectableRows: 'none',
   };
 
   return (
@@ -101,7 +111,7 @@ const CreateElection = () => {
           className="btn btn-primary AddButton"
           onClick={() => navigate("/election-form")}
         >
-          Add Party
+          Add Election
         </button>
       </div>
       {/* dataTable data */}

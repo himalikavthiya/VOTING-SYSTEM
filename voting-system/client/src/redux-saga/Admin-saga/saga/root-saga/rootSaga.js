@@ -4,6 +4,7 @@ import {
 } from "../../create-election/action/action";
 import { GET_USER_PENDING, POST_USER_PENDING } from "../../create-user/action/action";
 import {
+  DELETE_ELECTION_PARTY_PENDING,
   GET_ELECTION_PARTY_PENDING,
   POST_ELECTION_PARTY_PENDING,
 } from "../../election-party/action/action";
@@ -13,6 +14,7 @@ import {
 } from "../electionManage/electionManage";
 import {
   handle_add_party_data,
+  handle_delete_party_data,
   handle_party_data,
 } from "../electionPartyManage/manageParty";
 import { takeLatest } from "redux-saga/effects";
@@ -27,17 +29,18 @@ export function* handle_get_election_Saga() {
 export function* handle_post_election_Saga() {
   yield takeLatest(POST_ELECTION_PENDING, handle_add_election_data);
 }
-
 /* ------------------------ GET PARTY FUN IN ROOTSAGA ----------------------- */
 export function* handle_get_party_Saga() {
   yield takeLatest(GET_ELECTION_PARTY_PENDING, handle_party_data);
 }
-
 /* ----------------------- POST PARTY FUN IN ROOTSAGA ----------------------- */
 export function* handle_post_party_Saga() {
   yield takeLatest(POST_ELECTION_PARTY_PENDING, handle_add_party_data);
 }
-
+/* --------------------------- delete  saga -------------------------- */
+export function* handle_delete_paty_saga() {
+  yield takeLatest(DELETE_ELECTION_PARTY_PENDING, handle_delete_party_data);
+}
 /* -------------------------- GET USER FUN IN ROOTSAGA -------------------------- */
 export function* handle_get_user_saga(){
   yield takeLatest(GET_USER_PENDING,handle_user_data);
@@ -46,3 +49,4 @@ export function* handle_get_user_saga(){
 export function* handle_post_user_saga(){
   yield takeLatest(POST_USER_PENDING,handle_add_user_data);
 }
+

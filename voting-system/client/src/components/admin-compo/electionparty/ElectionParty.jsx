@@ -1,14 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  GET_ELECTION_PARTY_FULLFILIED,
-  GET_ELECTION_PARTY_PENDING,
-  GET_ELECTION_PARTY_REJECTED,
-  POST_ELECTION_PARTY_PENDING,
-} from "../../../redux-saga/Admin-saga/election-party/action/action";
 import * as Icons from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import swal from 'sweetalert'
 
 const ElectionParty = () => {
   const electionParty = useSelector(
@@ -17,7 +12,6 @@ const ElectionParty = () => {
   console.log(electionParty, "dssss");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const [dataTableData, setDataTable] = useState([]);
   const [newUrl, setNewUrl] = useState();
 
   const handleFileUpload = (event) => {
@@ -28,19 +22,16 @@ const ElectionParty = () => {
     };
     reader.readAsDataURL(file);
   };
-
-  // const fetchData = async () => {
-  //   try {
-  //        await dispatch({ type: GET_ELECTION_PARTY_PENDING });
-  //   } catch (error) {
-  //       dispatch({ type: GET_ELECTION_PARTY_REJECTED, payload: error.message });
-  //   }
-  // };
-  //    useEffect(() => {
-  //        fetchData();
-  //   }, []);
-
   const columns = [
+    {
+      name: 'index',
+      label: 'No',
+      options: {
+        customBodyRender: (value, tableMeta, updateValue) => {
+          return tableMeta.rowIndex + 1
+        },
+      },
+    },
     {
       name: "pName",
       label: "Election Party Name",
@@ -127,7 +118,7 @@ const ElectionParty = () => {
   ];
 
   const options = {
-    filterType: "checkbox",
+   selectableRows: 'none',
   };
 
   return (

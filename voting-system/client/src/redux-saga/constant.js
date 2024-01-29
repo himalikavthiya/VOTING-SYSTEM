@@ -17,3 +17,4 @@ export const ADD_ELECTION = "/ele"
 /* ---------------------------- party router link --------------------------- */
 export const GET_PARTY_LIST = "/pList"
 export const ADD_PARTY = "/party"
+export const DELETE_PARTY = "/plistdel/"
