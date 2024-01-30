@@ -93,21 +93,22 @@ const ElectionParty = () => {
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-                  //     if (confirm) {
-                  //       deleteCategory(value)
-                  //         .then(() => {
-                  //           toast.success('deleted successfully!', {
-                  //             key: value,
-                  //           })
-                  //           console.log(value)
-                  //           categoryList()
-                  //         })
-                  //         .catch(() => {
-                  //           toast.error('something went wrong!', {
-                  //             key: value,
-                  //           })
-                  //         })
-                  //     }
+                      if (confirm) {
+                        deleteCategory(value)
+                          .then(() => {
+                            toast.success('deleted successfully!', {
+                              key: value,
+                            })
+                            console.log(value)
+                            categoryList()
+                          })
+                          .catch(() => {
+                            toast.error('something went wrong!', {
+                              key: value,
+                            })
+                          })
+                      }
+                       dispatch({ type: DELETE_ELECTION_PARTY_PANDING, payload: value });
                 }}
               ></Icons.DeleteRounded>
             </div>

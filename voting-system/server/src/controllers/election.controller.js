@@ -113,9 +113,13 @@ export const electionUpdate = async (req, res) => {
       });
     }
 
-    const electionUpdate = await Election.findByIdAndUpdate(req.params._Id, {
-      $set: req.body,
-    });
+    const electionUpdate = await Election.findByIdAndUpdate(req.params._Id,
+     req.body,
+      {
+        new:true
+      }
+    );
+    console.log(electionUpdate)
     if (!electionUpdate) {
       logger.error({
         StatusCode: 4,
