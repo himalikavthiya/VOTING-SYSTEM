@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const electionReducer = (state = initialState, action) => {
-  // console.log(action,"action")
+  // console.log(action,"action-----------------")
   switch (action.type) {
     case GET_ELECTION_PENDING: {
       return {
@@ -47,14 +47,13 @@ const electionReducer = (state = initialState, action) => {
     case POST_ELECTION_FULLFILIED:
       return {
         ...state,
+        electionData: state.electionData.concat(action.data),
         isError: action.data,
       };
     case POST_ELECTION_REJECTED:
       return {
         ...state,
         isLoading: true,
-        electionData: state.electionData.concat(action.data),
-        isLoading: false,
       };
     default: {
       return {

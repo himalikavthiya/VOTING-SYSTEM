@@ -40,7 +40,8 @@ const electionPartyReducer = (state = initialState, action) => {
                 isLoading: false,
                 isError: action.data,
             };
-        }
+    }
+    //post
 
         case POST_ELECTION_PARTY_PENDING: {
             return {
@@ -59,9 +60,9 @@ const electionPartyReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                    isLoading: false,
             };
         };
+        //delete
         case DELETE_ELECTION_PARTY_PENDING: {
             return {
                 ...state,

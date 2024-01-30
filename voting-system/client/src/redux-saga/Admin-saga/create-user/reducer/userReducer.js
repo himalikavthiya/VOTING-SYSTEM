@@ -21,7 +21,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                PartyData: action.data,
+                userData: action.data,
                 isError: null,
             };
         }

@@ -46,7 +46,6 @@ export function* handle_add_election_data(action) {
                 type: POST_ELECTION_REJECTED,
                 data
             })
-            console.log(data);
         }
     } catch (error) {
         yield put({

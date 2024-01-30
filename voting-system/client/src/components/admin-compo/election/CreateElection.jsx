@@ -13,7 +13,7 @@ const CreateElection = () => {
  const election = useSelector(
     (state) => state.electionReducer.electionData.Data
   );
-  console.log(election, "election data");
+  // console.log(election, "election data");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();

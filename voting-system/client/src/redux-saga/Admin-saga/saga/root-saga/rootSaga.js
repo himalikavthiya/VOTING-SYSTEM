@@ -21,20 +21,20 @@ import { takeLatest } from "redux-saga/effects";
 import { handle_add_user_data, handle_user_data } from "../userManage/userManage";
 
 /* ---------------------- GET ELECTION FUN IN ROOTSAGA ---------------------- */
-export function* handle_get_election_Saga() {
+export function* handle_get_election_saga() {
   yield takeLatest(GET_ELECTION_PENDING, handle_election_data);
 }
 /* ---------------------- POST ELECTION FUN IN ROOTSAGA ---------------------- */
 
-export function* handle_post_election_Saga() {
+export function* handle_post_election_saga() {
   yield takeLatest(POST_ELECTION_PENDING, handle_add_election_data);
 }
 /* ------------------------ GET PARTY FUN IN ROOTSAGA ----------------------- */
-export function* handle_get_party_Saga() {
+export function* handle_get_party_saga() {
   yield takeLatest(GET_ELECTION_PARTY_PENDING, handle_party_data);
 }
 /* ----------------------- POST PARTY FUN IN ROOTSAGA ----------------------- */
-export function* handle_post_party_Saga() {
+export function* handle_post_party_saga() {
   yield takeLatest(POST_ELECTION_PARTY_PENDING, handle_add_party_data);
 }
 /* --------------------------- delete  saga -------------------------- */
