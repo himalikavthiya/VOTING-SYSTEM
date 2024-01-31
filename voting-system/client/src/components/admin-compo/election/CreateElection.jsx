@@ -2,19 +2,21 @@ import React, { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 import * as Icons from "@mui/icons-material";
 import swal from 'sweetalert'
 import {
+  DELETE_ELECTION_PENDING,
   GET_ELECTION_PENDING,
   GET_ELECTION_REJECTED,
 } from "../../../redux-saga/Admin-saga/create-election/action/action";
+import { delete_election_data } from "../../../redux-saga/Admin-saga/create-election/api/api";
 
 const CreateElection = () => {
  const election = useSelector(
     (state) => state.electionReducer.electionData.Data
   );
-  // console.log(election, "election data");
-  const dispatch = useDispatch();
+   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();
 
@@ -26,18 +28,6 @@ const CreateElection = () => {
     };
     reader.readAsDataURL(file);
   };
-
-  const fetchData = async () => {
-    try {
-      await dispatch({ type: GET_ELECTION_PENDING });
-    } catch (error) {
-      dispatch({ type: GET_ELECTION_REJECTED, payload: error.message });
-    }
-  };
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const columns = [
     {
       name: 'index',
@@ -90,6 +80,22 @@ const CreateElection = () => {
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
+                  if (confirm) { 
+                    delete_election_data(value)
+                    // dispatch({
+                    //   type: DELETE_ELECTION_PENDING,
+                    //   payload: value,
+                    // });
+
+                    toast.success("deleted successfully!", {
+                      key: value,
+                    });
+                    // console.log(value);
+
+                    toast.error("something went wrong!", {
+                      key: value,
+                    });
+                  }
                 }}
               ></Icons.DeleteRounded>
             </div>

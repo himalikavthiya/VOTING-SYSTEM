@@ -15,6 +15,7 @@ function ElectionForm() {
   } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const onSubmit = (data) => {
     console.log(data);
     let formData = new FormData(); //formdata object
@@ -25,7 +26,7 @@ function ElectionForm() {
             formData.append(key, data[key])
           }
         })
-    dispatch({ type: POST_ELECTION_PENDING, payload: formData });
+    dispatch({ type: POST_ELECTION_PENDING, payload: formData  });
     navigate("/create-election");
   };
   return (

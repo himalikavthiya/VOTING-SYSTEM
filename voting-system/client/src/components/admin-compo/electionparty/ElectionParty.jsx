@@ -3,32 +3,40 @@ import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 import * as Icons from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import swal from 'sweetalert'
+import swal from "sweetalert";
+import { ToastContainer, toast } from 'react-toastify'
+import {
+  DELETE_ELECTION_PARTY_PENDING,
+  GET_ELECTION_PARTY_PENDING,
+} from "../../../redux-saga/Admin-saga/election-party/action/action";
 
 const ElectionParty = () => {
   const electionParty = useSelector(
     (state) => state.electionPartyReducer.PartyData.Data
   );
-  console.log(electionParty, "dssss");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setNewUrl(reader.result);
-    };
-    reader.readAsDataURL(file);
-  };
+  useEffect(() => {
+     dispatch({ type: GET_ELECTION_PARTY_PENDING });
+  }, []);
+
+  // const handleFileUpload = (event) => {
+  //   const file = event.target.files[0];
+  //   const reader = new FileReader();
+  //   reader.onloadend = () => {
+  //     setNewUrl(reader.result);
+  //   };
+  //   reader.readAsDataURL(file);
+  // };
   const columns = [
     {
-      name: 'index',
-      label: 'No',
+      name: "index",
+      label: "No",
       options: {
         customBodyRender: (value, tableMeta, updateValue) => {
-          return tableMeta.rowIndex + 1
+          return tableMeta.rowIndex + 1;
         },
       },
     },
@@ -72,17 +80,7 @@ const ElectionParty = () => {
         customBodyRender: (value) => {
           return (
             <div>
-              <Icons.EditRounded
-                className="editButton"
-                onClick={() => {
-                  const editdata = dataTableData.find(
-                    (data) => data._id === value
-                  );
-                  navigate("/election-party-form", {
-                    state: { editdata: editdata },
-                  });
-                }}
-              ></Icons.EditRounded>
+              <Icons.EditRounded></Icons.EditRounded>
               <Icons.DeleteRounded
                 className="deleteButton"
                 onClick={async () => {
@@ -93,22 +91,21 @@ const ElectionParty = () => {
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-                      if (confirm) {
-                        deleteCategory(value)
-                          .then(() => {
-                            toast.success('deleted successfully!', {
-                              key: value,
-                            })
-                            console.log(value)
-                            categoryList()
-                          })
-                          .catch(() => {
-                            toast.error('something went wrong!', {
-                              key: value,
-                            })
-                          })
-                      }
-                       dispatch({ type: DELETE_ELECTION_PARTY_PANDING, payload: value });
+                  if (confirm) {
+                    dispatch({
+                      type: DELETE_ELECTION_PARTY_PENDING,
+                      payload: value,
+                    });
+
+                    toast.success("deleted successfully!", {
+                      key: value,
+                    });
+                    console.log(value);
+
+                    toast.error("something went wrong!", {
+                      key: value,
+                    });
+                  }
                 }}
               ></Icons.DeleteRounded>
             </div>
@@ -119,7 +116,7 @@ const ElectionParty = () => {
   ];
 
   const options = {
-   selectableRows: 'none',
+    selectableRows: "none",
   };
 
   return (

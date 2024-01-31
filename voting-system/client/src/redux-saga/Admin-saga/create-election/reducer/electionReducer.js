@@ -1,4 +1,7 @@
 import {
+  DELETE_ELECTION_FULLFILIED,
+  DELETE_ELECTION_PENDING,
+  DELETE_ELECTION_REJECTED,
   GET_ELECTION_FULLFILIED,
   GET_ELECTION_PENDING,
   GET_ELECTION_REJECTED,
@@ -60,6 +63,30 @@ const electionReducer = (state = initialState, action) => {
         ...state,
       };
     }
+    //delete
+    case DELETE_ELECTION_PENDING: {
+      return {
+          ...state,
+          isLoading: true,
+          isError: null,
+      };
+  }
+  case DELETE_ELECTION_FULLFILIED: {
+      const deleteData = state.electionData.filter((item) => item.id !== action.data)
+      return {
+          ...state,
+          isLoading: false,
+          electionData: deleteData,
+          isError: null,
+      };
+  }
+  case DELETE_ELECTION_REJECTED: {
+      return {
+          ...state,
+          isLoading: false,
+          isError: action.payload,
+      };
+  }
   }
 };
 

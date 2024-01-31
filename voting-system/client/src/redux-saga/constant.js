@@ -13,6 +13,7 @@ export const ADD_USER = "/auth"
 /* --------------------------- election route list -------------------------- */
 export const GET_ELECTION_LIST = "/elelist"
 export const ADD_ELECTION = "/ele"
+export const DELETE_ELECTION = "/eledel/"
 
 /* ---------------------------- party router link --------------------------- */
 export const GET_PARTY_LIST = "/pList"
