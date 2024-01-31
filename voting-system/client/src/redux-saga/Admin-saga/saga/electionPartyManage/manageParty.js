@@ -46,7 +46,7 @@ export function* handle_add_party_data(action) {
     try {
         const res = yield call(post_party_data, action);
         const data = res.data;
-          console.log(data);
+        console.log(data);
         const status = res.status;
         if (status === 200 || status === 201) {
             yield put({
@@ -58,7 +58,7 @@ export function* handle_add_party_data(action) {
                 type: POST_ELECTION_PARTY_REJECTED,
                 data
             })
-          
+
         }
     } catch (error) {
         yield put({
@@ -72,22 +72,20 @@ export function* handle_add_party_data(action) {
 /* --------------------------- delete election party data -------------------------- */
 export function* handle_delete_party_data(action) {
     try {
-        const res = yield call(delete_party_data, action.payload);
-        console.log(res ,"res from manage saga")
-        // const status = res.status;
-        // const data = res.data;
-
-        // if (status === 200 || status === 201) {
-        //     yield put({
-        //         type: DELETE_ELECTION_PARTY_FULLFILIED,
-        //         data
-        //     });
-        // } else {
-        //     yield put({
-        //         type: DELETE_ELECTION_PARTY_REJECTED,
-        //         data
-        //     });
-        // }
+        const res = yield call(delete_party_data, action);
+        const status = res.status;
+        const data = res.data;
+        if (status === 200 || status === 201) {
+            yield put({
+                type: DELETE_ELECTION_PARTY_FULLFILIED,
+                data
+            });
+        } else {
+            yield put({
+                type: DELETE_ELECTION_PARTY_REJECTED,
+                data
+            });
+        }
     } catch (err) {
         yield put({
             type: DELETE_ELECTION_PARTY_REJECTED

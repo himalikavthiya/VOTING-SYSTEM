@@ -4,16 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Icons from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
-<<<<<<< HEAD
 import { ToastContainer, toast } from "react-toastify";
-import { DELETE_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
-=======
-import { ToastContainer, toast } from 'react-toastify'
-import {
-  DELETE_ELECTION_PARTY_PENDING,
-  GET_ELECTION_PARTY_PENDING,
-} from "../../../redux-saga/Admin-saga/election-party/action/action";
->>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
+import { DELETE_ELECTION_PARTY_PENDING, GET_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
+
 
 const ElectionParty = () => {
   const electionParty = useSelector(
@@ -24,7 +17,7 @@ const ElectionParty = () => {
   const [newUrl, setNewUrl] = useState();
 
   useEffect(() => {
-     dispatch({ type: GET_ELECTION_PARTY_PENDING });
+    dispatch({ type: GET_ELECTION_PARTY_PENDING });
   }, []);
 
   // const handleFileUpload = (event) => {
@@ -96,28 +89,17 @@ const ElectionParty = () => {
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-<<<<<<< HEAD
-
-=======
->>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
                   if (confirm) {
                     dispatch({
                       type: DELETE_ELECTION_PARTY_PENDING,
                       payload: value,
                     });
-<<<<<<< HEAD
-=======
-
->>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
                     toast.success("deleted successfully!", {
                       key: value,
                     });
-                    console.log(value);
-<<<<<<< HEAD
-                  } else {
-=======
+                    // console.log(value);
 
->>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
+                  } else {
                     toast.error("something went wrong!", {
                       key: value,
                     });

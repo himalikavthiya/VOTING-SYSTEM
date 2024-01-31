@@ -46,7 +46,7 @@ export function* handle_post_party_saga() {
   yield takeLatest(POST_ELECTION_PARTY_PENDING, handle_add_party_data);
 }
 /* --------------------------- delete  saga -------------------------- */
-export function* handle_delete_paty_saga() {
+export function* handle_delete_party_saga() {
   yield takeLatest(DELETE_ELECTION_PARTY_PENDING, handle_delete_party_data);
 }
 /* -------------------------- GET USER FUN IN ROOTSAGA -------------------------- */
