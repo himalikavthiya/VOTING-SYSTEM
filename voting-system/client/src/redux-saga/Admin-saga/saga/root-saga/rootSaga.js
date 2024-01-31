@@ -15,8 +15,9 @@ import {
 import {
   handle_add_party_data,
   handle_delete_party_data,
-  handle_party_data,
-} from "../electionPartyManage/manageParty";
+  handle_get_party_data,
+  }
+  from "../electionPartyManage/manageParty";
 import { takeLatest } from "redux-saga/effects";
 import { handle_add_user_data, handle_user_data } from "../userManage/userManage";
 
@@ -31,7 +32,7 @@ export function* handle_post_election_saga() {
 }
 /* ------------------------ GET PARTY FUN IN ROOTSAGA ----------------------- */
 export function* handle_get_party_saga() {
-  yield takeLatest(GET_ELECTION_PARTY_PENDING, handle_party_data);
+  yield takeLatest(GET_ELECTION_PARTY_PENDING, handle_get_party_data);
 }
 /* ----------------------- POST PARTY FUN IN ROOTSAGA ----------------------- */
 export function* handle_post_party_saga() {

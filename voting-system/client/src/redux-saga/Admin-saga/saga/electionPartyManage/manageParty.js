@@ -17,7 +17,7 @@ import {
 } from "../../election-party/api/api"
 
 /* ---------------------------- get party manage ---------------------------- */
-export function* handle_party_data(action) {
+export function* handle_get_party_data(action) {
     try {
         const res = yield call(get_party_data, action)
         const data = res.data;
@@ -74,20 +74,20 @@ export function* handle_delete_party_data(action) {
     try {
         const res = yield call(delete_party_data, action);
         console.log(res ,"res from manage saga")
-        const status = res.status;
-        const data = res.data;
+        // const status = res.status;
+        // const data = res.data;
 
-        if (status === 200 || status === 201) {
-            yield put({
-                type: DELETE_ELECTION_PARTY_FULLFILIED,
-                data
-            });
-        } else {
-            yield put({
-                type: DELETE_ELECTION_PARTY_REJECTED,
-                data
-            });
-        }
+        // if (status === 200 || status === 201) {
+        //     yield put({
+        //         type: DELETE_ELECTION_PARTY_FULLFILIED,
+        //         data
+        //     });
+        // } else {
+        //     yield put({
+        //         type: DELETE_ELECTION_PARTY_REJECTED,
+        //         data
+        //     });
+        // }
     } catch (err) {
         yield put({
             type: DELETE_ELECTION_PARTY_REJECTED

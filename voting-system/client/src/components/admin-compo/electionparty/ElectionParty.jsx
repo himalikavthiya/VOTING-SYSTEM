@@ -3,13 +3,14 @@ import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 import * as Icons from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
-import swal from 'sweetalert'
+import swal from "sweetalert";
+import { ToastContainer, toast } from "react-toastify";
+import { DELETE_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
 
 const ElectionParty = () => {
   const electionParty = useSelector(
     (state) => state.electionPartyReducer.PartyData.Data
   );
-  console.log(electionParty, "dssss");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();
@@ -24,11 +25,11 @@ const ElectionParty = () => {
   };
   const columns = [
     {
-      name: 'index',
-      label: 'No',
+      name: "index",
+      label: "No",
       options: {
         customBodyRender: (value, tableMeta, updateValue) => {
-          return tableMeta.rowIndex + 1
+          return tableMeta.rowIndex + 1;
         },
       },
     },
@@ -88,27 +89,26 @@ const ElectionParty = () => {
                 onClick={async () => {
                   const confirm = await swal({
                     title: "Are you sure?",
-                    text: "Are you sure? Want to delete Location? All related data will also be deleted",
+                    text: "Are you sure? Want to delete ? All related data will also be deleted",
                     icon: "warning",
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-                      if (confirm) {
-                        deleteCategory(value)
-                          .then(() => {
-                            toast.success('deleted successfully!', {
-                              key: value,
-                            })
-                            console.log(value)
-                            categoryList()
-                          })
-                          .catch(() => {
-                            toast.error('something went wrong!', {
-                              key: value,
-                            })
-                          })
-                      }
-                       dispatch({ type: DELETE_ELECTION_PARTY_PANDING, payload: value });
+
+                  if (confirm) {
+                    dispatch({
+                      type: DELETE_ELECTION_PARTY_PENDING,
+                      payload: value,
+                    });
+                    toast.success("deleted successfully!", {
+                      key: value,
+                    });
+                    console.log(value);
+                  } else {
+                    toast.error("something went wrong!", {
+                      key: value,
+                    });
+                  }
                 }}
               ></Icons.DeleteRounded>
             </div>
@@ -119,7 +119,7 @@ const ElectionParty = () => {
   ];
 
   const options = {
-   selectableRows: 'none',
+    selectableRows: "none",
   };
 
   return (
