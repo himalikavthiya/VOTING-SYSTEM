@@ -72,7 +72,7 @@ export function* handle_add_party_data(action) {
 /* --------------------------- delete election party data -------------------------- */
 export function* handle_delete_party_data(action) {
     try {
-        const res = yield call(delete_party_data, action);
+        const res = yield call(delete_party_data, action.payload);
         console.log(res ,"res from manage saga")
         // const status = res.status;
         // const data = res.data;

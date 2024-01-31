@@ -4,8 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import * as Icons from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+<<<<<<< HEAD
 import { ToastContainer, toast } from "react-toastify";
 import { DELETE_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
+=======
+import { ToastContainer, toast } from 'react-toastify'
+import {
+  DELETE_ELECTION_PARTY_PENDING,
+  GET_ELECTION_PARTY_PENDING,
+} from "../../../redux-saga/Admin-saga/election-party/action/action";
+>>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
 
 const ElectionParty = () => {
   const electionParty = useSelector(
@@ -15,14 +23,18 @@ const ElectionParty = () => {
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();
 
-  const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setNewUrl(reader.result);
-    };
-    reader.readAsDataURL(file);
-  };
+  useEffect(() => {
+     dispatch({ type: GET_ELECTION_PARTY_PENDING });
+  }, []);
+
+  // const handleFileUpload = (event) => {
+  //   const file = event.target.files[0];
+  //   const reader = new FileReader();
+  //   reader.onloadend = () => {
+  //     setNewUrl(reader.result);
+  //   };
+  //   reader.readAsDataURL(file);
+  // };
   const columns = [
     {
       name: "index",
@@ -73,17 +85,7 @@ const ElectionParty = () => {
         customBodyRender: (value) => {
           return (
             <div>
-              <Icons.EditRounded
-                className="editButton"
-                onClick={() => {
-                  const editdata = dataTableData.find(
-                    (data) => data._id === value
-                  );
-                  navigate("/election-party-form", {
-                    state: { editdata: editdata },
-                  });
-                }}
-              ></Icons.EditRounded>
+              <Icons.EditRounded></Icons.EditRounded>
               <Icons.DeleteRounded
                 className="deleteButton"
                 onClick={async () => {
@@ -94,17 +96,28 @@ const ElectionParty = () => {
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
                   if (confirm) {
                     dispatch({
                       type: DELETE_ELECTION_PARTY_PENDING,
                       payload: value,
                     });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
                     toast.success("deleted successfully!", {
                       key: value,
                     });
                     console.log(value);
+<<<<<<< HEAD
                   } else {
+=======
+
+>>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
                     toast.error("something went wrong!", {
                       key: value,
                     });

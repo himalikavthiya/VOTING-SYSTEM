@@ -1,4 +1,5 @@
 import {
+  DELETE_ELECTION_PENDING,
   GET_ELECTION_PENDING,
   POST_ELECTION_PENDING,
 } from "../../create-election/action/action";
@@ -10,6 +11,7 @@ import {
 } from "../../election-party/action/action";
 import {
   handle_add_election_data,
+  handle_delete_election_data,
   handle_election_data,
 } from "../electionManage/electionManage";
 import {
@@ -29,6 +31,11 @@ export function* handle_get_election_saga() {
 
 export function* handle_post_election_saga() {
   yield takeLatest(POST_ELECTION_PENDING, handle_add_election_data);
+}
+
+/* --------------------------- delete  saga -------------------------- */
+export function* handle_delete_election_saga() {
+  yield takeLatest(DELETE_ELECTION_PENDING, handle_delete_election_data);
 }
 /* ------------------------ GET PARTY FUN IN ROOTSAGA ----------------------- */
 export function* handle_get_party_saga() {

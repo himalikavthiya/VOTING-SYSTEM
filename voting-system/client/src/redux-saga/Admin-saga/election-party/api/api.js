@@ -37,11 +37,20 @@ export async function post_party_data(action) {
 
  /* ---------------------------- delete party data --------------------------- */
 export async function delete_party_data(action) {
+<<<<<<< HEAD
   console.log(action)
   return axios.delete(BASE_URL + DELETE_PARTY + action.data.id)
     .then((res) => {
        console.log(res," delete from api.js ")
       // const data = action.payload.id
+=======
+  console.log("action" , action);
+  return axios.delete(BASE_URL + DELETE_PARTY + action.payload)
+    .then((res) => {
+       console.log(res,"res from 44 line no")
+      // const data = action.payload.id
+
+>>>>>>> 41b8726b0f47f76bd558900aefeb6a2891702e09
       // const status = res.status
       // return {
       //   data,
