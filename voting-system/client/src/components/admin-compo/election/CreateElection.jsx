@@ -80,12 +80,12 @@ const CreateElection = () => {
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-                  if (confirm) { 
+                  if (confirm) {
                     delete_election_data(value)
-                    // dispatch({
-                    //   type: DELETE_ELECTION_PENDING,
-                    //   payload: value,
-                    // });
+                    dispatch({
+                      type: DELETE_ELECTION_PENDING,
+                      payload: value,
+                    });
 
                     toast.success("deleted successfully!", {
                       key: value,

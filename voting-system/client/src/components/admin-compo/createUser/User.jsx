@@ -22,15 +22,8 @@ function User() {
     };
     reader.readAsDataURL(file);
   };
-  const fetchData = async () => {
-    try {
-      await dispatch({ type: GET_USER_PENDING });
-    } catch (error) {
-      dispatch({ type: GET_USER_REJECTED, payload: error.message });
-    }
-  };
   useEffect(() => {
-    fetchData();
+    dispatch({type: GET_USER_PENDING});
   }, []);
 
   const columns = [

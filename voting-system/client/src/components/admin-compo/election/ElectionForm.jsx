@@ -25,7 +25,7 @@ function ElectionForm() {
             formData.append(key, data[key])
           }
         })
-    dispatch({ type: POST_ELECTION_PENDING, payload: formData  });
+    dispatch({ type: POST_ELECTION_PENDING, payload: data });
     navigate("/create-election");
   };
   return (

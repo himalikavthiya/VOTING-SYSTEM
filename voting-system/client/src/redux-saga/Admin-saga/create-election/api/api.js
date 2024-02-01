@@ -40,17 +40,16 @@ export async function post_election_data(action) {
 }
 /* --------------------------- election delete api -------------------------- */
 export async function delete_election_data(action) {
-  
-    return axios.delete(BASE_URL + DELETE_ELECTION + action.payload._id)
+    console.log(action ,"election delete 42 line")
+    return axios.delete(BASE_URL + DELETE_ELECTION + action.payload         )
         .then((res) => {
             console.log(res, "res from 45 line no")
-            // const data = action.payload.id
-
-            // const status = res.status
-            // return {
-            //   data,
-            //   status
-            // }
+            const data = action.payload
+            const status = res.status
+            return {
+              data,
+              status
+            }
         }).catch((err) => {
             console.log(err, "res from 55 line no")
         })

@@ -36,8 +36,8 @@ function App() {
   const electionParty = useSelector((state) => state.electionPartyReducer);
 
    useEffect(() => {
-    // dispatch({ type: GET_ELECTION_PENDING });
-    dispatch({ type: GET_ELECTION_PARTY_PENDING });
+    dispatch({ type: GET_ELECTION_PENDING });
+    // dispatch({ type: GET_ELECTION_PARTY_PENDING });
   }, []);
   
   const role = Cookies.get("Role");
