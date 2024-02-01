@@ -81,7 +81,6 @@ const CreateElection = () => {
                     dangerMode: true,
                   });
                   if (confirm) {
-                    delete_election_data(value)
                     dispatch({
                       type: DELETE_ELECTION_PENDING,
                       payload: value,

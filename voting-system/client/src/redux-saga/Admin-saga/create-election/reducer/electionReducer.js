@@ -72,7 +72,7 @@ const electionReducer = (state = initialState, action) => {
       };
   }
   case DELETE_ELECTION_FULLFILIED: {
-      const deleteData = state.electionData.filter((item) => item.id !== action.data)
+      const deleteData = state.electionData.filter((item) => item._id !== action.data)
       return {
           ...state,
           isLoading: false,

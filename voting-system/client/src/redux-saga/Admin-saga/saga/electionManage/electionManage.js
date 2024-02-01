@@ -57,10 +57,10 @@ export function* handle_add_election_data(action) {
 }
 /* ------------------------- delete election manage ------------------------- */
 export function* handle_delete_election_data(action) {
-    console.log(action,"action manage")
+    // console.log(action,"action manage")
     try {
-        const res = yield call(delete_election_data, action.payload);
-        console.log(res ,"res from manage saga")
+        const res = yield call(delete_election_data, action);
+        // console.log(res ,"res from manage saga")
         const status = res.status;
         const data = res.data;
 
