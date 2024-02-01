@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { POST_ELECTION_PENDING } from "../../../redux-saga/Admin-saga/create-election/action/action";
+import { useLocation, useNavigate } from "react-router-dom";
+import {
+  POST_ELECTION_PENDING,
+  UPDATE_ELECTION_PENDING,
+} from "../../../redux-saga/Admin-saga/create-election/action/action";
 import { useForm } from "react-hook-form";
+import { CircularProgress } from "@mui/material";
 
 function ElectionForm() {
   const {
@@ -13,21 +17,42 @@ function ElectionForm() {
     control,
     formState: { errors },
   } = useForm();
+  const [isLoading, setIsLoading] = useState(false)
+  const [isUpdate, setIsUpdate] = useState("");
+  const [selectedDate, setSelectedDate] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { state } = useLocation();
+  const ElectionName = useRef();
+  const RegisterDate = useRef();
   const onSubmit = (data) => {
-    console.log(data)
-      let formData = new FormData(); //formdata object
-        Object.keys(data).forEach(function (key) {
-          if (key === 'Profile') {
-            formData.append(key, data[key][0])
-          } else {
-            formData.append(key, data[key])
-          }
-        })
-    dispatch({ type: POST_ELECTION_PENDING, payload: data });
-    navigate("/create-election");
+
+    const objectData = {
+      ElectionName: ElectionName.current.value,
+      RegisterDate: RegisterDate.current.value,
+
+    };
+    if (isUpdate === "") {
+      dispatch({ type: POST_ELECTION_PENDING, payload: objectData });
+      navigate("/create-election");
+    } else {
+      dispatch({ type: UPDATE_ELECTION_PENDING, payload: objectData });
+      navigate("/create-election");
+
+    }
   };
+  useEffect(() => {
+    if (state) {
+      const { editData } = state;
+      setIsUpdate(editData._id);
+      setValue("ElectionName", editData.ElectionName);
+      const RegisterDate = new Date(editData.RegisterDate);
+      setValue("RegisterDate", RegisterDate);
+      const formattedDate = RegisterDate.toISOString().split("T")[0];
+      setValue("RegisterDate", formattedDate);
+      setSelectedDate(formattedDate);
+    }
+  }, []);
   return (
     <div>
       <form className="my-form" onSubmit={handleSubmit(onSubmit)}>
@@ -38,6 +63,9 @@ function ElectionForm() {
             id="ElectionName"
             className="inputfield"
             placeholder="Election Name"
+            
+            ref={ElectionName}
+            // onChange={(e) => setValue("ElectionName", e.target.value)}
             {...register("ElectionName", {
               required: "Election name is required",
             })}
@@ -52,7 +80,9 @@ function ElectionForm() {
             type="date"
             id="RegisterDate"
             className="inputfield"
-            placeholder="Election Date "
+            placeholder="Election Date"
+            ref={RegisterDate}
+            onChange={(e) => setValue("RegisterDate", e.target.value)}
             {...register("RegisterDate", {
               required: "Election Date is required",
             })}
@@ -62,9 +92,16 @@ function ElectionForm() {
           )}
         </div>
         <div className="innerfield">
-          <button type="submit" className="AddData">
-            Submit
-          </button>
+          {isLoading ? (
+            <>
+              <CircularProgress />
+              Loading...
+            </>
+          ) : (
+            <button type="submit" className="AddData">
+              {isUpdate === "" ? "Add" : "Update"}
+            </button>
+          )}
         </div>
       </form>
     </div>

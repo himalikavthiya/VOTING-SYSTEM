@@ -7,8 +7,7 @@ import * as Icons from "@mui/icons-material";
 import swal from 'sweetalert'
 import {
   DELETE_ELECTION_PENDING,
-  GET_ELECTION_PENDING,
-  GET_ELECTION_REJECTED,
+
 } from "../../../redux-saga/Admin-saga/create-election/action/action";
 import { delete_election_data } from "../../../redux-saga/Admin-saga/create-election/api/api";
 
@@ -63,12 +62,13 @@ const CreateElection = () => {
             <div>
               <Icons.EditRounded
                 className="editButton"
-                // onClick={() => {
-                //   const editdata = dataTableData.find(
-                //     (data) => data._id === value
-                //   );
-                //   navigate("/election-form", { state: { editdata: editdata } });
-                // }}
+                onClick={() => {
+                  const editData = election.find(
+                    (data) => data._id === value
+                  );
+               
+                  navigate("/election-form", { state: { editData: editData } });
+                }}
               ></Icons.EditRounded>
               <Icons.DeleteRounded
                 className="deleteButton"
@@ -109,6 +109,8 @@ const CreateElection = () => {
   };
 
   return (
+    <>
+    <ToastContainer/>
     <div className="custom-container">
       <div className="right-text">
         <button
@@ -127,6 +129,7 @@ const CreateElection = () => {
         options={options}
       />
     </div>
+    </>
   );
 };
 

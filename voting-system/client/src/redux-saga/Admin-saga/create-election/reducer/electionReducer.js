@@ -8,6 +8,9 @@ import {
   POST_ELECTION_FULLFILIED,
   POST_ELECTION_PENDING,
   POST_ELECTION_REJECTED,
+  UPDATE_ELECTION_FULLFILIED,
+  UPDATE_ELECTION_PENDING,
+  UPDATE_ELECTION_REJECTED,
 } from "../action/action";
 
 const initialState = {
@@ -58,11 +61,7 @@ const electionReducer = (state = initialState, action) => {
         ...state,
         isLoading: true,
       };
-    default: {
-      return {
-        ...state,
-      };
-    }
+  
     //delete
     case DELETE_ELECTION_PENDING: {
       return {
@@ -87,6 +86,32 @@ const electionReducer = (state = initialState, action) => {
           isError: action.payload,
       };
   }
+  case UPDATE_ELECTION_PENDING:
+      return {
+        ...state,
+        isLoding: true,
+        isError: null,
+      };
+    case UPDATE_ELECTION_FULLFILIED:
+      return {
+        ...state,
+        isLoding: false,
+        data: state.data.map((state) =>
+          state.id === action.data.id ? action.data : state
+        ),
+        isError: null,
+      };
+    case UPDATE_ELECTION_REJECTED:
+      return {
+        ...state,
+        isLoding: false,
+        isError: action.data,
+      };
+      default: {
+        return {
+          ...state,
+        };
+      }
   }
 };
 

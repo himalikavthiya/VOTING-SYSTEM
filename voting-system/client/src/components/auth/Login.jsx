@@ -132,7 +132,6 @@ const Login = () => {
                           Forgot password?
                         </a>
                       </div>
-
                       {/* <p className="mb-5 pb-lg-2" style={{ color: "#393f81" }}>
                         Don't have an account?
                         <a href="#!" style={{ color: "#393f81" }}>

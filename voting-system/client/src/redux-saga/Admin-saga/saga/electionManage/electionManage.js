@@ -2,10 +2,24 @@ import {
     call,
     put
 } from "redux-saga/effects"
-import { delete_election_data, get_election_data, post_election_data } from "../../create-election/api/api";
-import { DELETE_ELECTION_FULLFILIED, DELETE_ELECTION_REJECTED, GET_ELECTION_FULLFILIED, GET_ELECTION_REJECTED, POST_ELECTION_FULLFILIED, POST_ELECTION_REJECTED } from "../../create-election/action/action";
+import {
+    delete_election_data,
+    get_election_data,
+    post_election_data,
+    update_election_data
+} from "../../create-election/api/api";
+import {
+    DELETE_ELECTION_FULLFILIED,
+    DELETE_ELECTION_REJECTED,
+    GET_ELECTION_FULLFILIED,
+    GET_ELECTION_REJECTED,
+    POST_ELECTION_FULLFILIED,
+    POST_ELECTION_REJECTED,
+    UPDATE_ELECTION_FULLFILIED,
+    UPDATE_ELECTION_REJECTED
+} from "../../create-election/action/action";
 
- /* --------------------------- GET ELECTION MANAGE -------------------------- */
+/* --------------------------- GET ELECTION MANAGE -------------------------- */
 export function* handle_election_data(action) {
     try {
         const res = yield call(get_election_data, action)
@@ -81,3 +95,19 @@ export function* handle_delete_election_data(action) {
         })
     }
 }
+
+/* ------------------------- UPDATE election manage ------------------------- */
+export function* handle_update_election_data(action) {
+    try {
+      const res = yield call(update_election_data, action);
+      const data = res.data;
+      const status = res.status;
+      if (status === 200) {
+        yield put({ type: UPDATE_ELECTION_FULLFILIED, data });
+      } else {
+        yield put({ type: UPDATE_ELECTION_REJECTED, data });
+      }
+    } catch (error) {
+      yield put({ type: UPDATE_ELECTION_REJECTED, error });
+    }
+  }
