@@ -29,9 +29,9 @@ function UserForm() {
     navigate("/create-user");
   };
   return (
-    <div className="form-row">
+    <div>
       <form className="my-form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="innerfield">
+        <div className="innerfield ">
           <label htmlFor="Profile">User Profile</label>
           <input
             type="file"
@@ -42,7 +42,7 @@ function UserForm() {
           />
           {errors.Profile && <p className="error">{errors.Profile.message}</p>}
         </div>
-        <div className="innerfield">
+        <div className="innerfield ">
           <label htmlFor="Password">Password</label>
           <input
             type="text"
@@ -155,6 +155,9 @@ function UserForm() {
         </div>
       </form>
     </div>
+
+
+
   );
 }
 

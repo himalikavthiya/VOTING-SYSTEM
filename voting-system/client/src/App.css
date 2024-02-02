@@ -8,22 +8,24 @@
   text-decoration: none;
   /* overflow: hidden; */
   box-sizing: border-box;
-  
+
 }
 
 .main-container {
   display: flex;
 }
 
-.toggle{
+.toggle {
   width: 95% !important;
   left: 5% !important;
 }
+
 main {
   width: 80%;
   position: relative;
   left: 20%;
 }
+
 .sidebar {
   background-color: var(--primary-color);
   color: #fff;
@@ -145,6 +147,7 @@ img {
 .AddButton {
   background-color: var(--primary-color);
 }
+
 .deleteButton {
   color: #ffff;
   cursor: pointer;
@@ -166,6 +169,7 @@ img {
   padding: 4px;
   background-color: #3c4b64;
 }
+
 /* party page css */
 
 .my-form {
@@ -191,7 +195,7 @@ label {
 .inputfield {
   width: 100%;
   padding: 8px;
-   border: 1px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
 }
 
@@ -212,6 +216,7 @@ label {
   color: red;
   margin-top: 5px;
 }
+
 /* .MuiPaper-root{
 margin-left: 240px;
 } */
