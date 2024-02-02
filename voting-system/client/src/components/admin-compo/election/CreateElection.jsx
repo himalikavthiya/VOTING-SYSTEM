@@ -12,10 +12,10 @@ import {
 import { delete_election_data } from "../../../redux-saga/Admin-saga/create-election/api/api";
 
 const CreateElection = () => {
- const election = useSelector(
+  const election = useSelector(
     (state) => state.electionReducer.electionData.Data
   );
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();
 
@@ -66,7 +66,7 @@ const CreateElection = () => {
                   const editData = election.find(
                     (data) => data._id === value
                   );
-               
+
                   navigate("/election-form", { state: { editData: editData } });
                 }}
               ></Icons.EditRounded>
@@ -86,14 +86,14 @@ const CreateElection = () => {
                       payload: value,
                     });
 
-                    toast.success("deleted successfully!", {
-                      key: value,
-                    });
+                    // toast.success("deleted successfully!", {
+                    //   key: value,
+                    // });
                     // console.log(value);
 
-                    toast.error("something went wrong!", {
-                      key: value,
-                    });
+                    // toast.error("something went wrong!", {
+                    //   key: value,
+                    // });
                   }
                 }}
               ></Icons.DeleteRounded>
@@ -105,30 +105,30 @@ const CreateElection = () => {
   ];
 
   const options = {
-   selectableRows: 'none',
+    selectableRows: 'none',
   };
 
   return (
     <>
-    <ToastContainer/>
-    <div className="custom-container">
-      <div className="right-text">
-        <button
-          type="button"
-          className="btn btn-primary AddButton"
-          onClick={() => navigate("/election-form")}
-        >
-          Add Election
-        </button>
+      <ToastContainer />
+      <div className="custom-container">
+        <div className="right-text">
+          <button
+            type="button"
+            className="btn btn-primary AddButton"
+            onClick={() => navigate("/election-form")}
+          >
+            Add Election
+          </button>
+        </div>
+        {/* dataTable data */}
+        <MUIDataTable
+          title={"Election List"}
+          data={election}
+          columns={columns}
+          options={options}
+        />
       </div>
-      {/* dataTable data */}
-      <MUIDataTable
-        title={"Election List"}
-        data={election}
-        columns={columns}
-        options={options}
-      />
-    </div>
     </>
   );
 };

@@ -25,22 +25,27 @@ function ElectionForm() {
   const { state } = useLocation();
   const ElectionName = useRef();
   const RegisterDate = useRef();
+  const [view,setView]=useState();
+
   const onSubmit = (data) => {
-
-    const objectData = {
-      ElectionName: ElectionName.current.value,
-      RegisterDate: RegisterDate.current.value,
-
-    };
-    if (isUpdate === "") {
+    let objectData;
+      if (isUpdate === "") {
+      objectData = {
+        ElectionName: ElectionName.current.value,
+        RegisterDate: RegisterDate.current.value,
+      };
+      console.log(objectData)
       dispatch({ type: POST_ELECTION_PENDING, payload: objectData });
-      navigate("/create-election");
     } else {
+      // Assuming objectData is defined somewhere before
       dispatch({ type: UPDATE_ELECTION_PENDING, payload: objectData });
-      navigate("/create-election");
-
     }
+      navigate("/create-election");
   };
+  
+  const handlechange=()=>{
+
+  }
   useEffect(() => {
     if (state) {
       const { editData } = state;
@@ -63,7 +68,7 @@ function ElectionForm() {
             id="ElectionName"
             className="inputfield"
             placeholder="Election Name"
-            
+            onChange={(e)=>handlechange(e.target.value)}
             ref={ElectionName}
             // onChange={(e) => setValue("ElectionName", e.target.value)}
             {...register("ElectionName", {

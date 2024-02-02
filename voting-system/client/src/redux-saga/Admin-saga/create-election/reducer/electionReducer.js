@@ -44,7 +44,7 @@ const electionReducer = (state = initialState, action) => {
         isError: action.data,
       };
     }
-//post
+    //post
     case POST_ELECTION_PENDING:
       return {
         ...state,
@@ -54,64 +54,84 @@ const electionReducer = (state = initialState, action) => {
       return {
         ...state,
         electionData: state.electionData.concat(action.data),
-        isError: action.data,
+          isError: action.data,
       };
     case POST_ELECTION_REJECTED:
       return {
         ...state,
         isLoading: true,
       };
-  
-    //delete
+
+      //delete
     case DELETE_ELECTION_PENDING: {
       return {
-          ...state,
-          isLoading: true,
-          isError: null,
+        ...state,
+        isLoading: true,
+        isError: null,
       };
-  }
-  case DELETE_ELECTION_FULLFILIED: {
-      const deleteData = state.electionData.filter((item) => item._id !== action.data)
+    }
+    // case DELETE_ELECTION_FULLFILIED: {
+    //   console.log(state.electionData.Data);
+    //   const deleteData = state.electionData.Data.filter((item) => item._id !== action.data);
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     electionData: deleteData,
+    //     isError: null,
+    //   };
+    // }
+
+    case DELETE_ELECTION_FULLFILIED: {
+      console.log("Current Election Data:", state.electionData.Data);
+      console.log("Action Data to Delete:", action.data);
+
+      const deleteData = state.electionData.Data.filter((item) => item._id !== action.data);
+
+      console.log("Filtered Data:", deleteData);
+
       return {
-          ...state,
-          isLoading: false,
-          electionData: deleteData,
-          isError: null,
+        ...state,
+        isLoading: false,
+        electionData: {
+          ...state.electionData,
+          Data: deleteData, // Update the Data property
+        },
+        isError: null,
       };
-  }
-  case DELETE_ELECTION_REJECTED: {
+    }
+    case DELETE_ELECTION_REJECTED: {
       return {
-          ...state,
-          isLoading: false,
-          isError: action.payload,
+        ...state,
+        isLoading: false,
+        isError: action.payload,
       };
-  }
-  case UPDATE_ELECTION_PENDING:
+    }
+    case UPDATE_ELECTION_PENDING:
       return {
         ...state,
         isLoding: true,
-        isError: null,
+          isError: null,
       };
     case UPDATE_ELECTION_FULLFILIED:
       return {
         ...state,
         isLoding: false,
-        data: state.data.map((state) =>
-          state.id === action.data.id ? action.data : state
-        ),
-        isError: null,
+        electionData: state.electionData.map((state) =>
+            state.id === action.data.id ? action.data : state
+          ),
+          isError: null,
       };
     case UPDATE_ELECTION_REJECTED:
       return {
         ...state,
         isLoding: false,
-        isError: action.data,
+          isError: action.data,
       };
-      default: {
-        return {
-          ...state,
-        };
-      }
+    default: {
+      return {
+        ...state,
+      };
+    }
   }
 };
 
