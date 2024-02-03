@@ -10,7 +10,7 @@ import { DELETE_ELECTION_PARTY_PENDING, GET_ELECTION_PARTY_PENDING } from "../..
 
 const ElectionParty = () => {
   const electionParty = useSelector(
-    (state) => state.electionPartyReducer.PartyData.Data
+    (state) => state.electionPartyReducer.PartyData
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();

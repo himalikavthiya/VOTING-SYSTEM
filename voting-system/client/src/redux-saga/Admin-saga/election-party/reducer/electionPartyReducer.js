@@ -17,6 +17,7 @@ const initialState = {
 }
 
 const electionPartyReducer = (state = initialState, action) => {
+   
 
     switch (action.type) {
         case GET_ELECTION_PARTY_PENDING: {
@@ -52,7 +53,8 @@ const electionPartyReducer = (state = initialState, action) => {
         case POST_ELECTION_PARTY_FULLFILIED: {
             return {
                 ...state,
-                PartyData: state.PartyData.concat(action.data),
+                PartyData: state.PartyData.concat(action.data.Data),
+                    isLoading: false,
                 isError: action.data,
             };
         };

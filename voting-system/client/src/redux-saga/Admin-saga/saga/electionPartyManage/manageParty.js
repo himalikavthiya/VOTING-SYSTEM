@@ -43,10 +43,11 @@ export function* handle_get_party_data(action) {
 
 /* ---------------------------- post party manage --------------------------- */
 export function* handle_add_party_data(action) {
+
     try {
         const res = yield call(post_party_data, action);
         const data = res.data;
-        console.log(data);
+        console.log(data, "sagagagagaga");
         const status = res.status;
         if (status === 200 || status === 201) {
             yield put({

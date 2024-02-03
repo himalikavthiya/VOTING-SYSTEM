@@ -17,7 +17,7 @@ const ElectionPartyForm = () => {
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
     let formData = new FormData(); //formdata object
     Object.keys(data).forEach(function (key) {
       if (key === "Profile") {
@@ -26,7 +26,10 @@ const ElectionPartyForm = () => {
         formData.append(key, data[key]);
       }
     });
-    dispatch({ type: POST_ELECTION_PARTY_PENDING, payload: formData });
+    dispatch({ type: POST_ELECTION_PARTY_PENDING, payload: formData ,
+    headers:{
+      "Content-Type":"multipart/form-data"
+    }});
     navigate("/election-party");
   };
   return (

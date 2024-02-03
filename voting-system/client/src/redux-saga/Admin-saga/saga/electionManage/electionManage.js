@@ -46,9 +46,12 @@ export function* handle_election_data(action) {
 
 /* ---------------------------- POST ELECTION MANGE --------------------------- */
 export function* handle_add_election_data(action) {
+    // console.log(action.data);
     try {
         const res = yield call(post_election_data, action);
+        console.log(res, "resssss");
         const data = res.data;
+        console.log(data, "dataatata");
         const status = res.status;
         if (status === 200 || status === 201) {
             yield put({

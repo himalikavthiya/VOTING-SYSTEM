@@ -13,8 +13,9 @@ import { delete_election_data } from "../../../redux-saga/Admin-saga/create-elec
 
 const CreateElection = () => {
   const election = useSelector(
-    (state) => state.electionReducer.electionData.Data
+    (state) => state.electionReducer.electionData
   );
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();

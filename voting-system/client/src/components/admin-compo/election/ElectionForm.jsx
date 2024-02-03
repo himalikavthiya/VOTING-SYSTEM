@@ -22,6 +22,7 @@ function ElectionForm() {
   const { state } = useLocation();
 
   const onSubmit = (data) => {
+    console.log(data)
     if (isUpdate === "") {
       dispatch({ type: POST_ELECTION_PENDING, payload: data });
     } else {

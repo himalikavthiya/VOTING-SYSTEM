@@ -25,9 +25,11 @@ export async function get_party_data() {
 
 /* ----------------------------- add party data ----------------------------- */
 export async function post_party_data(action) {
+  console.log(action, "actions")
   return axios
     .post(BASE_URL + ADD_PARTY, action.payload)
     .then((res) => {
+      console.log(action.payload);
       const data = res.data;
       const status = res.status;
       return {

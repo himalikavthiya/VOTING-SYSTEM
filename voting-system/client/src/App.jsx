@@ -29,6 +29,7 @@ import {
 import axios from "axios";
 import UserForm from "./components/admin-compo/createUser/UserForm";
 import User from "./components/admin-compo/createUser/User";
+import { GET_USER_PENDING } from "./redux-saga/Admin-saga/create-user/action/action";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ function App() {
    useEffect(() => {
     dispatch({ type: GET_ELECTION_PENDING });
     // dispatch({ type: GET_ELECTION_PARTY_PENDING });
+    //  dispatch({type: GET_USER_PENDING});
   }, []);
   
   const role = Cookies.get("Role");
