@@ -20,9 +20,7 @@ const initialState = {
 };
 
 const electionReducer = (state = initialState, action) => {
-  console.log(action, "action-----------------")
-
-  console.log(state.electionData)
+  // console.log(action, "action-----------------")
   switch (action.type) {
     case GET_ELECTION_PENDING: {
       return {

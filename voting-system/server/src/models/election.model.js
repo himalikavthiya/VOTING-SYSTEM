@@ -9,10 +9,6 @@ const electionSchema = new mongoose.Schema(
     RegisterDate: {
       type: Date,
     },
-    Party: {
-      type: mongoose.Types.ObjectId,
-      ref: "Party",
-    },
     IsActive: {
       type: Boolean,
       default: true,

@@ -22,9 +22,7 @@ function User() {
     };
     reader.readAsDataURL(file);
   };
-  useEffect(() => {
-    // dispatch({type: GET_USER_PENDING});
-  }, []);
+
 
   const columns = [
     {

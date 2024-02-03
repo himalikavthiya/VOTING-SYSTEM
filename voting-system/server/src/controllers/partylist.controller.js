@@ -5,12 +5,10 @@ import { logger } from "../middlewares/logger.js";
 /** Create Partylist Controller */
 export const partylistCreate = async (req, res) => {
   try {
-    await connectDB();
-
     let partylist = new Partylist(req.body);
     partylist.Party = await partylist.populate("Party");
     partylist.Election = await partylist.populate("Election");
-    
+
     if (!partylist.Party || !partylist.Election) {
       logger.error({
         StatusCode: 4,
@@ -43,6 +41,8 @@ export const partylistCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -51,16 +51,12 @@ export const partylistCreate = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Get Partylist Controller */
 export const partylist = async (req, res) => {
   try {
-    await connectDB();
-
     const Lists = await Partylist.find().populate("Party").populate("Election");
     if (!Lists) {
       logger.error({
@@ -81,6 +77,8 @@ export const partylist = async (req, res) => {
       Data: Lists,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -89,16 +87,12 @@ export const partylist = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** party Delete by ID */
 export const partylistDel = async (req, res) => {
   try {
-    await connectDB();
-
     /** Find party By ID */
     const partyExists = await Partylist.findById(req.params._Id)
       .populate("Party")
@@ -135,6 +129,8 @@ export const partylistDel = async (req, res) => {
       Data: partyDelete,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -143,7 +139,5 @@ export const partylistDel = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };

@@ -8,13 +8,13 @@ export const authVal = {
   body: Joi.object().keys({
     Profile: Joi.string().trim(),
     Password: Joi.string().trim(),
-    CardNumber: Joi.string().trim().pattern(/^[a-zA-Z0-9]{10}$/),
+    // CardNumber: Joi.string().trim().pattern(/^[a-zA-Z0-9]{10}$/),
     Name: Joi.string().trim(),
-    Sex: Joi.string().valid("male", "female", "other").default("Not-defined"),
+    // Sex: Joi.string().valid("male", "female", "other").default("Not-defined"),
     DOB: Joi.date().max("now"),
     Address: Joi.string().trim(),
     Phone: Joi.string().trim().pattern(/^[0-9]{10}$/),
-    Email: Joi.string().trim().lowercase().email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } }),
+    // Email: Joi.string().trim().lowercase().email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } }),
     Role: Joi.string().trim(),
   }),
 };
@@ -27,13 +27,13 @@ export const authUpVal = {
   body: Joi.object().keys({
     Profile: Joi.string().trim(),
     Password: Joi.string().trim(),
-    CardNumber: Joi.string().trim().pattern(/^[a-zA-Z0-9]{10}$/),
+    // CardNumber: Joi.string().trim().pattern(/^[a-zA-Z0-9]{10}$/),
     Name: Joi.string().trim(),
-    Sex: Joi.string().valid("male", "female", "other"),
+    // Sex: Joi.string().valid("male", "female", "other"),
     DOB: Joi.date().max("now"),
     Address: Joi.string().trim(),
     Phone: Joi.string().trim().pattern(/^[0-9]{10}$/),
-    Email: Joi.string().trim().lowercase().email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } }),
+    // Email: Joi.string().trim().lowercase().email({ minDomainSegments: 2, tlds: { allow: ["com", "net", "org"] } }),
     Role: Joi.string().trim(),
   }),
 };
@@ -53,7 +53,6 @@ export const electionVal = {
   body: Joi.object().keys({
     ElectionName: Joi.string().trim(),
     RegisterDate: Joi.date(),
-    Party: Joi.string().trim(),
   }),
 };
 
@@ -65,7 +64,6 @@ export const electionUpVal = {
   body: Joi.object().keys({
     ElectionName: Joi.string().trim(),
     RegisterDate: Joi.date(),
-    Party: Joi.string().trim(),
   }),
 };
 

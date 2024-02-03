@@ -17,9 +17,8 @@ const initialState = {
 }
 
 const electionPartyReducer = (state = initialState, action) => {
-   
-
-    switch (action.type) {
+       switch (action.type) {
+     // get data
         case GET_ELECTION_PARTY_PENDING: {
             return {
                 ...state,
@@ -31,7 +30,7 @@ const electionPartyReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                PartyData: action.data,
+                PartyData: action.data.Data,
                 isError: null,
             };
         }
@@ -42,8 +41,8 @@ const electionPartyReducer = (state = initialState, action) => {
                 isError: action.data,
             };
     }
-    //post
 
+    //post
         case POST_ELECTION_PARTY_PENDING: {
             return {
                 ...state,
@@ -64,7 +63,8 @@ const electionPartyReducer = (state = initialState, action) => {
                 isLoading: true,
             };
         };
-        //delete
+
+    //delete
         case DELETE_ELECTION_PARTY_PENDING: {
             return {
                 ...state,

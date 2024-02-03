@@ -11,22 +11,10 @@ import PartyConnection from "./components/admin-compo/PartyConnection";
 import ElectionPartyForm from "./components/admin-compo/electionparty/ElectionPartyForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import {
-  GET_ELECTION_PARTY_PENDING,
-  GET_ELECTION_PARTY_REJECTED,
-} from "./redux-saga/Admin-saga/election-party/action/action";
+import { GET_ELECTION_PARTY_PENDING } from "./redux-saga/Admin-saga/election-party/action/action";
 import CreateElection from "./components/admin-compo/election/CreateElection";
 import ElectionForm from "./components/admin-compo/election/ElectionForm";
-import {
-  GET_ELECTION_PENDING,
-  GET_ELECTION_REJECTED,
-} from "./redux-saga/Admin-saga/create-election/action/action";
-import {
-  BASE_URL,
-  GET_ELECTION_LIST,
-  GET_PARTY_LIST,
-} from "./redux-saga/constant";
-import axios from "axios";
+import { GET_ELECTION_PENDING } from "./redux-saga/Admin-saga/create-election/action/action";
 import UserForm from "./components/admin-compo/createUser/UserForm";
 import User from "./components/admin-compo/createUser/User";
 import { GET_USER_PENDING } from "./redux-saga/Admin-saga/create-user/action/action";
@@ -36,10 +24,10 @@ function App() {
   const election = useSelector((state) => state.electionReducer);
   const electionParty = useSelector((state) => state.electionPartyReducer);
 
-   useEffect(() => {
+  useEffect(() => {
     dispatch({ type: GET_ELECTION_PENDING });
     // dispatch({ type: GET_ELECTION_PARTY_PENDING });
-    //  dispatch({type: GET_USER_PENDING});
+    // dispatch({ type: GET_USER_PENDING });
   }, []);
   
   const role = Cookies.get("Role");

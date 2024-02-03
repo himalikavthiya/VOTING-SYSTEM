@@ -5,10 +5,8 @@ import { logger } from "../middlewares/logger.js";
 /** Create Election Controller */
 export const electionCreate = async (req, res) => {
   try {
-    await connectDB();
-
     const { ElectionName } = req.body;
-    const findName = await Election.findOne({ ElectionName }).populate("Party");
+    const findName = await Election.findOne({ ElectionName });
     if (!findName && findName === 0) {
       logger.error({
         StatusCode: 4,
@@ -41,6 +39,8 @@ export const electionCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -49,17 +49,13 @@ export const electionCreate = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Get Election Controller */
 export const electionList = async (req, res) => {
   try {
-    await connectDB();
-
-    const Lists = await Election.find().populate("Party");
+    const Lists = await Election.find();
     if (!Lists) {
       logger.error({
         StatusCode: 4,
@@ -79,6 +75,8 @@ export const electionList = async (req, res) => {
       Data: Lists,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -87,20 +85,14 @@ export const electionList = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Election details update by ID */
 export const electionUpdate = async (req, res) => {
   try {
-    await connectDB();
-
     /** Find election By ID */
-    const electionExists = await Election.findById(req.params._Id).populate(
-      "Party"
-    );
+    const electionExists = await Election.findById(req.params._Id);
     if (!electionExists) {
       logger.error({
         StatusCode: 4,
@@ -113,13 +105,9 @@ export const electionUpdate = async (req, res) => {
       });
     }
 
-    const electionUpdate = await Election.findByIdAndUpdate(req.params._Id,
-     req.body,
-      {
-        new:true
-      }
-    );
-    console.log(electionUpdate)
+    const electionUpdate = await Election.findByIdAndUpdate(req.params._Id, {
+      $set: req.body,
+    });
     if (!electionUpdate) {
       logger.error({
         StatusCode: 4,
@@ -139,6 +127,8 @@ export const electionUpdate = async (req, res) => {
       Data: electionUpdate,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -147,16 +137,12 @@ export const electionUpdate = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** election Delete by ID */
 export const electionDel = async (req, res) => {
   try {
-    await connectDB();
-
     /** Find election By ID */
     const electionExists = await Election.findById(req.params._Id);
     if (!electionExists) {
@@ -191,6 +177,8 @@ export const electionDel = async (req, res) => {
       Data: electionDelete,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -199,7 +187,5 @@ export const electionDel = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };

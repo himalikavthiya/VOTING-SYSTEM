@@ -9,7 +9,7 @@ import {
   DELETE_ELECTION_PENDING,
 
 } from "../../../redux-saga/Admin-saga/create-election/action/action";
-import { delete_election_data } from "../../../redux-saga/Admin-saga/create-election/api/api";
+
 
 const CreateElection = () => {
   const election = useSelector(

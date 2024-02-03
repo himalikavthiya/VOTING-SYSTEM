@@ -6,8 +6,6 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 /** Create Party Controller */
 export const partyCreate = async (req, res) => {
   try {
-    await connectDB();
-
     const party = new Party(req.body);
     if (party.shortCode && party.pName) {
       party.shortCode = party.shortCode.toUpperCase();
@@ -40,6 +38,8 @@ export const partyCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -48,16 +48,12 @@ export const partyCreate = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Get Party Controller */
 export const partyList = async (req, res) => {
   try {
-    await connectDB();
-
     const Lists = await Party.find();
     if (!Lists) {
       logger.error({
@@ -78,6 +74,8 @@ export const partyList = async (req, res) => {
       Data: Lists,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -86,16 +84,12 @@ export const partyList = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Party details update by ID */
 export const partyUpdate = async (req, res) => {
   try {
-    await connectDB();
-
     /** Find Party By ID */
     const partyExists = await Party.findById(req.params._Id);
     if (!partyExists) {
@@ -132,6 +126,8 @@ export const partyUpdate = async (req, res) => {
       Data: partyUpdate,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -140,16 +136,12 @@ export const partyUpdate = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** party Delete by ID */
 export const partyDel = async (req, res) => {
   try {
-    await connectDB();
-
     /** Find party By ID */
     const partyExists = await Party.findById(req.params._Id).select(
       "-Password -AccessToken"
@@ -186,6 +178,8 @@ export const partyDel = async (req, res) => {
       Data: partyDelete,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -194,7 +188,5 @@ export const partyDel = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };

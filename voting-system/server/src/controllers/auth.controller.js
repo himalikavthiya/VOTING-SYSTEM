@@ -9,8 +9,6 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 /** Add auth controller */
 export const authCreate = async (req, res) => {
   try {
-    await connectDB();
-
     /** Create new auth */
     const auth = new Auth(req.body);
 
@@ -32,36 +30,36 @@ export const authCreate = async (req, res) => {
     }
 
     /** Check if the card number is unique */
-    if (req.body.CardNumber) {
-      const existingCardNumber = await Auth.findOne({
-        CardNumber: auth.CardNumber,
-        _id: { $ne: auth._id },
-      });
+    // if (req.body.CardNumber) {
+    //   const existingCardNumber = await Auth.findOne({
+    //     CardNumber: auth.CardNumber,
+    //     _id: { $ne: auth._id },
+    //   });
 
-      if (existingCardNumber) {
-        return res.status(400).json({
-          StatusCode: 4,
-          Success: false,
-          Message: `Card number must be unique.`,
-        });
-      }
-    }
+    //   if (existingCardNumber) {
+    //     return res.status(400).json({
+    //       StatusCode: 4,
+    //       Success: false,
+    //       Message: `Card number must be unique.`,
+    //     });
+    //   }
+    // }
 
     /** Check if the mobile number is unique */
-    if (req.body.Phone) {
-      const existingUser = await Auth.findOne({
-        Phone: auth.Phone,
-        _id: { $ne: auth._id },
-      });
+    // if (req.body.Phone) {
+    //   const existingUser = await Auth.findOne({
+    //     Phone: auth.Phone,
+    //     _id: { $ne: auth._id },
+    //   });
 
-      if (existingUser) {
-        return res.status(400).json({
-          StatusCode: 4,
-          Success: false,
-          Message: `Mobile number must be unique.`,
-        });
-      }
-    }
+    //   if (existingUser) {
+    //     return res.status(400).json({
+    //       StatusCode: 4,
+    //       Success: false,
+    //       Message: `Mobile number must be unique.`,
+    //     });
+    //   }
+    // }
 
     /** Save Data into MongoDB Database */
     const result = await auth.save();
@@ -84,6 +82,8 @@ export const authCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -92,16 +92,12 @@ export const authCreate = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Get auth list */
 export const authList = async (req, res) => {
   try {
-    await connectDB();
-
     const Lists = await Auth.find().select("-Password -AccessToken");
     if (!Lists) {
       logger.error({
@@ -132,16 +128,12 @@ export const authList = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** auth details update by ID */
 export const authUpdate = async (req, res) => {
   try {
-    await connectDB();
-
     /** Find auth By ID */
     const authExists = await Auth.findById(req.params._Id).select(
       "-Password -AccessToken"
@@ -181,6 +173,7 @@ export const authUpdate = async (req, res) => {
       },
       { new: true }
     );
+
     if (!authUpdate) {
       logger.error({
         StatusCode: 4,
@@ -200,6 +193,8 @@ export const authUpdate = async (req, res) => {
       Data: authUpdate,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -208,16 +203,12 @@ export const authUpdate = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** auth Delete by ID */
 export const authDel = async (req, res) => {
   try {
-    await connectDB();
-
     /** Find auth By ID */
     const authExists = await Auth.findById(req.params._Id).select(
       "-Password -AccessToken"
@@ -264,16 +255,12 @@ export const authDel = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Auth login controller */
 export const authLogin = async (req, res) => {
   try {
-    await connectDB();
-
     const { Email, Password } = req.body;
     const user = await Auth.findOne({ Email });
     if (!user) {
@@ -329,7 +316,5 @@ export const authLogin = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };

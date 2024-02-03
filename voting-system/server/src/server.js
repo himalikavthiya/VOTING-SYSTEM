@@ -5,6 +5,7 @@ import routes from "./routes/routes.js";
 import { configData } from "./config/config.js";
 import { logger } from "./middlewares/logger.js";
 import cookieParser from "cookie-parser";
+import { connectDB } from "./db/dbconnection.js";
 
 const PORT = configData.port || 4000;
 const app = express();
@@ -27,6 +28,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+connectDB();
 
 // Define application routes
 app.use("/v1", routes);

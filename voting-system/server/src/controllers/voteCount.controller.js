@@ -6,8 +6,6 @@ import { logger } from "../middlewares/logger.js";
 /** Createa Vote controller */
 export const voteCreate = async (req, res) => {
   try {
-    await connectDB();
-
     const Auths = await Auth.find();
     if (!Auths) {
       logger.error({
@@ -20,7 +18,7 @@ export const voteCreate = async (req, res) => {
         Message: `User authentication information not found..!`,
       });
     }
-
+    console.log(Auths, "===== user ====");
     const { Role } = Auths;
 
     let voteQuery = new Vote(req.body);
@@ -37,20 +35,33 @@ export const voteCreate = async (req, res) => {
           Message: `Error in creating the Vote list..!`,
         });
       }
+
+      const result = await voteQuery.save();
+      if (!result && result === 0) {
+        logger.error({
+          StatusCode: 4,
+          Message: `Error in creating the Vote list..!`,
+        });
+        res.status(400).json({
+          StatusCode: 4,
+          Success: false,
+          Message: `Error in creating the Vote list..!`,
+        });
+      }
     }
 
-    const result = await voteQuery.save();
-    if (!result && result === 0) {
-      logger.error({
-        StatusCode: 4,
-        Message: `Error in creating the Vote list..!`,
-      });
-      res.status(400).json({
-        StatusCode: 4,
-        Success: false,
-        Message: `Error in creating the Vote list..!`,
-      });
-    }
+    // const result = await voteQuery.save();
+    // if (!result && result === 0) {
+    //   logger.error({
+    //     StatusCode: 4,
+    //     Message: `Error in creating the Vote list..!`,
+    //   });
+    //   res.status(400).json({
+    //     StatusCode: 4,
+    //     Success: false,
+    //     Message: `Error in creating the Vote list..!`,
+    //   });
+    // }
 
     logger.info({
       StatusCode: 5,
@@ -64,6 +75,8 @@ export const voteCreate = async (req, res) => {
       Data: voteQuery,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -72,19 +85,15 @@ export const voteCreate = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Get vote list controller */
 export const voteList = async (req, res) => {
   try {
-    await connectDB();
-
     const voteList = await Vote.find()
       .populate({ path: "Auth", select: "-Password -AccessToken" })
-      .populate("Party");
+      .populate({ path: "Party" });
     if (!voteList || voteList.length === 0) {
       logger.error({
         StatusCode: 4,
@@ -107,8 +116,11 @@ export const voteList = async (req, res) => {
       Success: true,
       Message: `Votes retrieved successfully..!`,
       Data: voteList,
+      // total: totalCount,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -117,16 +129,12 @@ export const voteList = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };
 
 /** Delete vote Controller */
 export const voteDel = async (req, res) => {
   try {
-    await connectDB();
-
     const votes = await Vote.findById(req.params._Id);
     if (!votes) {
       logger.error({
@@ -165,6 +173,8 @@ export const voteDel = async (req, res) => {
       Data: result,
     });
   } catch (error) {
+    await disconnectDB();
+
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -173,7 +183,5 @@ export const voteDel = async (req, res) => {
       StatusCode: 1,
       Error: error.message,
     });
-  } finally {
-    await disconnectDB();
   }
 };

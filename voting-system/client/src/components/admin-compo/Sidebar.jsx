@@ -58,7 +58,7 @@ const Sidebar = ({children}) => {
                <div className="top_section">
 
                    <h1 style={{display: isOpen ? "none" : "block"}} className="logo"> <img src={logo} alt="logo"/></h1>
-                   <div style={{marginLeft: isOpen ? "0px" : "110px"}} className="bars">
+                   <div style={{marginLeft: isOpen ? "0px" : "11rem"}} className="bars">
                        <FaBars onClick={() =>{
                          setToggel(!Toggel)
                          setIsOpen(!isOpen)
