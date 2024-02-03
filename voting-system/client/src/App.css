@@ -174,8 +174,9 @@ img {
 
 .my-form {
   margin-top: 3rem;
-  max-width: 400px;
+  /* max-width: 400px; */
   margin-left: 3rem;
+  margin-right: 3rem;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -184,17 +185,19 @@ img {
 
 .innerfield {
   margin-bottom: 15px;
+  display: flex;
 }
 
 label {
   display: block;
-  margin-bottom: 5px;
+  margin: 2px;
   font-weight: bold;
 }
 
 .inputfield {
   width: 100%;
-  padding: 8px;
+
+  padding: 4px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }

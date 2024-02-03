@@ -41,9 +41,8 @@ function UserForm() {
             {...register("Profile", { required: "User Image is required" })}
           />
           {errors.Profile && <p className="error">{errors.Profile.message}</p>}
-        </div>
-        <div className="innerfield ">
-          <label htmlFor="Password">Password</label>
+
+          <label htmlFor="Password">Password</label><br />
           <input
             type="text"
             id="Password"
@@ -57,6 +56,9 @@ function UserForm() {
             <p className="error">{errors.Password.message}</p>
           )}
         </div>
+        {/* <div className="innerfield ">
+
+        </div> */}
         <div className="innerfield">
           <label htmlFor="CardNumber">Cardnumber</label>
           <input
@@ -71,8 +73,6 @@ function UserForm() {
           {errors.CardNumber && (
             <p className="error">{errors.CardNumber.message}</p>
           )}
-        </div>
-        <div className="innerfield">
           <label htmlFor="Name">User Name</label>
           <input
             type="text"
@@ -95,8 +95,6 @@ function UserForm() {
             })}
           />
           {errors.Sex && <p className="error">{errors.Sex.message}</p>}
-        </div>
-        <div className="innerfield">
           <label htmlFor="DOB">User Birthdate</label>
           <input
             type="date"
@@ -109,7 +107,11 @@ function UserForm() {
           />
           {errors.DOB && <p className="error">{errors.DOB.message}</p>}
         </div>
+        {/* <div className="innerfield">
+         
+        </div> */}
         <div className="innerfield">
+
           <label htmlFor="Address">Address</label>
           <input
             type="text"
@@ -122,6 +124,9 @@ function UserForm() {
           />
           {errors.Address && <p className="error">{errors.Address.message}</p>}
         </div>
+        {/* <div className="innerfield">
+          
+        </div> */}
         <div className="innerfield">
           <label htmlFor="Phone">Phone Number</label>
           <input
@@ -134,8 +139,6 @@ function UserForm() {
             })}
           />
           {errors.Phone && <p className="error">{errors.Phone.message}</p>}
-        </div>
-        <div className="innerfield">
           <label htmlFor="Email">Email</label>
           <input
             type="text"
@@ -148,6 +151,9 @@ function UserForm() {
           />
           {errors.Email && <p className="error">{errors.Email.message}</p>}
         </div>
+        {/* <div className="innerfield">
+         
+        </div> */}
         <div className="innerfield">
           <button type="submit" className="AddData">
             Submit
