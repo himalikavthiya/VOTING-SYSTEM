@@ -26,8 +26,8 @@ function App() {
 
   useEffect(() => {
     dispatch({ type: GET_ELECTION_PENDING });
-    // dispatch({ type: GET_ELECTION_PARTY_PENDING });
-    // dispatch({ type: GET_USER_PENDING });
+    dispatch({ type: GET_ELECTION_PARTY_PENDING });
+    dispatch({ type: GET_USER_PENDING });
   }, []);
   
   const role = Cookies.get("Role");

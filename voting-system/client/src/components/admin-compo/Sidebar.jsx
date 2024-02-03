@@ -10,7 +10,6 @@ import {
     FaThList
 }from "react-icons/fa";
 import { FaUserPen } from "react-icons/fa6";
-
 import { IoCreate } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
 import logo from "../../../public/voting.png"
@@ -69,9 +68,9 @@ const Sidebar = ({children}) => {
             </div>
                {
                    menuItem.map((item, index)=>(
-                       <NavLink to={item.path} key={index} className="link" activeclassName="active">
+                       <NavLink to={item.path} key={index} className="sidebar-link" activeclassName="active">
                            <div className="icon">{item.icon}</div>
-                           <div style={{display: isOpen ? "none" : "block"}} className="link_text">{item.name}</div>
+                           <div style={{display: isOpen ? "none" : "block"}} className="text-link">{item.name}</div>
                        </NavLink>
                    ))
                }

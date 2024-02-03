@@ -2,19 +2,13 @@ import React, { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import * as Icons from "@mui/icons-material";
-import swal from 'sweetalert'
-import {
-  DELETE_ELECTION_PENDING,
-
-} from "../../../redux-saga/Admin-saga/create-election/action/action";
-
+import swal from "sweetalert";
+import { DELETE_ELECTION_PENDING } from "../../../redux-saga/Admin-saga/create-election/action/action";
 
 const CreateElection = () => {
-  const election = useSelector(
-    (state) => state.electionReducer.electionData
-  );
+  const election = useSelector((state) => state.electionReducer.electionData);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,11 +24,11 @@ const CreateElection = () => {
   };
   const columns = [
     {
-      name: 'index',
-      label: 'No',
+      name: "index",
+      label: "No",
       options: {
         customBodyRender: (value, tableMeta, updateValue) => {
-          return tableMeta.rowIndex + 1
+          return tableMeta.rowIndex + 1;
         },
       },
     },
@@ -64,9 +58,7 @@ const CreateElection = () => {
               <Icons.EditRounded
                 className="editButton"
                 onClick={() => {
-                  const editData = election.find(
-                    (data) => data._id === value
-                  );
+                  const editData = election.find((data) => data._id === value);
 
                   navigate("/election-form", { state: { editData: editData } });
                 }}
@@ -74,27 +66,26 @@ const CreateElection = () => {
               <Icons.DeleteRounded
                 className="deleteButton"
                 onClick={async () => {
-                  const confirm = await swal({
+                  const shouldDelete = await swal({
                     title: "Are you sure?",
                     text: "Are you sure? Want to delete Location? All related data will also be deleted",
                     icon: "warning",
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-                  if (confirm) {
+                  if (shouldDelete) {
+                    // Dispatch the DELETE_ELECTION_PENDING action
                     dispatch({
                       type: DELETE_ELECTION_PENDING,
                       payload: value,
                     });
-
-                    // toast.success("deleted successfully!", {
-                    //   key: value,
-                    // });
-                    // console.log(value);
-
-                    // toast.error("something went wrong!", {
-                    //   key: value,
-                    // });
+                    toast.success("Deleted successfully!", {
+                      key: value,
+                    });
+                  } else {
+                    toast.error("Deletion canceled or something went wrong!", {
+                      key: value,
+                    });
                   }
                 }}
               ></Icons.DeleteRounded>
@@ -106,12 +97,12 @@ const CreateElection = () => {
   ];
 
   const options = {
-    selectableRows: 'none',
+    selectableRows: "none",
   };
 
   return (
     <>
-      <ToastContainer />
+     
       <div className="custom-container">
         <div className="right-text">
           <button
@@ -123,6 +114,7 @@ const CreateElection = () => {
           </button>
         </div>
         {/* dataTable data */}
+         <ToastContainer />
         <MUIDataTable
           title={"Election List"}
           data={election}

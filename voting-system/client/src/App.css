@@ -54,7 +54,7 @@ main {
   margin-left: 50px;
 }
 
-.link {
+.sidebar-link {
   display: flex;
   color: #fff;
   padding: 10px 15px;
@@ -63,7 +63,7 @@ main {
   text-decoration: none;
 }
 
-.link:hover {
+.sidebar-link:hover {
   background: #87cefa;
   color: #000;
   transition: all 0.5s;
@@ -75,7 +75,7 @@ main {
 }
 
 .icon,
-.link_text {
+.text-link {
   font-size: 17px;
 }
 

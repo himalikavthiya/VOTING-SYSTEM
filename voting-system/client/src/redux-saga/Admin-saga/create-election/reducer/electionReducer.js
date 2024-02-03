@@ -73,35 +73,34 @@ const electionReducer = (state = initialState, action) => {
         isError: null,
       };
     }
-    // case DELETE_ELECTION_FULLFILIED: {
-    //   console.log(state.electionData.Data);
-    //   const deleteData = state.electionData.Data.filter((item) => item._id !== action.data);
-    //   return {
-    //     ...state,
-    //     isLoading: false,
-    //     electionData: deleteData,
-    //     isError: null,
-    //   };
-    // }
-
     case DELETE_ELECTION_FULLFILIED: {
-      console.log("Current Election Data:", state.electionData.Data);
-      console.log("Action Data to Delete:", action.data);
-
-      const deleteData = state.electionData.Data.filter((item) => item._id !== action.data);
-
-      console.log("Filtered Data:", deleteData);
-
+      const deleteData = state.electionData.filter((item) => item._id !== action.data);
       return {
         ...state,
         isLoading: false,
-        electionData: {
-          ...state.electionData,
-          Data: deleteData, // Update the Data property
-        },
+        electionData: deleteData,
         isError: null,
       };
     }
+
+    // case DELETE_ELECTION_FULLFILIED: {
+    //   console.log("Current Election Data:", state.electionData.Data);
+    //   console.log("Action Data to Delete:", action.data.Data);
+
+    //   const deleteData = state.electionData.Data.filter((item) => item._id !== action.data.Data);
+
+    //   console.log("Filtered Data:", deleteData);
+
+    //   return {
+    //     ...state,
+    //     isLoading: false,
+    //     electionData: {
+    //       ...state.electionData,
+    //       Data: deleteData, // Update the Data property
+    //     },
+    //     isError: null,
+    //   };
+    // }
     case DELETE_ELECTION_REJECTED: {
       return {
         ...state,
