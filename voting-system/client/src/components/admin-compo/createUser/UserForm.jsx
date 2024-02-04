@@ -26,7 +26,10 @@ function UserForm() {
         formData.append(key, data[key]);
       }
     });
-    dispatch({ type: POST_USER_PENDING, payload: formData });
+    dispatch({ type: POST_USER_PENDING, payload: formData,
+      headers:{
+        "Content-Type":"multipart/form-data"
+      }});
     navigate("/create-user");
   };
   return (

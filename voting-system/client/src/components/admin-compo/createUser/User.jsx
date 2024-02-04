@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
+import { ToastContainer, toast } from "react-toastify";
 import * as Icons from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -107,15 +108,15 @@ function User() {
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-                  if (shouldDelete) {
+                  if (confirm) {
                     // Dispatch the DELETE_USER_PENDING action
                     dispatch({
                       type: DELETE_USER_PENDING,
                       payload: value,
                     });
-                    // toast.success("Deleted successfully!", {
-                    //   key: value,
-                    // });
+                    toast.success("Deleted successfully!", {
+                      key: value,
+                    });
                   } else {
                     toast.error("Deletion canceled or something went wrong!", {
                       key: value,

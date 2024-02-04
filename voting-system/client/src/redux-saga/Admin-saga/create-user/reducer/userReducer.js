@@ -40,15 +40,15 @@ const userReducer = (state = initialState, action) => {
             };
         case POST_USER_FULLFILIED:
             return {
-                ...state,
-                userData: state.userData.concat(action.data),
-                isError: action.data,
+                // ...state,
+                userData: state.userData.concat(action.data.Data),
+                // isError: action.data,
             };
         case POST_USER_REJECTED:
             return {
                 ...state,
                 isLoading: true,
-                    isLoading: false,
+                isError: action.data,
             };
             //delete
             case DELETE_USER_PENDING: {

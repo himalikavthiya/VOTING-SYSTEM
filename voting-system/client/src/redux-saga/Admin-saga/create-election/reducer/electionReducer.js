@@ -108,6 +108,7 @@ const electionReducer = (state = initialState, action) => {
         isError: action.payload,
       };
     }
+    //update
     case UPDATE_ELECTION_PENDING:
       return {
         ...state,
