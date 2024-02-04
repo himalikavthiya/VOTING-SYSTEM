@@ -36,7 +36,7 @@ export function* handle_post_election_saga() {
 }
 
 
-/* --------------------------- delete  saga -------------------------- */
+/* --------------------------- DELETE ELECTION FUN IN ROOTSAGA  -------------------------- */
 export function* handle_delete_election_saga() {
   yield takeLatest(DELETE_ELECTION_PENDING, handle_delete_election_data);
 }
@@ -53,7 +53,7 @@ export function* handle_get_party_saga() {
 export function* handle_post_party_saga() {
   yield takeLatest(POST_ELECTION_PARTY_PENDING, handle_add_party_data);
 }
-/* --------------------------- delete  saga -------------------------- */
+/* --------------------------- DELETE ELECTION FUN IN ROOTSAGA  -------------------------- */
 export function* handle_delete_party_saga() {
   yield takeLatest(DELETE_ELECTION_PARTY_PENDING, handle_delete_party_data);
 }

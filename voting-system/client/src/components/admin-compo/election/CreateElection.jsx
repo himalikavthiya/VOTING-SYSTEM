@@ -79,9 +79,9 @@ const CreateElection = () => {
                       type: DELETE_ELECTION_PENDING,
                       payload: value,
                     });
-                    toast.success("Deleted successfully!", {
-                      key: value,
-                    });
+                    // toast.success("Deleted successfully!", {
+                    //   key: value,
+                    // });
                   } else {
                     toast.error("Deletion canceled or something went wrong!", {
                       key: value,
@@ -102,7 +102,6 @@ const CreateElection = () => {
 
   return (
     <>
-     
       <div className="custom-container">
           <ToastContainer />
         <div className="right-text">
@@ -115,6 +114,10 @@ const CreateElection = () => {
           </button>
         </div>
         {/* dataTable data */}
+<<<<<<< HEAD
+=======
+        <ToastContainer />
+>>>>>>> 71e347c951daddaf47517fef387f31dcc21a49d3
         <MUIDataTable
           title={"Election List"}
           data={election}

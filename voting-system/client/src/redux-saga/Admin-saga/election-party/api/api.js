@@ -3,7 +3,7 @@ import {
   ADD_PARTY,
   BASE_URL,
   DELETE_PARTY,
-  GET_PARTY_LIST
+  GET_PARTY_LIST,
 } from "../../../constant";
 
 /* ------------------------- get list of party data ------------------------- */
@@ -25,7 +25,7 @@ export async function get_party_data() {
 
 /* ----------------------------- add party data ----------------------------- */
 export async function post_party_data(action) {
-   return axios
+  return axios
     .post(BASE_URL + ADD_PARTY, action.payload)
     .then((res) => {
       console.log(action.payload);
@@ -43,15 +43,17 @@ export async function post_party_data(action) {
 
 /* ---------------------------- delete party data --------------------------- */
 export async function delete_party_data(action) {
-     return axios.delete(BASE_URL + DELETE_PARTY + action.payload)
+  return axios
+    .delete(BASE_URL + DELETE_PARTY + action.payload)
     .then((res) => {
-        const data = action.payload
-      const status = res.status
+      const data = action.payload;
+      const status = res.status;
       return {
         data,
-        status
-      }
-    }).catch((err) => {
-      console.log(err)
+        status,
+      };
     })
+    .catch((err) => {
+      console.log(err);
+    });
 }

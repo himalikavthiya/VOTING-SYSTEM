@@ -41,11 +41,14 @@ main {
 .top_section {
   display: flex;
   align-items: center;
-  padding: 20px 15px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
 }
 
+
 .top_section img {
-  width: 30px;
+  width: 4rem;
+  height: 3rem;
 }
 
 .bars {
@@ -77,6 +80,13 @@ main {
 .icon,
 .text-link {
   font-size: 17px;
+}
+
+.logo {
+  margin-top: 1px;
+  margin-bottom: 15px;
+  width: 2rem;
+  height: 2rem;
 }
 
 
