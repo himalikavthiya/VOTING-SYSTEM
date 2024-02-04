@@ -3,10 +3,7 @@ import MUIDataTable from "mui-datatables";
 import * as Icons from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  GET_USER_PENDING,
-  GET_USER_REJECTED,
-} from "../../../redux-saga/Admin-saga/create-user/action/action";
+import { DELETE_USER_PENDING } from "../../../redux-saga/Admin-saga/create-user/action/action";
 
 function User() {
   const User = useSelector((state) => state.userReducer.userData.Data);
@@ -22,7 +19,6 @@ function User() {
     };
     reader.readAsDataURL(file);
   };
-
 
   const columns = [
     {
@@ -111,21 +107,20 @@ function User() {
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-                  //     if (confirm) {
-                  //       deleteCategory(value)
-                  //         .then(() => {
-                  //           toast.success('deleted successfully!', {
-                  //             key: value,
-                  //           })
-                  //           console.log(value)
-                  //           categoryList()
-                  //         })
-                  //         .catch(() => {
-                  //           toast.error('something went wrong!', {
-                  //             key: value,
-                  //           })
-                  //         })
-                  //     }
+                  if (shouldDelete) {
+                    // Dispatch the DELETE_USER_PENDING action
+                    dispatch({
+                      type: DELETE_USER_PENDING,
+                      payload: value,
+                    });
+                    // toast.success("Deleted successfully!", {
+                    //   key: value,
+                    // });
+                  } else {
+                    toast.error("Deletion canceled or something went wrong!", {
+                      key: value,
+                    });
+                  }
                 }}
               ></Icons.DeleteRounded>
             </div>

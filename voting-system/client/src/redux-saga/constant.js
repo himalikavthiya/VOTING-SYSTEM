@@ -9,6 +9,7 @@ export const LOGIN_URL = "/login"
 /* -------------------------------- userlist -------------------------------- */
 export const GET_USER_LIST = "/authlist"
 export const ADD_USER = "/auth"
+export const DELETE_USER ="/authdel/"
 
 /* --------------------------- election route list -------------------------- */
 export const GET_ELECTION_LIST = "/elelist"
