@@ -42,7 +42,8 @@ function UserForm() {
           />
           {errors.Profile && <p className="error">{errors.Profile.message}</p>}
 
-          <label htmlFor="Password">Password</label><br />
+          <label htmlFor="Password">Password</label>
+          <br />
           <input
             type="text"
             id="Password"
@@ -111,7 +112,6 @@ function UserForm() {
          
         </div> */}
         <div className="innerfield">
-
           <label htmlFor="Address">Address</label>
           <input
             type="text"
@@ -161,9 +161,6 @@ function UserForm() {
         </div>
       </form>
     </div>
-
-
-
   );
 }
 

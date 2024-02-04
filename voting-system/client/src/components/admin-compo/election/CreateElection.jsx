@@ -66,22 +66,22 @@ const CreateElection = () => {
               <Icons.DeleteRounded
                 className="deleteButton"
                 onClick={async () => {
-                  const shouldDelete = await swal({
+                  const confirm = await swal({
                     title: "Are you sure?",
                     text: "Are you sure? Want to delete Location? All related data will also be deleted",
                     icon: "warning",
                     buttons: ["No, cancel it!", "Yes, I am sure!"],
                     dangerMode: true,
                   });
-                  if (shouldDelete) {
+                  if (confirm) {
                     // Dispatch the DELETE_ELECTION_PENDING action
                     dispatch({
                       type: DELETE_ELECTION_PENDING,
                       payload: value,
                     });
-                    // toast.success("Deleted successfully!", {
-                    //   key: value,
-                    // });
+                    toast.success("Deleted successfully!", {
+                      key: value,
+                    });
                   } else {
                     toast.error("Deletion canceled or something went wrong!", {
                       key: value,

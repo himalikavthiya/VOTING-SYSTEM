@@ -3,9 +3,7 @@ import MUIDataTable from "mui-datatables";
 import * as Icons from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  DELETE_USER_PENDING,
-} from "../../../redux-saga/Admin-saga/create-user/action/action";
+import { DELETE_USER_PENDING } from "../../../redux-saga/Admin-saga/create-user/action/action";
 
 function User() {
   const User = useSelector((state) => state.userReducer.userData.Data);
@@ -21,7 +19,6 @@ function User() {
     };
     reader.readAsDataURL(file);
   };
-
 
   const columns = [
     {
