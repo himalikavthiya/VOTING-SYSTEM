@@ -4,7 +4,7 @@ import {
   POST_ELECTION_PENDING,
   UPDATE_ELECTION_PENDING,
 } from "../../create-election/action/action";
-import { GET_USER_PENDING, POST_USER_PENDING } from "../../create-user/action/action";
+import { DELETE_USER_PENDING, GET_USER_PENDING, POST_USER_PENDING } from "../../create-user/action/action";
 import {
   DELETE_ELECTION_PARTY_PENDING,
   GET_ELECTION_PARTY_PENDING,
@@ -23,7 +23,7 @@ import {
   }
   from "../electionPartyManage/manageParty";
 import { takeLatest } from "redux-saga/effects";
-import { handle_add_user_data, handle_user_data } from "../userManage/userManage";
+import { handle_add_user_data, handle_delete_user_data, handle_user_data } from "../userManage/userManage";
 
 /* ---------------------- GET ELECTION FUN IN ROOTSAGA ---------------------- */
 export function* handle_get_election_saga() {
@@ -65,4 +65,7 @@ export function* handle_get_user_saga(){
 export function* handle_post_user_saga(){
   yield takeLatest(POST_USER_PENDING,handle_add_user_data);
 }
-
+/* --------------------------- DELETE USER FUN IN ROOTSAGA  -------------------------- */
+export function* handle_delete_user_saga() {
+  yield takeLatest(DELETE_USER_PENDING, handle_delete_user_data);
+}
