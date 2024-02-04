@@ -41,11 +41,14 @@ main {
 .top_section {
   display: flex;
   align-items: center;
-  padding: 20px 15px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
 }
 
+
 .top_section img {
-  width: 30px;
+  width: 4rem;
+  height: 3rem;
 }
 
 .bars {
@@ -80,8 +83,10 @@ main {
 }
 
 .logo {
-  width: 100%;
-  height: 100%;
+  margin-top: 1px;
+  margin-bottom: 15px;
+  width: 2rem;
+  height: 2rem;
 }
 
 
