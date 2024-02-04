@@ -181,10 +181,9 @@ img {
 }
 
 /* party page css */
-
 .my-form {
   margin-top: 3rem;
-  /* max-width: 400px; */
+  max-width: 400px;
   margin-left: 3rem;
   margin-right: 3rem;
   padding: 20px;
@@ -192,10 +191,25 @@ img {
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.userform {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 3rem;
+  padding: 20px;
+  margin-left: 3rem;
+}
 
+.add {
+  display: flex;
+  justify-content: flex-end;
+}
 .innerfield {
   margin-bottom: 15px;
   display: flex;
+  justify-content: end;
 }
 
 label {

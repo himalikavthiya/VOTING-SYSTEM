@@ -1,5 +1,5 @@
 import { Party } from "../models/party.model.js";
-import { connectDB, disconnectDB } from "../db/dbconnection.js";
+import { connectDB } from "../db/dbconnection.js";
 import { logger } from "../middlewares/logger.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
@@ -38,8 +38,7 @@ export const partyCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
-    await disconnectDB();
-
+   
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -74,7 +73,6 @@ export const partyList = async (req, res) => {
       Data: Lists,
     });
   } catch (error) {
-    await disconnectDB();
 
     logger.error({
       StatusCode: 1,
@@ -126,7 +124,7 @@ export const partyUpdate = async (req, res) => {
       Data: partyUpdate,
     });
   } catch (error) {
-    await disconnectDB();
+ 
 
     logger.error({
       StatusCode: 1,
@@ -178,8 +176,7 @@ export const partyDel = async (req, res) => {
       Data: partyDelete,
     });
   } catch (error) {
-    await disconnectDB();
-
+  
     logger.error({
       StatusCode: 1,
       Message: error.message,

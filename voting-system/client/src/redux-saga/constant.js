@@ -1,9 +1,10 @@
-export const BASE_URL = "https://voater-backend-app.onrender.com/v1"
-// http://52.65.47.180:4000/v1
+export const BASE_URL = " https://voater-backend-app.onrender.com/v1"
 
+// http://52.65.47.180:4000/v1
+// "http://localhost:4000/v1
 
 export const LOGIN_URL = "/login"
-// "/login/admin";
+//  "/login/admin";
 
 /* -------------------------------- userlist -------------------------------- */
 export const GET_USER_LIST = "/authlist"

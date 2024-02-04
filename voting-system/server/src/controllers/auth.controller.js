@@ -1,5 +1,5 @@
 import { Auth } from "../models/auth.model.js";
-import { connectDB, disconnectDB } from "../db/dbconnection.js";
+import { connectDB } from "../db/dbconnection.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { configData } from "../config/config.js";
@@ -82,8 +82,7 @@ export const authCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
-    await disconnectDB();
-
+ 
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -118,7 +117,7 @@ export const authList = async (req, res) => {
       Data: Lists,
     });
   } catch (error) {
-    await disconnectDB();
+
 
     logger.error({
       StatusCode: 1,
@@ -193,7 +192,7 @@ export const authUpdate = async (req, res) => {
       Data: authUpdate,
     });
   } catch (error) {
-    await disconnectDB();
+   
 
     logger.error({
       StatusCode: 1,
@@ -245,8 +244,7 @@ export const authDel = async (req, res) => {
       Data: authDelete,
     });
   } catch (error) {
-    await disconnectDB();
-
+  
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -306,7 +304,7 @@ export const authLogin = async (req, res) => {
       data: user,
     });
   } catch (error) {
-    await disconnectDB();
+   
 
     logger.error({
       StatusCode: 1,

@@ -1,5 +1,5 @@
 import { Partylist } from "../models/partyList.model.js";
-import { connectDB, disconnectDB } from "../db/dbconnection.js";
+import { connectDB } from "../db/dbconnection.js";
 import { logger } from "../middlewares/logger.js";
 
 /** Create Partylist Controller */
@@ -41,7 +41,7 @@ export const partylistCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
-    await disconnectDB();
+  
 
     logger.error({
       StatusCode: 1,
@@ -77,8 +77,7 @@ export const partylist = async (req, res) => {
       Data: Lists,
     });
   } catch (error) {
-    await disconnectDB();
-
+   
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -129,7 +128,7 @@ export const partylistDel = async (req, res) => {
       Data: partyDelete,
     });
   } catch (error) {
-    await disconnectDB();
+   
 
     logger.error({
       StatusCode: 1,

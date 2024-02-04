@@ -114,10 +114,6 @@ const CreateElection = () => {
           </button>
         </div>
         {/* dataTable data */}
-<<<<<<< HEAD
-=======
-        <ToastContainer />
->>>>>>> 71e347c951daddaf47517fef387f31dcc21a49d3
         <MUIDataTable
           title={"Election List"}
           data={election}

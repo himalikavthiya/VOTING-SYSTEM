@@ -1,5 +1,5 @@
 import { Election } from "../models/election.model.js";
-import { connectDB, disconnectDB } from "../db/dbconnection.js";
+import { connectDB } from "../db/dbconnection.js";
 import { logger } from "../middlewares/logger.js";
 
 /** Create Election Controller */
@@ -39,7 +39,7 @@ export const electionCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
-    await disconnectDB();
+    
 
     logger.error({
       StatusCode: 1,
@@ -75,7 +75,7 @@ export const electionList = async (req, res) => {
       Data: Lists,
     });
   } catch (error) {
-    await disconnectDB();
+ 
 
     logger.error({
       StatusCode: 1,
@@ -127,7 +127,7 @@ export const electionUpdate = async (req, res) => {
       Data: electionUpdate,
     });
   } catch (error) {
-    await disconnectDB();
+
 
     logger.error({
       StatusCode: 1,
@@ -177,7 +177,7 @@ export const electionDel = async (req, res) => {
       Data: electionDelete,
     });
   } catch (error) {
-    await disconnectDB();
+   
 
     logger.error({
       StatusCode: 1,
