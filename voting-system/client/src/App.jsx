@@ -23,13 +23,13 @@ function App() {
   const dispatch = useDispatch();
   const election = useSelector((state) => state.electionReducer);
   const electionParty = useSelector((state) => state.electionPartyReducer);
+  const user = useSelector((state)=>state.userReducer);
 
   useEffect(() => {
     dispatch({ type: GET_ELECTION_PENDING });
     dispatch({ type: GET_ELECTION_PARTY_PENDING });
     dispatch({ type: GET_USER_PENDING });
   }, []);
-  
   const role = Cookies.get("Role");
   if (!role || role == "") {
     return (
