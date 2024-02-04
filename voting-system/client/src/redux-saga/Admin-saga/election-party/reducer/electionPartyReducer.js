@@ -51,16 +51,17 @@ const electionPartyReducer = (state = initialState, action) => {
         };
         case POST_ELECTION_PARTY_FULLFILIED: {
             return {
-                ...state,
+                // ...state,
                 PartyData: state.PartyData.concat(action.data.Data),
-                    isLoading: false,
-                isError: action.data,
+                //     isLoading: false,
+                // isError: action.data,
             };
         };
         case POST_ELECTION_PARTY_REJECTED: {
             return {
                 ...state,
                 isLoading: true,
+                isError: action.data,
             };
         };
 

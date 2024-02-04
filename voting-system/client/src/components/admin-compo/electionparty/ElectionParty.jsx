@@ -1,4 +1,4 @@
-import React, { useEffect,  useState } from "react";
+import React, { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 import * as Icons from "@mui/icons-material";
@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { ToastContainer, toast } from "react-toastify";
 import { DELETE_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
-
 
 const ElectionParty = () => {
   const electionParty = useSelector(
@@ -94,7 +93,6 @@ const ElectionParty = () => {
                       key: value,
                     });
                     // console.log(value);
-
                   } else {
                     toast.error("something went wrong!", {
                       key: value,
