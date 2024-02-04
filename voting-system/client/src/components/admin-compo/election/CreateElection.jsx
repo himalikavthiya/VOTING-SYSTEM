@@ -102,7 +102,6 @@ const CreateElection = () => {
 
   return (
     <>
-     
       <div className="custom-container">
         <div className="right-text">
           <button
@@ -114,7 +113,7 @@ const CreateElection = () => {
           </button>
         </div>
         {/* dataTable data */}
-         <ToastContainer />
+        <ToastContainer />
         <MUIDataTable
           title={"Election List"}
           data={election}
