@@ -20,7 +20,7 @@ const initialState = {
 };
 
 const electionReducer = (state = initialState, action) => {
-  // console.log(action, "action-----------------")
+  // console.log(action.data, "action-----------------")
   switch (action.type) {
     case GET_ELECTION_PENDING: {
       return {
@@ -59,9 +59,9 @@ const electionReducer = (state = initialState, action) => {
           electionData: state.electionData.concat(action.data.Data)
       };
     case POST_ELECTION_REJECTED:
-     return {
-       ...state,
-       isLoading: true,
+      return {
+        ...state,
+        isLoading: true,
           isError: action.data,
       };
 
@@ -75,6 +75,7 @@ const electionReducer = (state = initialState, action) => {
     }
     case DELETE_ELECTION_FULLFILIED: {
       const deleteData = state.electionData.filter((item) => item._id !== action.data);
+      console.log(deleteData,"from delete")
       return {
         ...state,
         isLoading: false,
@@ -82,25 +83,6 @@ const electionReducer = (state = initialState, action) => {
         isError: null,
       };
     }
-
-    // case DELETE_ELECTION_FULLFILIED: {
-    //   console.log("Current Election Data:", state.electionData.Data);
-    //   console.log("Action Data to Delete:", action.data.Data);
-
-    //   const deleteData = state.electionData.Data.filter((item) => item._id !== action.data.Data);
-
-    //   console.log("Filtered Data:", deleteData);
-
-    //   return {
-    //     ...state,
-    //     isLoading: false,
-    //     electionData: {
-    //       ...state.electionData,
-    //       Data: deleteData, // Update the Data property
-    //     },
-    //     isError: null,
-    //   };
-    // }
     case DELETE_ELECTION_REJECTED: {
       return {
         ...state,
@@ -119,7 +101,7 @@ const electionReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoding: false,
-        electionData: state.electionData.map((state) =>
+          electionData: state.electionData.map((state) =>
             state.id === action.data.id ? action.data : state
           ),
           isError: null,

@@ -25,11 +25,11 @@ export async function get_user_data() {
 
 /* ----------------------------- add user data ----------------------------- */
 export async function post_user_data(action) {
-  console.log(action,"api 28 line")
   return axios
-    .post(BASE_URL + ADD_USER, action.payload)
-    .then((res) => {
-      console.log(res);
+  .post(BASE_URL + ADD_USER, action.payload)
+  .then((res) => {
+    console.log(action.payload, "api 28 line")
+    
       const data = res.data;
       const status = res.status;
       return {

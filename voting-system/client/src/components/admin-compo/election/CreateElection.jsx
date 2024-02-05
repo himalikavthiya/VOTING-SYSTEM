@@ -79,13 +79,13 @@ const CreateElection = () => {
                       type: DELETE_ELECTION_PENDING,
                       payload: value,
                     });
-                    toast.success("Deleted successfully!", {
-                      key: value,
-                    });
-                  } else {
-                    toast.error("Deletion canceled or something went wrong!", {
-                      key: value,
-                    });
+                  //   toast.success("Deleted successfully!", {
+                  //     key: value,
+                  //   });
+                  // } else {
+                  //   toast.error("Deletion canceled or something went wrong!", {
+                  //     key: value,
+                  //   });
                   }
                 }}
               ></Icons.DeleteRounded>

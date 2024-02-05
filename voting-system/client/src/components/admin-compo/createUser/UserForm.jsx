@@ -18,6 +18,8 @@ function UserForm() {
 
   // handle submit form
   const onSubmit = (data) => {
+    console.log(data,"from data")
+
     let formData = new FormData(); //formdata object
     Object.keys(data).forEach(function (key) {
       if (key === "Profile") {
@@ -32,7 +34,7 @@ function UserForm() {
         "Content-Type": "multipart/form-data"
       }
     });
-    navigate("/create-user");
+    navigate("/user");
   };
   return (
     <div className="maincontainer">
@@ -90,7 +92,7 @@ function UserForm() {
         <div className="col-lg-6">
           <label htmlFor="Phone">Phone Number</label>
           <input
-            type="text"
+            type="number"
             id="Phone"
             className="inputfield"
             placeholder="User Phone"
