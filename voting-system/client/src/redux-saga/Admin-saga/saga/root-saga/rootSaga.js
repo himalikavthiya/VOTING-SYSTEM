@@ -31,11 +31,9 @@ import {
   handle_delete_user_data,
   handle_user_data,
 } from "../userManage/userManage";
-import {
-  GET_PARTYCONNECT_PENDING,
-  POST_PARTYCONNECT_PENDING,
-} from "../../party-connection/action/action";
-import { handle_add_partyconnect_data, handle_partyconnect_data } from "../partyManage/partyManage";
+import { handle_add_partyconnect_data, handle_partyconnect_data } from "../partyConnectManage/partyConnectManage";
+import { GET_PARTYCONNECT_PENDING, POST_PARTYCONNECT_PENDING } from "../../party-connect/action/action";
+
 
 /* ---------------------- GET ELECTION FUN IN ROOTSAGA ---------------------- */
 export function* handle_get_election_saga() {
