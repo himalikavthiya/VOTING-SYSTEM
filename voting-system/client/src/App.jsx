@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import Userprofile from "./components/user-compo/Userprofile";
 import Navbar from "./components/admin-compo/Navbar";
 import ElectionParty from "./components/admin-compo/electionparty/ElectionParty";
-import PartyConnection from "./components/admin-compo/PartyConnection";
+import PartyConnection from "./components/admin-compo/partyconnection/PartyConnection";
 import ElectionPartyForm from "./components/admin-compo/electionparty/ElectionPartyForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -23,7 +23,7 @@ function App() {
   const dispatch = useDispatch();
   const election = useSelector((state) => state.electionReducer);
   const electionParty = useSelector((state) => state.electionPartyReducer);
-  const user = useSelector((state)=>state.userReducer);
+  const user = useSelector((state) => state.userReducer);
 
   useEffect(() => {
     dispatch({ type: GET_ELECTION_PENDING });
