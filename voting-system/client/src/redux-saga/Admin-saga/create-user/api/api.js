@@ -28,8 +28,7 @@ export async function post_user_data(action) {
   return axios
   .post(BASE_URL + ADD_USER, action.payload)
   .then((res) => {
-    console.log(action.payload, "api 28 line")
-    
+    // console.log(action.payload, "api 28 line")
       const data = res.data;
       const status = res.status;
       return {
@@ -47,7 +46,7 @@ export async function delete_user_data(action) {
   return axios
     .delete(BASE_URL + DELETE_USER + action.payload)
     .then((res) => {
-      console.log(res, "dfghjkl")
+      // console.log(res, "dfghjkl")
       const data = action.payload;
       const status = res.status;
       return {
@@ -56,6 +55,6 @@ export async function delete_user_data(action) {
       };
     })
     .catch((err) => {
-      console.log(err, "res from 51 line no");
+      console.log(err, "res from 58 line no");
     });
 }

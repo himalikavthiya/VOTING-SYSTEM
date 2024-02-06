@@ -1,9 +1,11 @@
 import { all } from "redux-saga/effects";
 import {
+  handle_add_partyconnect_saga,
   handle_delete_election_saga,
   handle_delete_party_saga,
   handle_delete_user_saga,
   handle_get_election_saga,
+  handle_get_partyConnect_saga,
   handle_get_party_saga,
   handle_get_user_saga,
   handle_post_election_saga,
@@ -26,5 +28,7 @@ export function* index_saga() {
     handle_get_user_saga(),
     handle_post_user_saga(),
     handle_delete_user_saga(),
+    handle_get_partyConnect_saga(),
+    handle_add_partyconnect_saga(),
   ]);
 }

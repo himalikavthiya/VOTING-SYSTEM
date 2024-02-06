@@ -12,7 +12,7 @@ import {
 import { FaUserPen } from "react-icons/fa6";
 import { IoCreate } from "react-icons/io5";
 import { NavLink } from 'react-router-dom';
-import logo from "../../../public/voting-logo.jpg"
+import logo from "../../../public/voteLogo.png"
 
 const Sidebar = ({ children }) => {
     const [isOpen, setIsOpen] = useState(false);

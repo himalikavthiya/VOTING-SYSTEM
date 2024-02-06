@@ -4,7 +4,11 @@ import {
   POST_ELECTION_PENDING,
   UPDATE_ELECTION_PENDING,
 } from "../../create-election/action/action";
-import { DELETE_USER_PENDING, GET_USER_PENDING, POST_USER_PENDING } from "../../create-user/action/action";
+import {
+  DELETE_USER_PENDING,
+  GET_USER_PENDING,
+  POST_USER_PENDING,
+} from "../../create-user/action/action";
 import {
   DELETE_ELECTION_PARTY_PENDING,
   GET_ELECTION_PARTY_PENDING,
@@ -20,10 +24,18 @@ import {
   handle_add_party_data,
   handle_delete_party_data,
   handle_get_party_data,
-  }
-  from "../electionPartyManage/manageParty";
+} from "../electionPartyManage/manageParty";
 import { takeLatest } from "redux-saga/effects";
-import { handle_add_user_data, handle_delete_user_data, handle_user_data } from "../userManage/userManage";
+import {
+  handle_add_user_data,
+  handle_delete_user_data,
+  handle_user_data,
+} from "../userManage/userManage";
+import {
+  GET_PARTYCONNECT_PENDING,
+  POST_PARTYCONNECT_PENDING,
+} from "../../party-connection/action/action";
+import { handle_add_partyconnect_data, handle_partyconnect_data } from "../partyManage/partyManage";
 
 /* ---------------------- GET ELECTION FUN IN ROOTSAGA ---------------------- */
 export function* handle_get_election_saga() {
@@ -34,7 +46,6 @@ export function* handle_get_election_saga() {
 export function* handle_post_election_saga() {
   yield takeLatest(POST_ELECTION_PENDING, handle_add_election_data);
 }
-
 
 /* --------------------------- DELETE ELECTION FUN IN ROOTSAGA  -------------------------- */
 export function* handle_delete_election_saga() {
@@ -58,14 +69,23 @@ export function* handle_delete_party_saga() {
   yield takeLatest(DELETE_ELECTION_PARTY_PENDING, handle_delete_party_data);
 }
 /* -------------------------- GET USER FUN IN ROOTSAGA -------------------------- */
-export function* handle_get_user_saga(){
-  yield takeLatest(GET_USER_PENDING,handle_user_data);
+export function* handle_get_user_saga() {
+  yield takeLatest(GET_USER_PENDING, handle_user_data);
 }
 /* ------------------------ POST USER FUN IN ROOTSAGA ----------------------- */
-export function* handle_post_user_saga(){
-  yield takeLatest(POST_USER_PENDING,handle_add_user_data);
+export function* handle_post_user_saga() {
+  yield takeLatest(POST_USER_PENDING, handle_add_user_data);
 }
 /* --------------------------- DELETE USER FUN IN ROOTSAGA  -------------------------- */
 export function* handle_delete_user_saga() {
   yield takeLatest(DELETE_USER_PENDING, handle_delete_user_data);
+}
+
+/* -------------------------- GET PARTCONNECT FUN IN ROOTSAGA -------------------------- */
+export function* handle_get_partyConnect_saga() {
+  yield takeLatest(GET_PARTYCONNECT_PENDING, handle_partyconnect_data);
+}
+/* -------------------------- POST PARTCONNECT FUN IN ROOTSAGA -------------------------- */
+export function* handle_add_partyconnect_saga() {
+  yield takeLatest(POST_PARTYCONNECT_PENDING, handle_add_partyconnect_data);
 }

@@ -32,7 +32,7 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                userData: action.data,
+                userData: action.data.Data,
                 isError: null,
             };
         }
@@ -52,7 +52,7 @@ const userReducer = (state = initialState, action) => {
         case POST_USER_FULLFILIED:
             return {
                 ...state,
-                userData: state.userData.concat(action.data),
+                userData: state.userData.concat(action.data.Data),
                     isError: action.data,
             };
         case POST_USER_REJECTED:

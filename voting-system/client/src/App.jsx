@@ -7,7 +7,6 @@ import Cookies from "js-cookie";
 import Userprofile from "./components/user-compo/Userprofile";
 import Navbar from "./components/admin-compo/Navbar";
 import ElectionParty from "./components/admin-compo/electionparty/ElectionParty";
-import PartyConnection from "./components/admin-compo/partyconnection/PartyConnection";
 import ElectionPartyForm from "./components/admin-compo/electionparty/ElectionPartyForm";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -18,6 +17,9 @@ import { GET_ELECTION_PENDING } from "./redux-saga/Admin-saga/create-election/ac
 import UserForm from "./components/admin-compo/createUser/UserForm";
 import User from "./components/admin-compo/createUser/User";
 import { GET_USER_PENDING } from "./redux-saga/Admin-saga/create-user/action/action";
+import PartyForm from "./components/admin-compo/partyconnection/PartyForm";
+import { GET_PARTYCONNECT_PENDING } from "./redux-saga/Admin-saga/party-connection/action/action";
+import PartyConnect from "./components/admin-compo/partyconnection/PartyConnect";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,6 +31,7 @@ function App() {
     dispatch({ type: GET_ELECTION_PENDING });
     dispatch({ type: GET_ELECTION_PARTY_PENDING });
     dispatch({ type: GET_USER_PENDING });
+    dispatch({ type: GET_PARTYCONNECT_PENDING });
   }, []);
   const role = Cookies.get("Role");
   if (!role || role == "") {
@@ -53,7 +56,8 @@ function App() {
               path="/election-party-form"
               element={<ElectionPartyForm />}
             />
-            <Route path="/party-connection" element={<PartyConnection />} />
+            <Route path="/party-connection" element={<PartyConnect />} />
+            <Route path="/party-connection-form" element={<PartyForm />} />
           </Routes>
         </Sidebar>
       </div>

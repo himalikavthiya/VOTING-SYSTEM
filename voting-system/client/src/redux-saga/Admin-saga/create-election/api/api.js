@@ -56,7 +56,7 @@ export async function delete_election_data(action) {
       };
     })
     .catch((err) => {
-      console.log(err, "res from 55 line no");
+      console.log(err, "res from 59 line no");
     });
 }
 

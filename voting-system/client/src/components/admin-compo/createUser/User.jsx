@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { DELETE_USER_PENDING } from "../../../redux-saga/Admin-saga/create-user/action/action";
 
 function User() {
-  const User = useSelector((state) => state.userReducer.userData.Data);
+  const User = useSelector((state) => state.userReducer.userData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [newUrl, setNewUrl] = useState();
