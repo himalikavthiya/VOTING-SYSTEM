@@ -83,6 +83,7 @@ export function* handle_delete_user_saga() {
 export function* handle_get_partyConnect_saga() {
   yield takeLatest(GET_PARTYCONNECT_PENDING, handle_partyconnect_data);
 }
+
 /* -------------------------- POST PARTCONNECT FUN IN ROOTSAGA -------------------------- */
 export function* handle_add_partyconnect_saga() {
   yield takeLatest(POST_PARTYCONNECT_PENDING, handle_add_partyconnect_data);

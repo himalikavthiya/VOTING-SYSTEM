@@ -1,8 +1,9 @@
+import axios from "axios";
 import {
   ADD_PARTY_CONNECTION,
-  GET_PARTY_CONNECTION_LIST
+  BASE_URL,
+  GET_PARTY_CONNECTION_LIST,
 } from "../../../constant";
-
 
 /* ------------------------- get election data ------------------------- */
 export async function get_partyConnect_data() {
@@ -20,15 +21,12 @@ export async function get_partyConnect_data() {
       console.log(err);
     });
 }
-
 /* ----------------------------- add election data ----------------------------- */
 export async function post_partyConnect_data(action) {
   console.log(action, "from api election");
   return axios
     .post(BASE_URL + ADD_PARTY_CONNECTION, action.payload)
     .then((res) => {
-      // console.log(res, "res------election---------");
-
       const data = res.data;
       const status = res.status;
       return {

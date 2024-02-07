@@ -38,7 +38,6 @@ export const partyCreate = async (req, res) => {
       Data: result,
     });
   } catch (error) {
-   
     logger.error({
       StatusCode: 1,
       Message: error.message,
@@ -124,9 +123,7 @@ export const partyUpdate = async (req, res) => {
       Data: partyUpdate,
     });
   } catch (error) {
- 
-
-    logger.error({
+     logger.error({
       StatusCode: 1,
       Message: error.message,
     });

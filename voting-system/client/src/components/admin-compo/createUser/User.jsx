@@ -81,6 +81,14 @@ function User() {
       },
     },
     {
+      name: "Role",
+      label: "Role",
+      options: {
+        filter: true,
+        sort: false,
+      },
+    },
+    {
       name: "_id",
       label: "Action",
       options: {

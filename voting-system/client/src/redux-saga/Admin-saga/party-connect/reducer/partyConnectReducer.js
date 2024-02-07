@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const PartyConnectReducer = (state = initialState, action) => {
-  // console.log(action.data, "action-----------------")
+  // console.log(action, "action-----------------")
   switch (action.type) {
     case GET_PARTYCONNECT_PENDING: {
       return {
@@ -24,6 +24,7 @@ const PartyConnectReducer = (state = initialState, action) => {
       };
     }
     case GET_PARTYCONNECT_FULLFILIED: {
+      console.log(action.data);
       return {
         ...state,
         isLoading: false,
@@ -49,13 +50,13 @@ const PartyConnectReducer = (state = initialState, action) => {
       return {
         // ...state,
         isLoading: false,
-          partyConnectData: state.partyConnectData.concat(action.data.Data),
+        partyConnectData: state.partyConnectData.concat(action.data.Data),
       };
     case POST_PARTYCONNECT_REJECTED:
       return {
         ...state,
         isLoading: true,
-          isError: action.data,
+        isError: action.data,
       };
     default: {
       return {

@@ -119,19 +119,10 @@ function PartyConnect() {
 
     return (
         <div className="custom-container">
-            <div className="right-text">
-                <button
-                    type="button"
-                    className="btn btn-primary AddButton"
-                    onClick={() => navigate("/party-connect-form")}
-                >
-                    Add Party
-                </button>
-            </div>
             {/* dataTable data */}
             <MUIDataTable
                 title={"Party Connection"}
-                data={electionParty}
+                data={partyConnection}
                 columns={columns}
                 options={options}
             />

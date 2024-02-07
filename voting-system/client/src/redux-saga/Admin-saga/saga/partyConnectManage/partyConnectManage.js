@@ -1,4 +1,7 @@
-import { call, put } from "redux-saga/effects";
+import {
+  call,
+  put
+} from "redux-saga/effects";
 import {
   GET_PARTYCONNECT_FULLFILIED,
   GET_PARTYCONNECT_REJECTED,
@@ -12,8 +15,10 @@ import {
 
 /* --------------------------- GET PARTYCONNECTION MANAGE -------------------------- */
 export function* handle_partyconnect_data(action) {
+  console.log(action, "action from manage")
   try {
     const res = yield call(get_partyConnect_data, action);
+    console.log(res, "ressss")
     const data = res.data;
     const status = res.status;
     if (status === 200) {

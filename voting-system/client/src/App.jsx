@@ -32,7 +32,7 @@ function App() {
     dispatch({ type: GET_ELECTION_PENDING });
     dispatch({ type: GET_ELECTION_PARTY_PENDING });
     dispatch({ type: GET_USER_PENDING });
-    dispatch({type:GET_PARTYCONNECT_PENDING});
+    dispatch({ type: GET_PARTYCONNECT_PENDING });
   }, []);
   const role = Cookies.get("Role");
   if (!role || role == "") {
@@ -57,10 +57,11 @@ function App() {
               path="/election-party-form"
               element={<ElectionPartyForm />}
             />
-            <Route path="/party-connect" element={<PartyConnect/>}/>
-            <Route path="/party-connect-form" element={<PartyConnectForm/>}/>
+            <Route path="/party-connect" element={<PartyConnect />} />
+            <Route path="/party-connect-form" element={<PartyConnectForm />} />
           </Routes>
         </Sidebar>
+        {/* <PartyConnect /> */}
       </div>
     );
   } else if (role === "user") {
@@ -70,7 +71,10 @@ function App() {
           <Navbar />
           <Route path="/user-profile" element={<Userprofile />} />
         </Routes>
+
+        {/* <PartyConnect /> */}
       </div>
+
     );
   }
 }
