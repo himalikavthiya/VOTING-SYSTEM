@@ -1,26 +1,34 @@
 import MUIDataTable from "mui-datatables";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { GET_PARTYCONNECT_PENDING } from "../../../redux-saga/Admin-saga/party-connect/action/action";
 
 function PartyConnect() {
-    const partyConnection = useSelector((state) => state.PartyConnectReducer.PartyConnectData);
-    const election = useSelector((state) => state.electionReducer.electionData);
-    const electionParty = useSelector(
-        (state) => state.electionPartyReducer.PartyData
-    );
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [newUrl, setNewUrl] = useState();
+    const [tableData, setTableData] = useState([]);
+    const partyConnection = useSelector((state) => state.PartyConnectReducer.partyConnectData);
+    const election = useSelector((state) => state.electionReducer);
+    const electionParty = useSelector((state) => state.electionPartyReducer);
+    const [selectedValue, setSelectedValue] = useState("");
 
-    // const handleFileUpload = (event) => {
-    //   const file = event.target.files[0];
-    //   const reader = new FileReader();
-    //   reader.onloadend = () => {
-    //     setNewUrl(reader.result);
-    //   };
-    //   reader.readAsDataURL(file);
-    // };
+    // Handler function to update the selected value
+    const handleSelectChange = (event) => {
+        setSelectedValue(event.target.value);
+    };
+
+    useEffect(() => {
+        dispatch({ type: GET_PARTYCONNECT_PENDING });
+    }, []);
+
+    const transformedData = partyConnection.map((obj) => ({
+        ElectionName: obj.Election ? obj.Election.ElectionName : '',
+        shortCode: obj.Party ? obj.Party.shortCode : '',
+        pName: obj.Party ? obj.Party.pName : '',
+        Profile: obj.Party ? obj.Party.Profile : '',
+    }));
+
     const columns = [
         {
             name: "index",
@@ -40,7 +48,15 @@ function PartyConnect() {
             },
         },
         {
-            name: "PName",
+            name: "shortCode",
+            label: "Short Code",
+            options: {
+                filter: true,
+                sort: true,
+            },
+        },
+        {
+            name: "pName",
             label: "Party Name",
             options: {
                 filter: true,
@@ -64,53 +80,6 @@ function PartyConnect() {
                 },
             },
         },
-        {
-            name: "shortCode",
-            label: "Short Code",
-            options: {
-                filter: true,
-                sort: false,
-            },
-        },
-        {
-            name: "_id",
-            label: "Action",
-            options: {
-                customBodyRender: (value) => {
-                    return (
-                        <div>
-                            {/* <Icons.EditRounded></Icons.EditRounded>
-              <Icons.DeleteRounded
-                    className="deleteButton"
-                    onClick={async () => {
-                      const confirm = await swal({
-                        title: "Are you sure?",
-                        text: "Are you sure? Want to delete ? All related data will also be deleted",
-                        icon: "warning",
-                        buttons: ["No, cancel it!", "Yes, I am sure!"],
-                        dangerMode: true,
-                      });
-                      if (confirm) {
-                        dispatch({
-                          type: DELETE_ELECTION_PARTY_PENDING,
-                          payload: value,
-                        });
-                        toast.success("deleted successfully!", {
-                          key: value,
-                        });
-                        // console.log(value);
-                      } else {
-                        toast.error("something went wrong!", {
-                          key: value,
-                        });
-                      }
-                    }}
-                  ></Icons.DeleteRounded> */}
-                        </div>
-                    );
-                },
-            },
-        },
     ];
 
     const options = {
@@ -119,10 +88,19 @@ function PartyConnect() {
 
     return (
         <div className="custom-container">
-            {/* dataTable data */}
+            <div>
+                {/* Dropdown select element */}
+                <select value={selectedValue} onChange={handleSelectChange}>
+                    <option value="">Select an option</option>
+                    {options.map(option => (
+                        <option key={option.value} value={JSON.stringify(option.data)}>{option.label}</option>
+                    ))}
+                </select>
+
+            </div>
             <MUIDataTable
                 title={"Party Connection"}
-                data={partyConnection}
+                data={transformedData}
                 columns={columns}
                 options={options}
             />

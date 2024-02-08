@@ -3,6 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import * as Icons from "@mui/icons-material";
 import swal from "sweetalert";
 import { DELETE_ELECTION_PENDING } from "../../../redux-saga/Admin-saga/create-election/action/action";
@@ -74,18 +75,18 @@ const CreateElection = () => {
                     dangerMode: true,
                   });
                   if (confirm) {
-                    // Dispatch the DELETE_ELECTION_PENDING action
+
                     dispatch({
                       type: DELETE_ELECTION_PENDING,
                       payload: value,
                     });
-                  //   toast.success("Deleted successfully!", {
-                  //     key: value,
-                  //   });
-                  // } else {
-                  //   toast.error("Deletion canceled or something went wrong!", {
-                  //     key: value,
-                  //   });
+                    toast.success("Deleted successfully!", {
+                      key: value,
+                    });
+                  } else {
+                    toast.error("Deletion canceled or something went wrong!", {
+                      key: value,
+                    });
                   }
                 }}
               ></Icons.DeleteRounded>
@@ -103,7 +104,8 @@ const CreateElection = () => {
   return (
     <>
       <div className="custom-container">
-          <ToastContainer />
+
+        <ToastContainer />
         <div className="right-text">
           <button
             type="button"

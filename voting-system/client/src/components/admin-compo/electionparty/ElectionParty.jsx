@@ -5,6 +5,7 @@ import * as Icons from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import { DELETE_ELECTION_PARTY_PENDING } from "../../../redux-saga/Admin-saga/election-party/action/action";
 
 const ElectionParty = () => {
@@ -92,7 +93,7 @@ const ElectionParty = () => {
                     toast.success("deleted successfully!", {
                       key: value,
                     });
-                    // console.log(value);
+
                   } else {
                     toast.error("something went wrong!", {
                       key: value,
@@ -113,6 +114,7 @@ const ElectionParty = () => {
 
   return (
     <div className="custom-container">
+      <ToastContainer/>
       <div className="right-text">
         <button
           type="button"

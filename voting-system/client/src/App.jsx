@@ -27,12 +27,13 @@ function App() {
   const election = useSelector((state) => state.electionReducer);
   const electionParty = useSelector((state) => state.electionPartyReducer);
   const user = useSelector((state) => state.userReducer);
+  const partyConnection = useSelector((state) => state.PartyConnectReducer);
 
   useEffect(() => {
     dispatch({ type: GET_ELECTION_PENDING });
     dispatch({ type: GET_ELECTION_PARTY_PENDING });
     dispatch({ type: GET_USER_PENDING });
-    dispatch({ type: GET_PARTYCONNECT_PENDING });
+    // dispatch({ type: GET_PARTYCONNECT_PENDING });
   }, []);
   const role = Cookies.get("Role");
   if (!role || role == "") {
