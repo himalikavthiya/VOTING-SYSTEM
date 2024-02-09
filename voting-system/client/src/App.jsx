@@ -33,7 +33,7 @@ function App() {
     dispatch({ type: GET_ELECTION_PENDING });
     dispatch({ type: GET_ELECTION_PARTY_PENDING });
     dispatch({ type: GET_USER_PENDING });
-    // dispatch({ type: GET_PARTYCONNECT_PENDING });
+    dispatch({ type: GET_PARTYCONNECT_PENDING });
   }, []);
   const role = Cookies.get("Role");
   if (!role || role == "") {

@@ -8,26 +8,67 @@ function PartyConnect() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [tableData, setTableData] = useState([]);
-    const partyConnection = useSelector((state) => state.PartyConnectReducer.partyConnectData);
-    const election = useSelector((state) => state.electionReducer);
-    const electionParty = useSelector((state) => state.electionPartyReducer);
-    const [selectedValue, setSelectedValue] = useState("");
+    const partyConnection = useSelector(
+        (state) => state.PartyConnectReducer.partyConnectData
+    );
+    // const electionData = useSelector(state => state.electionReducer.electionData);
+    // // const election = useSelector((state) => state.electionReducer);
+    // const electionParty = useSelector((state) => state.electionPartyReducer);
+    // const [selectedValue, setSelectedValue] = useState([]);
+    const [selectedElection, setSelectedElection] = useState("");
+    const [selectedParty, setSelectedParty] = useState("");
+    const electionData = useSelector(state => state.electionReducer.electionData);
+    const electionPartyData = useSelector(state => state.electionPartyReducer);
 
-    // Handler function to update the selected value
+
+    /** partyconnection filter data */
+    const transformedData = partyConnection.map((obj) => ({
+        ElectionName: obj.Election ? obj.Election.ElectionName : "",
+        shortCode: obj.Party ? obj.Party.shortCode : "",
+        pName: obj.Party ? obj.Party.pName : "",
+        Profile: obj.Party ? obj.Party.Profile : "",
+    }));
+
+
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
     };
 
-    useEffect(() => {
-        dispatch({ type: GET_PARTYCONNECT_PENDING });
-    }, []);
+    // useEffect(() => {
+    //     const filteredData = selectedValue ? electionData.filter(election => election.ElectionName === selectedValue) : electionData;
+    //     setTableData(filteredData);
+    // }, [selectedValue, electionData]);
 
-    const transformedData = partyConnection.map((obj) => ({
-        ElectionName: obj.Election ? obj.Election.ElectionName : '',
-        shortCode: obj.Party ? obj.Party.shortCode : '',
-        pName: obj.Party ? obj.Party.pName : '',
-        Profile: obj.Party ? obj.Party.Profile : '',
-    }));
+    // const optionsElements = electionData.map(election => (
+    //     <option key={election.ElectionName} value={election.ElectionName}>{election.ElectionName}</option>
+    // ));
+    useEffect(() => {
+        let filteredData = electionData;
+        if (selectedElection) {
+            filteredData = filteredData.filter(election => election.ElectionName === selectedElection);
+        }
+        if (selectedParty) {
+            filteredData = filteredData.filter(election => election.PartyName === selectedParty);
+        }
+        setTableData(filteredData);
+    }, [selectedElection, selectedParty, electionData]);
+    const handleElectionChange = (event) => {
+        setSelectedElection(event.target.value);
+        setSelectedParty(""); // Reset selected party when election changes
+    };
+
+    const handlePartyChange = (event) => {
+        setSelectedParty(event.target.value);
+    };
+
+    const electionOptions = electionData.map(election => (
+        <option key={election.ElectionName} value={election.ElectionName}>{election.ElectionName}</option>
+    ));
+
+    const partyOptions = electionPartyData.map(party => (
+        <option key={party.partyName} value={party.partyName}>{party.partyName}</option>
+    ));
+
 
     const columns = [
         {
@@ -89,15 +130,35 @@ function PartyConnect() {
     return (
         <div className="custom-container">
             <div>
-                {/* Dropdown select element */}
+                <select value={selectedElection} onChange={handleElectionChange}>
+                    <option value="">Select an election</option>
+                    {electionOptions}
+                </select>
+            </div>
+            <div>
+                <select value={selectedParty} onChange={handlePartyChange}>
+                    <option value="">Select a party</option>
+                    {partyOptions}
+                </select>
+            </div>
+            <MUIDataTable title={"Party Connection"} data={tableData} columns={columns} options={{ selectableRows: "none" }} />
+
+            {/* <div>
                 <select value={selectedValue} onChange={handleSelectChange}>
-                    <option value="">Select an option</option>
-                    {options.map(option => (
-                        <option key={option.value} value={JSON.stringify(option.data)}>{option.label}</option>
+                    <option value="">Select Election Name</option>
+                    {electionData.map(election => (
+                        <option key={election.ElectionName} value={election.ElectionName}>{election.ElectionName}</option>
                     ))}
                 </select>
 
-            </div>
+                <select value={selectedValue} onChange={handleSelectChange}>
+                    <option value="">Select Party Name</option>
+                    {electionData.map(election => (
+                        <option key={election.ElectionName} value={election.ElectionName}>{election.ElectionName}</option>
+                    ))}
+                </select>
+            </div> */}
+
             <MUIDataTable
                 title={"Party Connection"}
                 data={transformedData}
